@@ -11,7 +11,7 @@ struct info_student {
 	struct info_student* next;
 };
 void printing_int_array(int array[], int size) {
-	std::cout << "Вы ввели следующие числа:\n";
+	std::cout << "you have entered the following numbers:\n";
 	for (int i = 0; i < size; ++i) {
 		std::cout << array[i] << " ";
 	}
@@ -24,7 +24,7 @@ void task_1() {
 	//int max_value_int = INT_MAX;
 	int array[size_array_in_task_1];
 	for (int i = 0; i < size_array_in_task_1; ++i) {
-		std::cout << "Введите число " << (i + 1) << ": ";
+		std::cout << "enter a number" << (i + 1) << ": ";
 		std::cin >> array[i];
 	}
 	printing_int_array(array, size_array_in_task_1);
@@ -56,7 +56,7 @@ void task_2() {
 void task_3() {
 	int* ptr_int_array = NULL;
 	int size_int_dynamic_array = 0;
-	std::cout << "Введите кол-во элементов массива";
+	std::cout << "enter the number of array elements";
 	std::cin >> size_int_dynamic_array;
 	ptr_int_array = (int*)malloc(size_int_dynamic_array * sizeof(int));
 	for (int i = 0; i < size_int_dynamic_array; i++) {
@@ -78,7 +78,7 @@ void task_4() {
 			sum_elements_line += array_two_dimensional_array[i][j];
 		}
 		std::cout << "\n";
-		std::cout << "сумма элеменотов строки " <<i<<": " << sum_elements_line << "\n";
+		std::cout << "the sum of the line elements " <<i<<": " << sum_elements_line << "\n";
 		sum_elements_line = 0;
 	}
 	return;
@@ -130,25 +130,25 @@ void task_5() {
 	char temp_surname[50];
 	char temp_facult[30];
 	int temp_the_number_of_the_exam_book;
-	std::cout << "Введите количество студентов:\n";
+	std::cout << "enter the number of students :\n";
 	std::cin >> count_the_student;
 	info_student* list = (info_student*)malloc(sizeof(info_student));
 	for (int i = 0; i < count_the_student; i++) {
-		std::cout << "Введите данные о студенте "<<i+1<<":\n";
-		std::cout << "Имя: ";
+		std::cout << "enter the student's details "<<i+1<<":\n";
+		std::cout << "name: ";
 		scanf_s("%s", temp_name, sizeof(temp_name));
-		std::cout << "Фамилия: ";
+		std::cout << "surname: ";
 		scanf_s("%s", temp_surname, sizeof(temp_surname));
-		std::cout << "введите название факультета: ";
+		std::cout << "enter the name of the faculty: ";
 		scanf_s("%s", temp_facult, sizeof(temp_facult));
-		std::cout << "Введите номер зчетной книжки: ";
+		std::cout << "enter the credit card number: ";
 		std::cin >> temp_the_number_of_the_exam_book;
 		addNode(&head, temp_name, temp_surname, temp_facult, temp_the_number_of_the_exam_book);
 	}
-	std::cout << "Введите данные о студенте для поиска:\n";
-	std::cout << "Имя: ";
+	std::cout << "enter the student's details for the search:\n";
+	std::cout << "name: ";
 	scanf_s("%s", temp_name, sizeof(temp_name));
-	std::cout << "Фамилия: ";
+	std::cout << "surname: ";
 	scanf_s("%s", temp_surname, sizeof(temp_surname));
 	printNode(head, temp_name, temp_surname);
 }
