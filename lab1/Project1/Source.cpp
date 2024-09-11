@@ -1,8 +1,10 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
-#include <stdio.h>
+#include <cstdio>
+#include <cstring>
 #include <limits.h>
 #include <locale.h>
+#include <cmath>
 struct info_student {
 	char name[30];
 	char surname[50];
@@ -40,7 +42,7 @@ void task_1() {
 			max_value = array[i];
 		}
 	}
-	printf("%d", max_value - min_value);
+	printf("%d\n", max_value - min_value);
 	return;
 }
 void task_2() {
@@ -56,7 +58,7 @@ void task_2() {
 void task_3() {
 	int* ptr_int_array = NULL;
 	int size_int_dynamic_array = 0;
-	std::cout << "enter the number of array elements";
+	std::cout << "enter the number of array elements: ";
 	std::cin >> size_int_dynamic_array;
 	ptr_int_array = (int*)malloc(size_int_dynamic_array * sizeof(int));
 	for (int i = 0; i < size_int_dynamic_array; i++) {
@@ -73,9 +75,9 @@ void task_4() {
 	int array_two_dimensional_array[size_1_int_two_dimensional_array][size_2_int_two_dimensional_array];
 	for (int i = 0; i < size_1_int_two_dimensional_array; i++) {
 		for (int j = 0; j < size_2_int_two_dimensional_array; j++) {
-			array_two_dimensional_array[i][j] = i + j;
+			array_two_dimensional_array[i][j] = rand()%200 - 100;
 			std::cout << array_two_dimensional_array[i][j]<< "\t";
-			sum_elements_line += array_two_dimensional_array[i][j];
+			sum_elements_line += abs(array_two_dimensional_array[i][j]);
 		}
 		std::cout << "\n";
 		std::cout << "the sum of the line elements " <<i<<": " << sum_elements_line << "\n";
@@ -136,20 +138,20 @@ void task_5() {
 	for (int i = 0; i < count_the_student; i++) {
 		std::cout << "enter the student's details "<<i+1<<":\n";
 		std::cout << "name: ";
-		scanf_s("%s", temp_name, sizeof(temp_name));
+		scanf("%s", temp_name, sizeof(temp_name));
 		std::cout << "surname: ";
-		scanf_s("%s", temp_surname, sizeof(temp_surname));
+		scanf("%s", temp_surname, sizeof(temp_surname));
 		std::cout << "enter the name of the faculty: ";
-		scanf_s("%s", temp_facult, sizeof(temp_facult));
+		scanf("%s", temp_facult, sizeof(temp_facult));
 		std::cout << "enter the credit card number: ";
 		std::cin >> temp_the_number_of_the_exam_book;
 		addNode(&head, temp_name, temp_surname, temp_facult, temp_the_number_of_the_exam_book);
 	}
 	std::cout << "enter the student's details for the search:\n";
 	std::cout << "name: ";
-	scanf_s("%s", temp_name, sizeof(temp_name));
+	scanf("%s", temp_name, sizeof(temp_name));
 	std::cout << "surname: ";
-	scanf_s("%s", temp_surname, sizeof(temp_surname));
+	scanf("%s", temp_surname, sizeof(temp_surname));
 	printNode(head, temp_name, temp_surname);
 }
 int main() {
@@ -157,6 +159,6 @@ int main() {
 	//task_1();
 	//task_2();
 	//task_3();
-	//task_4();
-	task_5();
+	task_4();
+	//task_5();
 }
