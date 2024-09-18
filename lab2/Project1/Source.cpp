@@ -21,13 +21,12 @@ void shell(int* items, int count) {
         }
     }
 }
-void qs(int* items, int left, int right) //вызов функции: qs(items, 0, count-1);
+void qs(int* items, int left, int right) 
 {
     int i, j;
     int x, y;
     i = left; j = right;
 
-    /* выбор компаранда */
     x = items[(left + right) / 2];
 
     do {
@@ -103,7 +102,6 @@ long long checking_the_exucution_time(int rows, int cols) {
     std::chrono::duration<double> elapsed = end - start;
     auto time = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
     std::cout << "time: " << time << " nanoseconds" << std::endl;
-    //std::cout << "time(ms): " << (end - start) << " size: " << rows << "x" << cols << "\n";
     free(array_1);
     free(array_2);
     free(array_3);
@@ -121,19 +119,19 @@ void task_2_checking_the_exucution_time(int *array, int size_array, int pointer_
     auto time = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
     std::cout << "time_shell: " << time << " nanoseconds" << std::endl;
     exucuation_array[0] = time;
-    auto start = std::chrono::high_resolution_clock::now();
+    start = std::chrono::high_resolution_clock::now();
     qs(&array[0], array[0], array[9]);
-    auto end = std::chrono::high_resolution_clock::now();
-    auto time = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
+    end = std::chrono::high_resolution_clock::now();
+    time = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
     std::cout << "time_qs: " << time << " nanoseconds" << std::endl;
     pointer_in_array++;
     exucuation_array[pointer_in_array] = time;
-    auto start = std::chrono::high_resolution_clock::now();
+    start = std::chrono::high_resolution_clock::now();
     qsort(array, 10, sizeof(int), compare);
-    auto end = std::chrono::high_resolution_clock::now();
-    auto time = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
+    end = std::chrono::high_resolution_clock::now();
+    time = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
     std::cout << "time_qs_fuction_C: " << time << " nanoseconds" << std::endl;
-
+    pointer_in_array = pointer_in_array + 1;
     exucuation_array[pointer_in_array] = time;
 }
     
@@ -152,11 +150,11 @@ void task_2() {
     for (int i = 0; i < size_array; i++) {
         array[i] = i;
     }
-    task_2_checking_the_exucution_time(array, size_array, 6);
+    task_2_checking_the_exucution_time(array, size_array, 0);
     for (int i = 0; i < size_array; i++) {
         array[i] = size_array - i;
     }
-    task_2_checking_the_exucution_time(array, size_array, 12);
+    task_2_checking_the_exucution_time(array, size_array, 0);
     for (int i = 0; i < size_array; i++) {
         if (i < size_array / 2) {
             array[i] = i;
@@ -165,16 +163,15 @@ void task_2() {
             array[i] = size_array - i;
         }
     }
-    task_2_checking_the_exucution_time(array, size_array, 18);
-    std::cout << "task_2_1-4\n--------------------------------------\n";
-
-    std::cout << "task_2_5\n--------------------------------------\n";
+    task_2_checking_the_exucution_time(array, size_array, 0);
+    std::cout << "task_2_1-5\n--------------------------------------\n";
+    return;
 }
 int main() {
     long long array[24];
     setvbuf(stdin, NULL, _IONBF, 0);
     setvbuf(stdout, NULL, _IONBF, 0);
-    /*int i = 0;
+    int i = 0;
     while (i < 24) {
         if (i < 3) {
             array[i] = checking_the_exucution_time(10, 10);
@@ -211,6 +208,7 @@ int main() {
         }
         std::cout << "\n";
     }
-    std::cout << "task_1\n--------------------------------------\n";*/
+    std::cout << "task_1\n--------------------------------------\n";
     task_2();
+    return 0;
 }
