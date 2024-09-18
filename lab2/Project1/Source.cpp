@@ -180,22 +180,19 @@ int main() {
             array[i] = checking_the_exucution_time(10, 20);
         }
         if (i < 9 && i > 5) {
-            array[i] = checking_the_exucution_time(10, 20);
-        }
-        if (i < 12 && i> 8) {
             array[i] = checking_the_exucution_time(20, 20);
         }
+        if (i < 12 && i> 8) {
+            array[i] = checking_the_exucution_time(100, 10);
+        }
         if (i < 15 && i > 11) {
-            array[i] = checking_the_exucution_time(100, 100);
+            array[i] = checking_the_exucution_time(100, 20);
         }
         if (i < 18 && i >14) {
-            array[i] = checking_the_exucution_time(100, 200);
+            array[i] = checking_the_exucution_time(100, 40);
         }
         if (i < 21 && i > 17) {
-            array[i] = checking_the_exucution_time(200, 200);
-        }
-        if (i < 24 && i > 20) {
-            array[i] = checking_the_exucution_time(1000, 1000);
+            array[i] = checking_the_exucution_time(100, 100);
         }
         std::cout << i <<"-----\n";
         i++;
