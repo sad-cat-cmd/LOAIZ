@@ -1,13 +1,14 @@
 ﻿  Source.cpp
-C:\Users\B-ZONE\Desktop\LOAIZ\lab1\Project1\Source.cpp(47,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-C:\Users\B-ZONE\Desktop\LOAIZ\lab1\Project1\Source.cpp(205,11): warning C4477: "scanf_s": в строке форматирования "%s" требуется аргумент типа "unsigned int", но вариативный аргумент "2" имеет тип "size_t"
-C:\Users\B-ZONE\Desktop\LOAIZ\lab1\Project1\Source.cpp(205,11): message : этот аргумент используется в качестве размера буфера
-C:\Users\B-ZONE\Desktop\LOAIZ\lab1\Project1\Source.cpp(207,11): warning C4477: "scanf_s": в строке форматирования "%s" требуется аргумент типа "unsigned int", но вариативный аргумент "2" имеет тип "size_t"
-C:\Users\B-ZONE\Desktop\LOAIZ\lab1\Project1\Source.cpp(207,11): message : этот аргумент используется в качестве размера буфера
-C:\Users\B-ZONE\Desktop\LOAIZ\lab1\Project1\Source.cpp(209,11): warning C4477: "scanf_s": в строке форматирования "%s" требуется аргумент типа "unsigned int", но вариативный аргумент "2" имеет тип "size_t"
-C:\Users\B-ZONE\Desktop\LOAIZ\lab1\Project1\Source.cpp(209,11): message : этот аргумент используется в качестве размера буфера
-C:\Users\B-ZONE\Desktop\LOAIZ\lab1\Project1\Source.cpp(216,10): warning C4477: "scanf_s": в строке форматирования "%s" требуется аргумент типа "unsigned int", но вариативный аргумент "2" имеет тип "size_t"
-C:\Users\B-ZONE\Desktop\LOAIZ\lab1\Project1\Source.cpp(216,10): message : этот аргумент используется в качестве размера буфера
-C:\Users\B-ZONE\Desktop\LOAIZ\lab1\Project1\Source.cpp(218,10): warning C4477: "scanf_s": в строке форматирования "%s" требуется аргумент типа "unsigned int", но вариативный аргумент "2" имеет тип "size_t"
-C:\Users\B-ZONE\Desktop\LOAIZ\lab1\Project1\Source.cpp(218,10): message : этот аргумент используется в качестве размера буфера
-  Project1.vcxproj -> C:\Users\B-ZONE\Desktop\LOAIZ\lab1\Project1\x64\Debug\Project1.exe
+C:\Users\B-ZONE\Desktop\LOAIZ\LOAIZ\lab1\Project1\Source.cpp(49,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\B-ZONE\Desktop\LOAIZ\LOAIZ\lab1\Project1\Source.cpp(141,26): warning C4474: "scanf" : для строки формата передано слишком много аргументов
+C:\Users\B-ZONE\Desktop\LOAIZ\LOAIZ\lab1\Project1\Source.cpp(141,26): message : заполнители и их параметры ожидают переменное число аргументов в количестве 1, но было предоставлено 2
+C:\Users\B-ZONE\Desktop\LOAIZ\LOAIZ\lab1\Project1\Source.cpp(143,29): warning C4474: "scanf" : для строки формата передано слишком много аргументов
+C:\Users\B-ZONE\Desktop\LOAIZ\LOAIZ\lab1\Project1\Source.cpp(143,29): message : заполнители и их параметры ожидают переменное число аргументов в количестве 1, но было предоставлено 2
+C:\Users\B-ZONE\Desktop\LOAIZ\LOAIZ\lab1\Project1\Source.cpp(145,28): warning C4474: "scanf" : для строки формата передано слишком много аргументов
+C:\Users\B-ZONE\Desktop\LOAIZ\LOAIZ\lab1\Project1\Source.cpp(145,28): message : заполнители и их параметры ожидают переменное число аргументов в количестве 1, но было предоставлено 2
+C:\Users\B-ZONE\Desktop\LOAIZ\LOAIZ\lab1\Project1\Source.cpp(152,25): warning C4474: "scanf" : для строки формата передано слишком много аргументов
+C:\Users\B-ZONE\Desktop\LOAIZ\LOAIZ\lab1\Project1\Source.cpp(152,25): message : заполнители и их параметры ожидают переменное число аргументов в количестве 1, но было предоставлено 2
+C:\Users\B-ZONE\Desktop\LOAIZ\LOAIZ\lab1\Project1\Source.cpp(154,28): warning C4474: "scanf" : для строки формата передано слишком много аргументов
+C:\Users\B-ZONE\Desktop\LOAIZ\LOAIZ\lab1\Project1\Source.cpp(154,28): message : заполнители и их параметры ожидают переменное число аргументов в количестве 1, но было предоставлено 2
+  LINK : не найден или не выполнена сборка C:\Users\B-ZONE\Desktop\LOAIZ\LOAIZ\lab1\Project1\x64\Debug\Project1.exe при последней инкрементной компоновке; выполняется полная компоновка
+  Project1.vcxproj -> C:\Users\B-ZONE\Desktop\LOAIZ\LOAIZ\lab1\Project1\x64\Debug\Project1.exe

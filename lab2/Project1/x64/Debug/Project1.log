@@ -1,0 +1,6 @@
+﻿  Source.cpp
+C:\Users\B-ZONE\Desktop\LOAIZ\LOAIZ\lab2\Project1\Source.cpp(65,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\B-ZONE\Desktop\LOAIZ\LOAIZ\lab2\Project1\Source.cpp(75,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\B-ZONE\Desktop\LOAIZ\LOAIZ\lab2\Project1\Source.cpp(148,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+C:\Users\B-ZONE\Desktop\LOAIZ\LOAIZ\lab2\Project1\Source.cpp(176,15): warning C4101: array: неиспользованная локальная переменная
+  Project1.vcxproj -> C:\Users\B-ZONE\Desktop\LOAIZ\LOAIZ\lab2\Project1\x64\Debug\Project1.exe
