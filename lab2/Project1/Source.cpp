@@ -167,12 +167,13 @@ void task_2() {
     std::cout << "task_2_1-5\n--------------------------------------\n";
     return;
 }
+
 int main() {
-    long long array[24];
+    long long array[21];
     setvbuf(stdin, NULL, _IONBF, 0);
     setvbuf(stdout, NULL, _IONBF, 0);
     int i = 0;
-    while (i < 24) {
+    while (i < 21) {
         if (i < 3) {
             array[i] = checking_the_exucution_time(10, 10);
         }
@@ -197,9 +198,9 @@ int main() {
         std::cout << i <<"-----\n";
         i++;
     }
-    for (int i = 0; i < 24; i += 3) {
+    for (int i = 0; i < 21; i += 3) {
         for (int j = 0; j < 3; j++) {
-            if (i + j < 24) { 
+            if (i + j < 21) { 
                 std::cout << array[i + j] << " ";
             }
         }
