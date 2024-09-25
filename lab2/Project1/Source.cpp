@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
@@ -112,33 +113,29 @@ long long checking_the_exucution_time(int rows, int cols) {
 
 
 }
-
-void task_2_checking_the_exucution_time(int *array, int size_array, int pointer_in_array) {
-    long long exucuation_array[3];
+//
+// according to the task, I added an entry to the file using C language functions (info.txt in the github folder). "// . " = add code
+//
+void task_2_checking_the_exucution_time(FILE* file_ptr, int *array, int size_array) {
     auto start = std::chrono::high_resolution_clock::now();
     shell(&array[0], size_array);
     auto end = std::chrono::high_resolution_clock::now();
     auto time = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
-    std::cout << "time_shell: " << time << " nanoseconds" << std::endl;
-    exucuation_array[0] = time;
+    fprintf(file_ptr, "time_shell: %lld nanoseconds", time); //  .
     start = std::chrono::high_resolution_clock::now();
     qs(&array[0], array[0], array[9]);
     end = std::chrono::high_resolution_clock::now();
     time = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
-    std::cout << "time_qs: " << time << " nanoseconds" << std::endl;
-    pointer_in_array++;
-    exucuation_array[pointer_in_array] = time;
+    fprintf(file_ptr, "time_qs: %lld nanoseconds", time); // .
     start = std::chrono::high_resolution_clock::now();
     qsort(array, 10, sizeof(int), compare);
     end = std::chrono::high_resolution_clock::now();
     time = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
-    std::cout << "time_qs_fuction_C: " << time << " nanoseconds" << std::endl;
-    pointer_in_array = pointer_in_array + 1;
-    exucuation_array[pointer_in_array] = time;
+    fprintf(file_ptr, "time_qs_sunction_C: %lld nanoseconds", time);// .
 }
     
     
-void task_2() {
+void task_2(FILE* file_ptr) {
     
     const int size_array = 10;
     int i = 0;
@@ -148,15 +145,15 @@ void task_2() {
         array[i] = rand()% 100 + 1;
         i++;
     }
-    task_2_checking_the_exucution_time(&array[0], size_array, 0);
+    task_2_checking_the_exucution_time(file_ptr, &array[0], size_array);
     for (int i = 0; i < size_array; i++) {
         array[i] = i;
     }
-    task_2_checking_the_exucution_time(array, size_array, 0);
+    task_2_checking_the_exucution_time(file_ptr, &array[0], size_array);
     for (int i = 0; i < size_array; i++) {
         array[i] = size_array - i;
     }
-    task_2_checking_the_exucution_time(array, size_array, 0);
+    task_2_checking_the_exucution_time(file_ptr, &array[0], size_array);
     for (int i = 0; i < size_array; i++) {
         if (i < size_array / 2) {
             array[i] = i;
@@ -165,14 +162,20 @@ void task_2() {
             array[i] = size_array - i;
         }
     }
-    task_2_checking_the_exucution_time(array, size_array, 0);
+    task_2_checking_the_exucution_time(file_ptr, array, size_array);
     std::cout << "task_2_1-5\n--------------------------------------\n";
+    fprintf(file_ptr, "\ntask_2_1-5\n--------------------------------------\n");// .
+    fclose(file_ptr); // .
     return;
 }
 
 int main() {
     FILE* info;
     info = fopen("info.txt", "w");
+    if (info == NULL) {
+        perror("error opening the file\n");
+        return -1;
+    }
     long long array[21];
     setvbuf(stdin, NULL, _IONBF, 0);
     setvbuf(stdout, NULL, _IONBF, 0);
@@ -205,15 +208,12 @@ int main() {
     for (int i = 0; i < 21; i += 3) {
         for (int j = 0; j < 3; j++) {
             if (i + j < 21) { 
-                fprintf(info,"%lld\t", array[i+j]);
-                //std::cout << array[i + j] << " ";
+                fprintf(info,"%lld\t", array[i+j]); // .
             }
         }
-        fprintf(info,"\n");
-        //std::cout << "\n";
+        fprintf(info,"\n"); // .
     }
-    fprintf(info, "task_1\n--------------------------------------\n");
-    //std::cout << "task_1\n--------------------------------------\n";
-    task_2();
+    fprintf(info, "task_1\n--------------------------------------\n"); // .
+    task_2(info); // .
     return 0;
 }

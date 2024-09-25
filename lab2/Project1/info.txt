@@ -1,0 +1,12 @@
+3200	3400	2600	
+6700	4600	6300	
+25600	23800	24900	
+337700	284100	187400	
+417000	378900	482700	
+998600	770900	1132600	
+2231400	2242400	2559700	
+task_1
+--------------------------------------
+time_shell: 500 nanosecondstime_qs: 2600 nanosecondstime_qs_sunction_C: 2200 nanosecondstime_shell: 200 nanosecondstime_qs: 300 nanosecondstime_qs_sunction_C: 400 nanosecondstime_shell: 300 nanosecondstime_qs: 300 nanosecondstime_qs_sunction_C: 400 nanosecondstime_shell: 300 nanosecondstime_qs: 200 nanosecondstime_qs_sunction_C: 400 nanoseconds
+task_2_1-5
+--------------------------------------
