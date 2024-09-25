@@ -4,6 +4,8 @@
 #include <time.h>
 #include <cstdlib>
 #include <chrono>
+#include <stdio.h>
+#include <cstdio>
 
 void shell(int* items, int count) {
     int i = 0, j = 0, gap, k;
@@ -169,6 +171,8 @@ void task_2() {
 }
 
 int main() {
+    FILE* info;
+    info = fopen("info.txt", "w");
     long long array[21];
     setvbuf(stdin, NULL, _IONBF, 0);
     setvbuf(stdout, NULL, _IONBF, 0);
@@ -201,12 +205,15 @@ int main() {
     for (int i = 0; i < 21; i += 3) {
         for (int j = 0; j < 3; j++) {
             if (i + j < 21) { 
-                std::cout << array[i + j] << " ";
+                fprintf(info,"%lld\t", array[i+j]);
+                //std::cout << array[i + j] << " ";
             }
         }
-        std::cout << "\n";
+        fprintf(info,"\n");
+        //std::cout << "\n";
     }
-    std::cout << "task_1\n--------------------------------------\n";
+    fprintf(info, "task_1\n--------------------------------------\n");
+    //std::cout << "task_1\n--------------------------------------\n";
     task_2();
     return 0;
 }

@@ -1,0 +1,8 @@
+﻿  Source.cpp
+C:\Users\B-ZONE\Desktop\LOAIZ\LOAIZ\lab3\Project1\Source.cpp(24,10): warning C4477: "scanf_s": в строке форматирования "%s" требуется аргумент типа "unsigned int", но вариативный аргумент "2" имеет тип "size_t"
+C:\Users\B-ZONE\Desktop\LOAIZ\LOAIZ\lab3\Project1\Source.cpp(24,10): message : этот аргумент используется в качестве размера буфера
+C:\Users\B-ZONE\Desktop\LOAIZ\LOAIZ\lab3\Project1\Source.cpp(26,27): warning C4474: "scanf_s" : для строки формата передано слишком много аргументов
+C:\Users\B-ZONE\Desktop\LOAIZ\LOAIZ\lab3\Project1\Source.cpp(26,27): message : заполнители и их параметры ожидают переменное число аргументов в количестве 1, но было предоставлено 2
+C:\Users\B-ZONE\Desktop\LOAIZ\LOAIZ\lab3\Project1\Source.cpp(191,10): warning C4477: "scanf_s": в строке форматирования "%s" требуется аргумент типа "unsigned int", но вариативный аргумент "2" имеет тип "size_t"
+C:\Users\B-ZONE\Desktop\LOAIZ\LOAIZ\lab3\Project1\Source.cpp(191,10): message : этот аргумент используется в качестве размера буфера
+  Project1.vcxproj -> C:\Users\B-ZONE\Desktop\LOAIZ\LOAIZ\lab3\Project1\x64\Debug\Project1.exe
