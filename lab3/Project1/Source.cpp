@@ -1,34 +1,35 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <cstring>
+#include "stdio.h"
 struct node
 {
 	int priority;
-	char inf[256];  // полезная информация
-	struct node* next; // ссылка на следующий элемент 
+	char inf[256];  
+	struct node* next; 
 };
 struct node_1 {
-	char inf[256];  // полезная информация
-	struct node_1* next; // ссылка на следующий элемент 
+	char inf[256];  
+	struct node_1* next; 
 };
 struct node* head = NULL, *last = NULL, *f = NULL; 
-struct node_1* head_2_task = NULL, *last_2_task = NULL, *q = NULL; // указатели на первый и последний элементы списка
+struct node_1* head_2_task = NULL, *last_2_task = NULL, *q = NULL; 
 int dlinna = 0;
 struct node* get_struct(void)
 {
 	struct node* p = NULL;
 	char s[256];
 	int priority;
-	if ((p = (node*)malloc(sizeof(struct node))) == NULL)  // выделяем память под новый элемент списка
+	if ((p = (node*)malloc(sizeof(struct node))) == NULL)  
 	{
 		printf("Memory allocation error\n");
 		exit(1);
 	}
 
-	std::cout <<"Enter the name of the object: \n";   // вводим данные
-	scanf_s("%s", &s, sizeof(s));
+	std::cout <<"Enter the name of the object: \n";
+	scanf("%s", &s, sizeof(s));
 	std::cout << "Enter the priority of the object: \n";
-	scanf_s("%d", &priority, sizeof(priority));
+	scanf("%d", &priority, sizeof(priority));
 	if (*s == 0)
 	{
 		printf("No recording was made\n");
@@ -39,19 +40,19 @@ struct node* get_struct(void)
 
 	p->next = NULL;
 
-	return p;		// возвращаем указатель на созданный элемент
+	return p;		
 }
 struct node_1* get_struct_2() {
 	struct node_1* p = NULL;
 	char s[256];
-	if ((p = (node_1*)malloc(sizeof(struct node_1))) == NULL)  // выделяем память под новый элемент списка
+	if ((p = (node_1*)malloc(sizeof(struct node_1))) == NULL)  
 	{
 		printf("Memory allocation error\n");
 		exit(1);
 	}
 
-	std::cout << "Enter the name of the object: \n";   // вводим данные
-	scanf_s("%s", &s, sizeof(s));
+	std::cout << "Enter the name of the object: \n";   
+	scanf("%s", &s, sizeof(s));
 	if (*s == 0)
 	{
 		printf("No recording was made\n");
@@ -68,41 +69,35 @@ void spstore(void)
 	struct node* p = NULL;
 	//struct node* temp_node = NULL;
 	p = get_struct();
-	if (head == NULL && p != NULL)	// если списка нет, то устанавливаем голову списка
+	if (head == NULL && p != NULL)	
 	{
 		head = p;
 		last = p;
 	}
-	else if (head != NULL && p != NULL) // список уже есть, то вставляем в конец
+	else if (head != NULL && p != NULL) 
 	{
 		if (head->priority > p->priority) {
 			struct node* temp_node = head;
 			struct node* prev_node = NULL;
 			int count_of_iteration = 0;
-			while (temp_node->next != NULL) {
-				if (p->priority > temp_node->priority) {
-					p->next = temp_node;
-					prev_node->next = p;
-
-					/*p->next = temp_node;
-					temp_node->next = p->next;
-					last = temp_node;*/
-					return;
-				}
+			while (temp_node->next != NULL && temp_node-> priority >= p->priority) {
 				
-				/*if (count_of_iteration > 0) {
-					prev_node = prev_node->next;
-				}*/
 				count_of_iteration++;
 				prev_node = temp_node;
 				temp_node = temp_node->next;
-
-				/*last->next = p;
-				last = p;*/
 				
 			}
-			temp_node->next = p;
-			last = p;
+			if (p->priority > temp_node->priority) {
+					p->next = temp_node;
+					prev_node->next = p;
+					return;
+			}
+			else if(p->priority < temp_node->priority){
+				temp_node-> next =  p;
+				last = p;
+			}
+			// temp_node->next = p;
+			// last = p;
 			return;
 		}
 		else if (head->priority < p->priority){
@@ -132,7 +127,7 @@ void review(void)
 void review_queue(void)
 {
 	struct node_1* struc = head_2_task;
-	if (head == NULL)
+	if (head_2_task == NULL)
 	{
 		printf("The list is empty\n");
 	}
@@ -164,22 +159,22 @@ struct node* find(char* name)
 }
 void del(char* name)
 {
-	struct node* struc = head; // указатель, проходящий по списку установлен на начало списка
-	struct node* prev = 0;// указатель на предшествующий удаляемому элемент
-	int flag = 0;      // индикатор отсутствия удаляемого элемента в списке
+	struct node* struc = head; 
+	struct node* prev = 0;
+	int flag = 0;      
 
-	if (head == NULL) // если голова списка равна NULL, то список пуст
+	if (head == NULL) 
 	{
 		printf("The list is empty\n");
 		return;
 	}
 
-	if (strcmp(name, struc->inf) == 0) // если удаляемый элемент - первый
+	if (strcmp(name, struc->inf) == 0) 
 	{
 		flag = 1;
-		head = struc->next; // установливаем голову на следующий элемент
-		free(struc);  // удаляем первый элемент
-		struc = head; // устанавливаем указатель для продолжения поиска
+		head = struc->next; 
+		free(struc);  
+		struc = head; 
 	}
 	else
 	{
@@ -187,32 +182,32 @@ void del(char* name)
 		struc = struc->next;
 	}
 
-	while (struc) // проход по списку и поиск удаляемого элемента
+	while (struc) 
 	{
-		if (strcmp(name, struc->inf) == 0) // если нашли, то
+		if (strcmp(name, struc->inf) == 0) 
 		{
-			flag = 1;         // выставляем индикатор
-			if (struc->next)  // если найденный элемент не последний в списке
+			flag = 1;         
+			if (struc->next)  
 			{
-				prev->next = struc->next; // меняем указатели
-				free(struc);		    // удаляем  элемент
-				struc = prev->next; // устанавливаем указатель для продолжения поиска
+				prev->next = struc->next; 
+				free(struc);		    
+				struc = prev->next; 
 			}
-			else			// если найденный элемент последний в списке
+			else			
 			{
-				prev->next = NULL; // обнуляем указатель предшествующего элемента
-				free(struc);	// удаляем  элемент
+				prev->next = NULL; 
+				free(struc);	
 				return;
 			}
 		}
-		else // если не нашли, то
+		else 
 		{
-			prev = struc; // устанавливаем указатели для продолжения поиска
+			prev = struc; 
 			struc = struc->next;
 		}
 	}
 
-	if (flag == 0)				// если флаг = 0, значит нужный элемент не найден
+	if (flag == 0)				
 	{
 		printf("The element was not found\n");
 		return;
@@ -284,29 +279,40 @@ void structure_memory_cleanup_function_2_task() {
 void stack() {
 	struct node_1* p = NULL;
 	p = get_struct_2();
-	if (last_2_task == NULL && p != 0) {
+	if (head_2_task == NULL && p != 0) {
 		head_2_task = p;
 	}
-	else if (last_2_task != NULL && p != 0) {
+	else if (head_2_task != NULL && p != 0) {
 		struct node_1* temp_node = NULL;
 		temp_node = head_2_task;
 		head_2_task = p;
 		head_2_task->next = temp_node;
+		return;
 	}
+	return;
 }
-
+void the_function_removing_an_stack_item(){
+	if (head_2_task== NULL){
+		std::cout<<"list is empty"<<std::endl;
+	}
+	struct node_1 * temp_node = head_2_task->next;
+	free(head_2_task);
+	head_2_task = temp_node;
+	std::cout<<"-----------------------\nthe item has been delected\n-------------------------------"<< std::endl;
+	return;
+}
 void task_1() {
 	char string[10];
 	for (int i = 0; i < 3; i++) {
 		spstore();
 	}
 	review();
-	the_function_of_removing_an_MAX_item_from_the_priority_queue();
-	review();
-	the_function_of_removing_an_MIN_item_from_the_priority_queue();
-	review();
+	//the_function_of_removing_an_MAX_item_from_the_priority_queue();
+	//review();
+	//the_function_of_removing_an_MIN_item_from_the_priority_queue();
+	//review();
 	std::cout << "enter a name to search for :\n";
-	scanf_s("%s", &string, sizeof(string));
+	scanf("%s", &string, sizeof(string));
 	f = find(string);
 	std::cout << "The found element:" <<  f->inf << "\tpriority: "<< f->priority<< "\n";
 	std::cout << "";
@@ -318,7 +324,7 @@ void task_2() {
 	review_queue();
 	the_function_of_removing_an_item_from_the_queue();
 	review_queue();
-	structure_memory_cleanup_function_2_task();
+	//structure_memory_cleanup_function_2_task();
 	return;
 	head_2_task = NULL;
 	last_2_task = NULL;
@@ -328,10 +334,10 @@ void task_3() {
 		stack();
 	}
 	review_queue();
+	the_function_removing_an_stack_item();
+	review_queue();
 }
 
 int main() {
-	int nubmer_menu = 0;
-	task_3();
-	
+	task_1();
 }
