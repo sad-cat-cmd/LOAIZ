@@ -301,6 +301,23 @@ void the_function_removing_an_stack_item(){
 	std::cout<<"-----------------------\nthe item has been delected\n-------------------------------"<< std::endl;
 	return;
 }
+struct node_1* find_in_task2(char * name){
+	struct node_1* struc = head_2_task;
+	if (head == NULL)
+	{
+		printf("The list is empty\n");
+	}
+	while (struc)
+	{
+		if (strcmp(name, struc->inf) == 0)
+		{
+			return struc;
+		}
+		struc = struc->next;
+	}
+	printf("The element was not found\n");
+	return NULL;
+}
 void task_1() {
 	char string[10];
 	for (int i = 0; i < 3; i++) {
@@ -318,26 +335,63 @@ void task_1() {
 	std::cout << "";
 }
 void task_2() {
+	struct node_1* temp_node_for_find = NULL;
+	char name_for_find[10];
 	for (int i = 0; i < 3; i++) {
 		queue();
 	}
 	review_queue();
-	the_function_of_removing_an_item_from_the_queue();
-	review_queue();
+	//the_function_of_removing_an_item_from_the_queue();
+	//review_queue();
 	//structure_memory_cleanup_function_2_task();
-	return;
 	head_2_task = NULL;
 	last_2_task = NULL;
+	std::cout<<"Enter the name for the find"<< std::endl;
+	scanf("%s", &name_for_find, sizeof(name_for_find));
+	temp_node_for_find = find_in_task2(name_for_find);
+		std:: cout << "Item :"<< name_for_find << "\n"<< " is fined"<< std::endl;
+	return;
 }
 void task_3() {
+	char name_for_find[10];
+	struct node_1 * temp_node_for_find = NULL;
 	for (int i = 0; i < 3; i++) {
 		stack();
 	}
 	review_queue();
-	the_function_removing_an_stack_item();
-	review_queue();
+	std::cout<<"Enter the name to find"<< std::endl;
+	scanf("%s", &name_for_find, sizeof(name_for_find));
+	temp_node_for_find = find_in_task2(name_for_find);
+		std:: cout << "Item :"<< name_for_find << "\n"<< " is fined"<< std::endl;
+	return;
+	temp_node_for_find = find_in_task2(name_for_find);
+	//the_function_removing_an_stack_item();
+	//review_queue();
 }
-
 int main() {
+	int number_in_menu = 0;
+	while (1){
+std::cout<< "num menu:"<< std::endl;
+std::cin >> number_in_menu;
+	switch (number_in_menu)
+	{
+	case 1 :{
+		task_1();
+		break;
+	}
+
+	case 2:
+		task_2();
+		break;
+	case 3:
+		task_3();
+		break;
+	case -1:
+		return 0; 
+	default:
+		break;
+	}
+	}
+	
 	task_1();
 }
