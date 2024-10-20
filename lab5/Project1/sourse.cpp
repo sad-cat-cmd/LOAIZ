@@ -27,14 +27,29 @@ public:
         }
         cout << "__________________________________________"<<endl;
     }
-    void determining_the_number_of_vertices_of_the_graph() {
+    void determining_the_number_of_vertices_of_the_graph(int num) {
         int count = 0;
-        for (int i = 0; i < number_of_vertices; i++) {
-            for (int j = i + 1; j < number_of_vertices; j++) {
-                if (array[i][j] == 1) count++;
+        if (num == 1) {
+            for (int i = 0; i < number_of_vertices; i++) {
+                for (int j = i + 1; j < number_of_vertices; j++) {
+                    if (array[i][j] == 1) count++;
+                }
+            }
+
+        }
+        if (num == 2) {
+            for (int i = 0; i < number_of_vertices; i++) {
+                for (int j = 0; j < array_edges.size() / 2; j++) {
+                    if (identity_matrix[i][j] == 1) {
+                        count++;
+                    }
+                }
             }
         }
-        cout << "Count:  " << count << endl;
+        if (num == 2) {
+            count = count / 2;
+        }
+        cout << "Count: " << count << endl;
         cout << "__________________________________________" << endl;
         return;
     }
@@ -50,48 +65,58 @@ public:
             }
         }
     }
-    void count_vertices() {
-        int temp_count{ 0 };
+    void count_vertices(int num) {
+        int temp_count { 0 };
         int i = 0; int j = 0;
-        while (i < number_of_vertices) {
-            while (j < number_of_vertices) {
-                if (array[i][j] == 1) {
-                    temp_count++;
+        if (num == 1) {
+            while (i < number_of_vertices) {
+                while (j < number_of_vertices) {
+                    if (array[i][j] == 1) {
+                        temp_count++;
+                    }
+                    j++;
                 }
-                j++;
+                if (temp_count == 1) {
+                    cout << "end vertex : { " << i << " } \n-----------------------------------------" << endl;
             }
-            if (temp_count == 1) {
-                cout << "end vertex : { " << i << " } \n-----------------------------------------" << endl;
+                if (temp_count == 0) {
+                    cout << "isolated vertex :  { " << i << " } \n-----------------------------------------" << endl;
             }
-            if (temp_count == 0) {
-                cout << "isolated vertex :  { " << i << " } \n-----------------------------------------" << endl;
+                if (temp_count == number_of_vertices - 1) {
+                    cout << "dominant vertex :  { " << i << " } \n-----------------------------------------" << endl;
             }
-            if (temp_count == number_of_vertices - 1) {
-                cout << "dominant vertex :  { " << i << " } \n-----------------------------------------" << endl;
+                temp_count = 0;
+                i++;
+                j = 0;
+                
             }
-            temp_count = 0;
-            i++;
-            j = 0;
-
+            return;
         }
-        /*for (int i = 0; i < number_of_vertices; i++) {
-            for (int j = i+1; j < number_of_vertices; j++) {
-                if (array[i][j] == 1) {
-                    temp_count++;
+        if (num == 2) {
+            while (i < number_of_vertices) {
+                while (j < array_edges.size() / 2) {
+                    if (identity_matrix[i][j] == 1) {
+                        temp_count++;
+                    }
+                    j++;
                 }
+                if (temp_count == 1) {
+                    cout << "end vertex : { " << i << " } \n-----------------------------------------" << endl;
+                }
+                if (temp_count == 0) {
+                    cout << "isolated vertex :  { " << i << " } \n-----------------------------------------" << endl;
+                }
+                if (temp_count == array_edges.size()/2) {
+                    cout << "dominant vertex :  { " << i << " } \n-----------------------------------------" << endl;
+                }
+                temp_count = 0;
+                i++;
+                j = 0;
+                
             }
-            if (temp_count == 1) {
-                cout << "end vertex : { " << i << " } { " << j << " }" << endl;
-            }
-            if (temp_count == 0) {
-                cout << "isolated vertex : { " << i << " } { " << j << " }" << endl;
-            }
-            if (temp_count == number_of_vertices - 1) {
-                cout << "dominant vertex : { " << i << " } { " << j << " }" << endl;
-            }
-            temp_count = 0;
-        }*/
-
+            return;
+        }
+        
     }
     void print_identity_matrix() {
         for (int i = 0; i < number_of_vertices; i++) {
@@ -115,13 +140,13 @@ public:
             identity_matrix[i] = (int*)malloc(sizeof(int*) * array_edges.size()/2);
             memset(identity_matrix[i], 0, sizeof(int*) * array_edges.size()/2);
         }
+        int edgeIndex = 0;
         for (int i = 0; i < number_of_vertices; i++) {
-            for (int j = 0; j < array_edges.size()/2; j= j + 2 ) {
-                if (i == array_edges[j]) {
-                    identity_matrix[i][j] = 1;
-                }
-                if (i == array_edges[j + 1]){
-                    identity_matrix[i][j+1] = 1;
+            for (int j = i + 1; j < array_edges.size()/2; j++) {
+                if (array[i][j] == 1) {
+                    identity_matrix[i][edgeIndex] = 1;     // Вершина i инцидентен ребру
+                    identity_matrix[j][edgeIndex] = 1;     // Вершина j инцидентен ребру
+                    edgeIndex++;
                 }
             }
         }
@@ -138,12 +163,14 @@ void task_1(){
     G.Set_number_of_vertices();
     G.initializing_a_two_dimensional();
     G.create_random_adjacency_matrix();
-    G.count_vertices();
+    G.count_vertices(1);
     G.print_array();
-    G.determining_the_number_of_vertices_of_the_graph();
+    G.determining_the_number_of_vertices_of_the_graph(1);
     G.filling_in_the_identity_matrix();
     G.print_array_edges();
     G.print_identity_matrix();
+    G.determining_the_number_of_vertices_of_the_graph(2);
+    G.count_vertices(2);
     return;
 }
 void task_2() {
