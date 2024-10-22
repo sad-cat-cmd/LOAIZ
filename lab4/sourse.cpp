@@ -142,21 +142,17 @@ int fcount(struct Node* r, int data, int count) {
 	return count;
 	}
 struct Node* find(struct Node* r, int data) {
-	if (r->data == data) 
-		return r;
+	if (r->data == data) return r;
 	else if (r->data < data && r->left != NULL) {
 		find(r->left, data);
 	}
 	else if (r->data > data && r->right != NULL) {
-		find(r->left, data);
-	}
-	else if (r->data == data) {
-		return r;
+		find(r->right, data);
 	}
 	else {
 	cout << "not found"<<endl;
 	return NULL;
-}
+	}
 }
 void task_1() {
 	int number_for_found{ 0 };
@@ -207,14 +203,14 @@ void task_4() {
 int main() {
 
 setlocale(LC_ALL, "");
-/*int D, start = 1;
+int D, start = 1;
 
 root = NULL;
-cout« "||-1 - the end of the tree construction"«endl;
+cout<< "||-1 - the end of the tree construction " <<endl;
 while (start)
 {
 printf("enter a number: ");
-cin»D;
+cin>>D;
 if (D == -1)
 {
 printf("||The construction is over\n");
@@ -223,16 +219,16 @@ start = 0;
 else
 root = CreateTree(root, root, D);
 
-}*/
+}
 
 
 //print_tree_normal_version(root, count_elements);
-//print_tree(root, 0);
 //cout « count_elements;
-//task_1();
-//task_2();
-//task_2();
-//freeTree(root);
+print_tree(root, 0);
+task_1();
+task_2();
+task_2();
+freeTree(root);
 root = NULL;
 task_3();
 return 0;
