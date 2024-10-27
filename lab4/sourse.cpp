@@ -147,8 +147,17 @@ int fcount(struct Node* r, int data, int count) {
 //     }
 // }
 struct Node* find(struct Node* r, int data) {
+<<<<<<< HEAD
     if (r->data == data) {
         return r;
+=======
+	if (r->data == data) return r;
+	else if (r->data < data && r->left != NULL) {
+		find(r->left, data);
+	}
+	else if (r->data > data && r->right != NULL) {
+		find(r->right, data);
+>>>>>>> 92a731b1d45b77705fb6937443f726c236a71e9f
 	}
     else if (r->data < data && r->left!= NULL) {
         find(root->left, data);
@@ -157,7 +166,12 @@ struct Node* find(struct Node* r, int data) {
     	find(root->right, data);
     }
 	else {
+<<<<<<< HEAD
 		return NULL;
+=======
+	cout << "not found"<<endl;
+	return NULL;
+>>>>>>> 92a731b1d45b77705fb6937443f726c236a71e9f
 	}
 }
 void task_1() {
@@ -212,7 +226,11 @@ setlocale(LC_ALL, "");
 int D, start = 1;
 
 root = NULL;
+<<<<<<< HEAD
 cout<< "||-1 - the end of the tree construction"<< endl;
+=======
+cout<< "||-1 - the end of the tree construction " <<endl;
+>>>>>>> 92a731b1d45b77705fb6937443f726c236a71e9f
 while (start)
 {
 printf("enter a number: ");
@@ -229,12 +247,21 @@ root = CreateTree(root, root, D);
 
 
 //print_tree_normal_version(root, count_elements);
+<<<<<<< HEAD
 print_tree(root, 0);
 //cout « count_elements;
 task_1();
 task_2();
 //task_2();
 //freeTree(root);
+=======
+//cout « count_elements;
+print_tree(root, 0);
+task_1();
+task_2();
+task_2();
+freeTree(root);
+>>>>>>> 92a731b1d45b77705fb6937443f726c236a71e9f
 root = NULL;
 task_3();
 return 0;

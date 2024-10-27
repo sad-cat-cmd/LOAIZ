@@ -3,27 +3,30 @@
 #include <vector>
 using namespace std;
 class Graph{
-    public:
+public:
     void complex_function_the_create_TASK1(){
         Set_number_of_vertices();
         initializing_a_two_dimensional();
         create_random_adjacency_matrix();
         print_array();
         creating_an_adjacency_list();
-        printf_adjacecncy_list();
+        printf_adjacency_list();
         return;
     }
     void complex_function_the_create_TASK2(){
         
     }
-    private:
+    
+
+private:
     int number_of_vertices {0};
-    vector <vector<int>> adjancnecy_list;
+    vector <vector<int>> adjacency_list;
     int** array = { NULL };
     struct Node {
         int vertex;
         struct Node* next;
     };
+
     void Set_number_of_vertices() {
         cout << "enter the number of vertices: " << endl;
         cin >> number_of_vertices;
@@ -58,13 +61,12 @@ class Graph{
         cout << "__________________________________________"<<endl;
     }
     void creating_an_adjacency_list(){
-        //adjancnecy_list = (int**)malloc(sizeof(int*) * number_of_vertices);
-        
+        adjacency_list.resize(number_of_vertices);
         for (int i = 0; i < number_of_vertices; i++) {
             for (int j = 0; j < number_of_vertices; j++){
                 if (array[i][j] == 1) {
-                    adjancnecy_list.push_back(vector<int>());
-                    adjancnecy_list[i].push_back(j);
+                    adjacency_list[i].push_back(j);
+                    //adjacency_list[j].push_back(i);
                 }
             }
         }
@@ -78,14 +80,34 @@ class Graph{
     //         }
     //     }
     // }
-
-    void printf_adjacecncy_list(){
-        cout<<  "--adjancnecy_list--"<< endl;
-        for (int i = 0; i < number_of_vertices; i++) {
-            for (int j = 0; j < adjancnecy_list[i].size(); j++){
-                cout << adjancnecy_list[i][j]<< "  ";
+    int check_sum_in_line(vector<int> line) {
+        int sum = 0;
+        for (int i = 0; i < line.size(); i++) {
+            if (line[i] == 1) {
+                sum =1;
+                break;
             }
-            cout << endl;
+        }
+        return sum;
+    }
+    void printf_adjacency_list(){
+        cout<<  "--adjancnecy_list--"<< endl;
+        for (int i = 0; i < adjacency_list.size(); i++)
+        {
+            /*if (check_sum_in_line(adjacency_list[i]) == 0) {
+                continue;
+            }*/
+            cout << i;
+            for (int j = 0; j < adjacency_list[i].size(); j++)
+            {
+                if (j == adjacency_list[i].size() - 1)
+                {
+                    cout << " -> " << adjacency_list[i][j] << endl;
+                    break;
+                }
+                else
+                    cout << " -> " << adjacency_list[i][j];
+            }
         }
     }
 // практика
