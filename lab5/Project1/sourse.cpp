@@ -114,8 +114,8 @@ public:
                 j = 0;
                 
             }
-            return;
         }
+        return;
         
     }
     void print_identity_matrix() {
@@ -144,8 +144,8 @@ public:
         for (int i = 0; i < number_of_vertices; i++) {
             for (int j = i + 1; j < array_edges.size()/2; j++) {
                 if (array[i][j] == 1) {
-                    identity_matrix[i][edgeIndex] = 1;     // Вершина i инцидентен ребру
-                    identity_matrix[j][edgeIndex] = 1;     // Вершина j инцидентен ребру
+                    identity_matrix[i][edgeIndex] = 1;     // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ i пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+                    identity_matrix[j][edgeIndex] = 1;     // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ j пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
                     edgeIndex++;
                 }
             }
