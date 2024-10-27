@@ -10,11 +10,6 @@ struct Node* left;
 };
 
 void freeTree(struct Node* root) {
-	if (root != NULL) {
-		freeTree(root->left);
-		freeTree(root->right);
-		free(root);
-	}
 }
 struct Node* CreateTree(struct Node* root, struct Node* r, int data)
 {
@@ -141,22 +136,29 @@ int fcount(struct Node* r, int data, int count) {
 	count = fcount(r->left, data, count);
 	return count;
 	}
+// Node* search(Node* root, int value) {
+//     if (root == nullptr || root->key == value) {
+//         return root;
+//     }
+//     if (value < root->key) {
+//         return search(root->left, value);
+//     } else {
+//         return search(root->right, value);
+//     }
+// }
 struct Node* find(struct Node* r, int data) {
-	if (r->data == data) 
-		return r;
-	else if (r->data < data && r->left != NULL) {
-		find(r->left, data);
+    if (r->data == data) {
+        return r;
 	}
-	else if (r->data > data && r->right != NULL) {
-		find(r->left, data);
-	}
-	else if (r->data == data) {
-		return r;
-	}
+    else if (r->data < data && r->left!= NULL) {
+        find(root->left, data);
+    } 
+	else if(r-> data > data && r->right!= NULL) {
+    	find(root->right, data);
+    }
 	else {
-	cout << "not found"<<endl;
-	return NULL;
-}
+		return NULL;
+	}
 }
 void task_1() {
 	int number_for_found{ 0 };
@@ -165,7 +167,7 @@ void task_1() {
 	struct Node* temp_node_for_found;
 	temp_node_for_found = find(root, number_for_found);
 	if (temp_node_for_found == NULL) {
-		cout << "||Number the number was not found or the tree is empty" << endl;
+		cout << "||the number was not found or the tree is empty" << endl;
 		return;
 	}
 	cout << "||a sheet with this value will find" << endl;
@@ -207,14 +209,14 @@ void task_4() {
 int main() {
 
 setlocale(LC_ALL, "");
-/*int D, start = 1;
+int D, start = 1;
 
 root = NULL;
-cout« "||-1 - the end of the tree construction"«endl;
+cout<< "||-1 - the end of the tree construction"<< endl;
 while (start)
 {
 printf("enter a number: ");
-cin»D;
+cin>>D;
 if (D == -1)
 {
 printf("||The construction is over\n");
@@ -223,14 +225,14 @@ start = 0;
 else
 root = CreateTree(root, root, D);
 
-}*/
+}
 
 
 //print_tree_normal_version(root, count_elements);
-//print_tree(root, 0);
+print_tree(root, 0);
 //cout « count_elements;
-//task_1();
-//task_2();
+task_1();
+task_2();
 //task_2();
 //freeTree(root);
 root = NULL;
