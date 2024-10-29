@@ -14,19 +14,37 @@ public:
         return;
     }
     void complex_function_the_create_TASK2(){
-        
+        int vertex_1 {NULL};
+        int vertex_2 {NULL};
+        Set_number_of_vertices();
+        create_random_adjacency_matrix();
+        print_array();
+        cout<< "enter the numbers of the graph to identify"<< endl;
+        cout<< "the first vertex:  ";
+        cin >> vertex_1;
+        cout<< "the two vertex:  ";
+        cin >> vertex_2;
+        identifying_the_vertices_of_a_graph(vertex_1, vertex_2);
     }
     
 
 private:
     int number_of_vertices {0};
     vector <vector<int>> adjacency_list;
+    int ** temp_array_vertices {NULL};
     int** array = { NULL };
     struct Node {
         int vertex;
         struct Node* next;
     };
-
+    void identifying_the_vertices_of_a_graph(int vertex_1, int vertex_2){
+        temp_array_vertices = (int**)malloc(sizeof(int*) * 2);
+        temp_array_vertices[1] = (int*)malloc(sizeof(int*) * number_of_vertices);
+        for (int i = 0; i < number_of_vertices; i++){
+            temp_array_vertices[1][i] = array[vertex_1][i];
+            temp_array_vertices[2][i] = array[vertex_2][i];
+        }
+    }
     void Set_number_of_vertices() {
         cout << "enter the number of vertices: " << endl;
         cin >> number_of_vertices;
@@ -64,7 +82,12 @@ private:
         adjacency_list.resize(number_of_vertices);
         for (int i = 0; i < number_of_vertices; i++) {
             for (int j = 0; j < number_of_vertices; j++){
+                if (check_sum_in_line(array, i) == 0) {
+                    adjacency_list.clear();
+                    continue;
+                }
                 if (array[i][j] == 1) {
+                    
                     adjacency_list[i].push_back(j);
                     //adjacency_list[j].push_back(i);
                 }
@@ -80,10 +103,10 @@ private:
     //         }
     //     }
     // }
-    int check_sum_in_line(vector<int> line) {
+    int check_sum_in_line(int ** temp_array, int i) {
         int sum = 0;
-        for (int i = 0; i < line.size(); i++) {
-            if (line[i] == 1) {
+        for (int j = 0; j < number_of_vertices; i++) {
+            if (temp_array[i][j] == 1) {
                 sum =1;
                 break;
             }
@@ -110,7 +133,7 @@ private:
             }
         }
     }
-// практика
+// практикаприведи несколько примеров отождествления вершин графа
 //     int ** createG(int size){
 //         int **G;
 //         G = (int**)malloc(size*sizeof(int*));
@@ -153,7 +176,11 @@ void task_1 (){
     M1.complex_function_the_create_TASK1();
     M2.complex_function_the_create_TASK1();
 }
+void task_2 (){
+    Graph T1;
+    T1.complex_function_the_create_TASK2();
+}
 int main(){
-    task_1();
+    //task_1();
     return 0;
 }
