@@ -32,7 +32,13 @@ public:
             cout << "Error: invalid range of numbers"<< endl;
             return;
         }
-        
+        //
+        cout<< "enter the numbers of the rib:";
+        cout<< "vertex 1: ";
+        cin >> vertex_1;
+        cout<< "vertex 2: ";
+        cin >> vertex_2;
+        rib_tightening(vertex_1, vertex_2);
         return;
     }
     
@@ -42,10 +48,6 @@ private:
     vector <vector<int>> adjacency_list;
     int ** temp_array_vertices {NULL};
     int** array = { NULL };
-    struct Node {
-        int vertex;
-        struct Node* next;
-    };
     void identifying_the_vertices_of_a_graph(int vertex_1, int vertex_2){
         int New_index = 0;
         int** New_array = (int**)malloc(sizeof(int*) * (number_of_vertices - 1));
@@ -81,13 +83,40 @@ private:
             temp_array_vertices[1][i] = array[vertex_1][i];
             temp_array_vertices[2][i] = array[vertex_2][i];
         }*/
-    void ad() {
-
+    void rib_tightening(int vertex_1, int vertex_2) {
+        int New_index = 0;
+        int** New_array = (int**)malloc(sizeof(int*) * (number_of_vertices - 1));
+        for (int i = 0; i < number_of_vertices; i++) {
+            New_array[i] = (int*)malloc(sizeof(int*) * (number_of_vertices - 1));
+        }
+        for (int i = 0; i < number_of_vertices; ++i) {
+            if (i == vertex_2) continue;
+            for (int j = 0; j < number_of_vertices; ++j) {
+                if (j == vertex_2) continue;
+                int New_J_index = (j > vertex_2) ? j - 1 : j;
+                New_array[New_index][New_J_index] = array[i][j];
+            }
+            New_index++;
+        }
+        for (int i = 0; i < /*(number_of_vertices -1)*/ number_of_vertices; i++) {
+            if (i != vertex_1 && i != vertex_2) {
+                New_array[vertex_1][i] |= array[vertex_2][i];
+                New_array[i][vertex_1] |= array[i][vertex_2];
+            }
+        }
+        for (int i = 0; i < (number_of_vertices - 1); i++) {
+            for (int j = 0; j < (number_of_vertices - 1); j++) {
+                cout << New_array[i][j] << "  "; 
+            }
+            cout << endl; 
+        }
     }
+
     void Set_number_of_vertices() {
         cout << "enter the number of vertices: " << endl;
         cin >> number_of_vertices;
     }
+
     void initializing_a_two_dimensional() {
         array = (int**)malloc(sizeof(int*) * number_of_vertices);
         for (int i = 0; i < number_of_vertices; i++) {
@@ -95,6 +124,7 @@ private:
             memset(array[i], 0, sizeof(int*) * number_of_vertices);
         }
     }
+
     void create_random_adjacency_matrix() {
         for (int i = 0; i < number_of_vertices; i++) {
             for (int j = i + 1; j < number_of_vertices; j++) {
@@ -107,6 +137,7 @@ private:
             }
         }
     }
+
     void print_array() {
         cout << "---adjancnecy_matrix---" << endl;
         for (int i = 0; i < number_of_vertices; i++) {
@@ -117,6 +148,7 @@ private:
         }
         cout << "__________________________________________"<<endl;
     }
+
     void creating_an_adjacency_list(){
         adjacency_list.resize(number_of_vertices);
         for (int i = 0; i < number_of_vertices; i++) {
@@ -133,6 +165,7 @@ private:
             }
         }
     }
+
     int check_sum_in_line(int ** temp_array, int i) {
         int sum = 0;
         for (int j = 0; j < number_of_vertices; i++) {
@@ -143,6 +176,7 @@ private:
         }
         return sum;
     }
+
     void printf_adjacency_list(){
         cout<<  "--adjancnecy_list--"<< endl;
         for (int i = 0; i < adjacency_list.size(); i++)
