@@ -28,6 +28,9 @@ public:
         set_numbers_value(&vertex_1, &vertex_2, 1);
         if (corrected_num_enter(vertex_1, vertex_2) == 0) return;
         rib_tightening(vertex_1, vertex_2);
+        set_numbers_value(&vertex_1, &vertex_2, 2);
+        if (corrected_num_enter(vertex_1, vertex_2) == 0) return;
+        splitting_vertices(vertex_1);
         return;
     }
     
@@ -37,6 +40,28 @@ private:
     vector <vector<int>> adjacency_list;
     int ** temp_array_vertices {NULL};
     int** array = { NULL };
+    void splitting_vertices(int vertex_1) {
+        int New_index{ 0 };
+        int** New_array = (int**)malloc(sizeof(int*) * (number_of_vertices));
+        for (int i = 0; i < number_of_vertices; i++) {
+            New_array[i] = (int*)malloc(sizeof(int*) * (number_of_vertices));
+        }
+        for (int i = 0; i < (number_of_vertices+1); ++i) {
+            if (i == vertex_1) continue;
+            for (int j = 0; j < (number_of_vertices + 1); ++j) {
+                if (j = vertex_1) continue;
+                int New_J_index = (j > vertex_1) ? j : j + 1;
+                New_array[New_index][New_J_index] = array[i][j];
+            }
+            New_index++;
+        }
+        for (int i = 0; i < /*(number_of_vertices -1)*/ number_of_vertices; i++) {
+            if (i != vertex_1) {
+                New_array[vertex_1][i] |= array[vertex_1][i];
+                New_array[i][vertex_1] |= array[i][vertex_1];
+            }
+        }
+    }
     void identifying_the_vertices_of_a_graph(int vertex_1, int vertex_2){
         int New_index = 0;
         int** New_array = (int**)malloc(sizeof(int*) * (number_of_vertices - 1));
@@ -94,11 +119,16 @@ private:
             return;
         }
         case 1: {
-            cout<< "enter the numbers of the rib:";
+            cout<< "enter the numbers of the rib: "<< endl;
             cout<< "vertex 1: ";
             cin >> *vertex_1;
             cout<< "vertex 2: ";
             cin >> *vertex_2;
+            return;
+        }
+        case 2: {
+            cout << "enter the vertex number to split: ";
+            cin >> *vertex_1;
             return;
         }
         default:
@@ -234,6 +264,7 @@ void task_1 (){
     Graph M2;
     M1.complex_function_the_create_TASK1();
     M2.complex_function_the_create_TASK1();
+
 }
 void task_2 (){
     Graph T1;
@@ -244,7 +275,7 @@ void task_3 (){
 }
 int main(){
     //task_1();
-    //task_2();
+    task_2();
     task_3();
     return 0;
 }
