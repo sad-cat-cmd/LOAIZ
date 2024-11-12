@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <vector>
 using namespace std;
 struct Node* root = NULL;
 int count_elements = 0;
@@ -8,28 +8,27 @@ int data;
 struct Node* right;
 struct Node* left;
 };
-
+vector <int> temp_int; // vectr add.
 void freeTree(struct Node* root) {
 }
-struct Node* CreateTree(struct Node* root, struct Node* r, int data)
+struct Node *CreateTree(struct Node *root, struct Node *r, int data)
 {
 	if (r == NULL)
 	{
-		r = (struct Node*)malloc(sizeof(struct Node));
+		r = (struct Node *)malloc(sizeof(struct Node));
 		if (r == NULL)
 		{
-			cout<<"||memory allocation error"<<endl;
+			printf("Ошибка выделения памяти");
 			exit(0);
 		}
-
+		
 		r->left = NULL;
 		r->right = NULL;
 		r->data = data;
 		if (root == NULL) return r;
-		if (data > root->data) 
-			root->left = r;
-		else 
-	    	root->right = r;
+
+		if (data > root->data)	root->left = r;
+		else root->right = r;	
 		return r;
 	}
 
@@ -39,8 +38,8 @@ struct Node* CreateTree(struct Node* root, struct Node* r, int data)
 		CreateTree(r, r->right, data);
 
 	return root;
-
 }
+
 struct Node* Create_Tree_Without_Repetition(struct Node* root, struct Node* r, int data) {
 	if (r == NULL)
 	{
@@ -129,49 +128,28 @@ int function_of_the_number_of_occurrences_of_a_number_in_the_tree(struct Node* t
 	count_of_occurrences = function_of_the_number_of_occurrences_of_a_number_in_the_tree(temp_node_for_found->right, number_in_the_found, count_of_occurrences);
 	count_of_occurrences = function_of_the_number_of_occurrences_of_a_number_in_the_tree(temp_node_for_found->left, number_in_the_found, count_of_occurrences);
 }
-int fcount(struct Node* r, int data, int count) {
+int fcount(struct Node* r, int data, int count, int i) { // i - add. Изменение функции для показа вложенности определенного значения
 	if (r == NULL) return count;
-	if (r->data == data) count++;
-	count = fcount(r->right, data, count);
-	count = fcount(r->left, data, count);
-	return count;
+	if (r->data == data) {
+		temp_int.push_back(i);
+		count++;
 	}
-// Node* search(Node* root, int value) {
-//     if (root == nullptr || root->key == value) {
-//         return root;
-//     }
-//     if (value < root->key) {
-//         return search(root->left, value);
-//     } else {
-//         return search(root->right, value);
-//     }
-// }
+	i++; // ...add
+	count = fcount(r->right, data, count, i); // .add
+	count = fcount(r->left, data, count, i); // .add
+	return count;
+}
 struct Node* find(struct Node* r, int data) {
-<<<<<<< HEAD
-    if (r->data == data) {
-        return r;
-=======
-	if (r->data == data) return r;
-	else if (r->data < data && r->left != NULL) {
+    if (r->data == data) return r;
+	else if (r->data <= data && r->left != NULL) {
 		find(r->left, data);
 	}
 	else if (r->data > data && r->right != NULL) {
 		find(r->right, data);
->>>>>>> 92a731b1d45b77705fb6937443f726c236a71e9f
 	}
-    else if (r->data < data && r->left!= NULL) {
-        find(root->left, data);
-    } 
-	else if(r-> data > data && r->right!= NULL) {
-    	find(root->right, data);
-    }
 	else {
-<<<<<<< HEAD
-		return NULL;
-=======
 	cout << "not found"<<endl;
 	return NULL;
->>>>>>> 92a731b1d45b77705fb6937443f726c236a71e9f
 	}
 }
 void task_1() {
@@ -184,7 +162,7 @@ void task_1() {
 		cout << "||the number was not found or the tree is empty" << endl;
 		return;
 	}
-	cout << "||a sheet with this value will find" << endl;
+	cout << "|| the number " << number_for_found << "is found in"<< endl;
 	return;
 }
 void task_2() {
@@ -192,8 +170,12 @@ void task_2() {
 	int number_of_occurrences{ 0 };
 	cout << "Enter the number for found: ";
 	cin >> number_for_found;
-	number_of_occurrences = fcount(root, number_for_found, 0);
+	number_of_occurrences = fcount(root, number_for_found, 0, 0);
 	cout << "|| Number_of_occurrences: " << number_of_occurrences << endl;
+	cout << "|| the number " << number_for_found << "is found in"<< endl;
+	for (int i = 0; i < temp_int.size();i++){  // new for () for input numbers
+		cout << temp_int[i]<<"\n"; //
+	}//
 	return;
 }
 void task_3() {
@@ -226,11 +208,7 @@ setlocale(LC_ALL, "");
 int D, start = 1;
 
 root = NULL;
-<<<<<<< HEAD
 cout<< "||-1 - the end of the tree construction"<< endl;
-=======
-cout<< "||-1 - the end of the tree construction " <<endl;
->>>>>>> 92a731b1d45b77705fb6937443f726c236a71e9f
 while (start)
 {
 printf("enter a number: ");
@@ -246,24 +224,17 @@ root = CreateTree(root, root, D);
 }
 
 
-//print_tree_normal_version(root, count_elements);
-<<<<<<< HEAD
 print_tree(root, 0);
 //cout « count_elements;
-task_1();
-task_2();
 //task_2();
 //freeTree(root);
-=======
 //cout « count_elements;
-print_tree(root, 0);
-task_1();
-task_2();
+//task_1();
 task_2();
 freeTree(root);
->>>>>>> 92a731b1d45b77705fb6937443f726c236a71e9f
 root = NULL;
-task_3();
+cout<< "||-1 - the end of the tree construction"<< endl;
+//task_3();
 return 0;
 
 }
