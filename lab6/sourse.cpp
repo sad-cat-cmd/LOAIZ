@@ -41,26 +41,18 @@ private:
     int ** temp_array_vertices {NULL};
     int** array = { NULL };
     void splitting_vertices(int vertex_1) {
+        vector <int> temp_rib;
         int New_index{ 0 };
-        int** New_array = (int**)malloc(sizeof(int*) * (number_of_vertices));
+        int** New_array = (int**)malloc(sizeof(int*) * (number_of_vertices + 1));
         for (int i = 0; i < number_of_vertices; i++) {
-            New_array[i] = (int*)malloc(sizeof(int*) * (number_of_vertices));
+            New_array[i] = (int*)malloc(sizeof(int*) * (number_of_vertices + 1));
         }
-        for (int i = 0; i < (number_of_vertices+1); ++i) {
-            if (i == vertex_1) continue;
-            for (int j = 0; j < (number_of_vertices + 1); ++j) {
-                if (j = vertex_1) continue;
-                int New_J_index = (j > vertex_1) ? j : j + 1;
-                New_array[New_index][New_J_index] = array[i][j];
-            }
-            New_index++;
+        for (int i = 0; i < number_of_vertices; ++i) {
+            if (array[vertex_1][i] == 1) temp_rib.push_back(i);
         }
-        for (int i = 0; i < /*(number_of_vertices -1)*/ number_of_vertices; i++) {
-            if (i != vertex_1) {
-                New_array[vertex_1][i] |= array[vertex_1][i];
-                New_array[i][vertex_1] |= array[i][vertex_1];
-            }
-        }
+        srand(time(0));
+        int i = rand()%(temp_rib.size() - 1);
+        
     }
     void identifying_the_vertices_of_a_graph(int vertex_1, int vertex_2){
         int New_index = 0;
