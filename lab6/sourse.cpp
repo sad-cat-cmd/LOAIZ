@@ -8,9 +8,9 @@ class Graph{
 public:
     void complex_function_the_create_TASK1(){
         Set_number_of_vertices();
-        initializing_a_two_dimensional();
-        create_random_adjacency_matrix();
-        print_array();
+        initializing_a_two_dimensional(array);
+        create_random_adjacency_matrix(array);
+        print_array(array);
         creating_an_adjacency_list();
         printf_adjacency_list();
         return;
@@ -19,40 +19,93 @@ public:
         int vertex_1 {NULL};
         int vertex_2 {NULL};
         Set_number_of_vertices();
-        initializing_a_two_dimensional();
-        create_random_adjacency_matrix();
-        print_array();
+        initializing_a_two_dimensional(array);
+        create_random_adjacency_matrix(array);
+        print_array(array);
+
         set_numbers_value(&vertex_1, &vertex_2, 0);
         if (corrected_num_enter(vertex_1, vertex_2) == 0) return;
         identifying_the_vertices_of_a_graph(vertex_1, vertex_2);
+        cout << "-----------------" << endl;
         set_numbers_value(&vertex_1, &vertex_2, 1);
         if (corrected_num_enter(vertex_1, vertex_2) == 0) return;
         rib_tightening(vertex_1, vertex_2);
+        cout << "-----------------" << endl;
         set_numbers_value(&vertex_1, &vertex_2, 2);
         if (corrected_num_enter(vertex_1, vertex_2) == 0) return;
         splitting_vertices(vertex_1);
+        cout << "-----------------" << endl;
+
         return;
     }
-    
+    void ccomplex_function_the_create_TASK3() {
+        vector <int> num_size_vertices{NULL};
+        Set_number_of_vertices();
+        initializing_a_two_dimensional(array);
+        create_random_adjacency_matrix(array);
+        print_array(array);
+        num_size_vertices[0] = number_of_vertices;
+
+        Set_number_of_vertices();
+        initializing_a_two_dimensional(array_1);
+        create_random_adjacency_matrix(array_1);
+        print_array(array_1);
+            
+        /*if (number_of_vertices > num_size_vertices[0]) num_size_vertices.push_back(number_of_vertices);
+        else {
+            num_size_vertices.push_back(num_size_vertices[0]);
+            num_size_vertices[0] = number_of_vertices;
+        }*/
+        num_size_vertices.push_back(number_of_vertices);
+        combining_graphs(num_size_vertices);
+    }
 
 private:
     int number_of_vertices {0};
     vector <vector<int>> adjacency_list;
     int ** temp_array_vertices {NULL};
     int** array = { NULL };
+    int** array_1 = { NULL };
     void splitting_vertices(int vertex_1) {
-        vector <int> temp_rib;
+        vector <int> temp_vertices;
         int New_index{ 0 };
-        int** New_array = (int**)malloc(sizeof(int*) * (number_of_vertices + 1));
-        for (int i = 0; i < number_of_vertices; i++) {
-            New_array[i] = (int*)malloc(sizeof(int*) * (number_of_vertices + 1));
+        int size = number_of_vertices + 1;
+
+        int** New_array = (int**)malloc(sizeof(int*) * size);
+        for (int i = 0; i < size; i++) {
+            New_array[i] = (int*)malloc(sizeof(int*) * size);
+            memset(New_array[i], 0, sizeof(int*) * size);
         }
         for (int i = 0; i < number_of_vertices; ++i) {
-            if (array[vertex_1][i] == 1) temp_rib.push_back(i);
+            if (array[vertex_1][i] == 1) temp_vertices.push_back(i);
         }
-        srand(time(0));
-        int i = rand()%(temp_rib.size() - 1);
-        
+        for (int i = 0; i < number_of_vertices; i++) {
+            for (int j = 0; j < number_of_vertices; j++) {
+                New_array[i][j] = array[i][j];
+            }
+        }
+       
+        if (temp_vertices.size() == 0) {
+            New_array[vertex_1][number_of_vertices] = 1;
+            New_array[number_of_vertices][vertex_1] = 1;
+        }
+        else {
+            // adding links
+            New_array[number_of_vertices][temp_vertices[0]] = 1;
+            New_array[number_of_vertices][vertex_1] = 1;
+            New_array[temp_vertices[0]][number_of_vertices] = 1;
+            New_array[vertex_1][number_of_vertices] = 1;
+            // deleting links
+            New_array[vertex_1][temp_vertices[0]] = 0;
+            New_array[temp_vertices[0]][vertex_1] = 0;
+        }
+        for (int i = 0; i < (number_of_vertices + 1); i++) {
+            for (int j = 0; j < (number_of_vertices + 1); j++) {
+                cout << New_array[i][j] << "  ";
+            }
+            cout << endl;
+        }
+
     }
     void identifying_the_vertices_of_a_graph(int vertex_1, int vertex_2){
         int New_index = 0;
@@ -132,46 +185,47 @@ private:
         cin >> number_of_vertices;
     }
 
-    void initializing_a_two_dimensional() {
-        array = (int**)malloc(sizeof(int*) * number_of_vertices);
+    void initializing_a_two_dimensional(int**& temp_array) {
+        temp_array = (int**)malloc(sizeof(int*) * number_of_vertices);
         for (int i = 0; i < number_of_vertices; i++) {
-            array[i] = (int*)malloc(sizeof(int*) * number_of_vertices);
-            memset(array[i], 0, sizeof(int*) * number_of_vertices);
+            temp_array[i] = (int*)malloc(sizeof(int) * number_of_vertices);
+            memset(temp_array[i], 0, sizeof(int) * number_of_vertices);
         }
+        return;
     }
-
-    void create_random_adjacency_matrix() {
+    void create_random_adjacency_matrix(int**& temp_array) {
         for (int i = 0; i < number_of_vertices; i++) {
             for (int j = i + 1; j < number_of_vertices; j++) {
-                array[i][j] = rand() % 2 - 0;
-                if (array[i][j] == 1) {
-                    array[j][i] = 1;
+                temp_array[i][j] = rand() % 2 - 0;
+                if (temp_array[i][j] == 1) {
+                    temp_array[j][i] = 1;
                     //array_edges.push_back(i);
                     //array_edges.push_back(j);
                 }
             }
         }
+        return;
     }
-
-    void print_array() {
+    void print_array(int**& temp_array) {
         cout << "---adjancnecy_matrix---" << endl;
         for (int i = 0; i < number_of_vertices; i++) {
             for (int j = 0; j < number_of_vertices; j++) {
-                cout << array[i][j] << "  ";
+                cout << temp_array[i][j] << "  ";
             }
             cout << "\n" << endl;
         }
-        cout << "__________________________________________"<<endl;
+        cout << "__________________________________________" << endl;
+        return;
     }
 
     void creating_an_adjacency_list(){
         adjacency_list.resize(number_of_vertices);
         for (int i = 0; i < number_of_vertices; i++) {
             for (int j = 0; j < number_of_vertices; j++){
-                if (check_sum_in_line(array, i) == 0) {
+                /*if (check_sum_in_line(array, i) == 0) {
                     adjacency_list.clear();
                     continue;
-                }
+                }*/
                 if (array[i][j] == 1) {
                     
                     adjacency_list[i].push_back(j);
@@ -212,44 +266,38 @@ private:
             }
         }
     }
+    int max_num_vertices(vector <int> num_size_ver) {
+        if (num_size_ver[0] > num_size_ver[1]) return num_size_ver[0];
+        else return num_size_ver[1];
+    }
+    void combining_graphs(vector <int> num_size_ver) {
+        int max_Size_Graph = max_num_vertices(num_size_ver);
 
+        int** combined_matrix = (int**)malloc(sizeof(int*) * max_Size_Graph);
+        for (int i = 0; i < max_Size_Graph; i++) {
+            combined_matrix[i] = (int*)malloc(sizeof(int*) * max_Size_Graph);
+        }
+        
+        for (int i = 0; i < num_size_ver[0]; i++) {
+            for (int j = 0; j < num_size_ver[0]; j++) {
+                combined_matrix[i][j] = array[i][j];
+            }
+        }
+        for (int i = 0; i < num_size_ver[1]; i++) {
+            for (int j = 0; j < num_size_ver[1]; j++) {
+                combined_matrix[i][j] = array_1[i][j];
+            }
+        }
 
-// практикаприведи несколько примеров отождествления вершин графа
-//     int ** createG(int size){
-//         int **G;
-//         G = (int**)malloc(size*sizeof(int*));
-//         for (int i = 0; i < size; i++){
-//             G[i] = (int*)malloc(size*sizeof(int));
-//         }
-//         for (int i = 0; i < size; i++){
-//             for (int j = i + 1; j < size; j++){
-//                 G[i][j] = rand()% 2 -1;
-//                 G[j][i] = G[i][j];
-//             }
-//         }
-//     return G;
-//     }
-
-//     int **delG(int **G, int size, int V){
-//         int **new_G = create_G(size - 1);
-//         for (int i = 0; i < size; i++){
-//             for (int j = 0; j < size; j++){
-//                 if (i < V && j < V){
-//                     new_G[i][j] = G[i][j];
-//                 }
-//                 if (i > V && j > V) {
-//                     new_G[i][j] = G[i][j];
-//                 }
-//                 if (i > V && j < V){
-//                     new_G[i][j] = G[i][j];
-//                 }
-//                 if (i < V && j > V){
-//                     new_G[i][j] = G[i][j];
-//                 }
-//             }
-//         }
-//         return new_G;
-//     }
+        //printing
+        for (int i = 0; i < max_Size_Graph; i++) {
+            for (int j = 0; j < max_Size_Graph; j++) {
+                cout << combined_matrix[i][j] << "  ";
+            }
+            cout << "\n" << endl;
+        }
+        
+    }
 };
 void task_1 (){
     Graph M1;
@@ -263,11 +311,16 @@ void task_2 (){
     T1.complex_function_the_create_TASK2();
 }
 void task_3 (){
-
+    Graph T1;
+    T1.ccomplex_function_the_create_TASK3();
 }
 int main(){
-    //task_1();
-    task_2();
+    /*int** array{ NULL };
+    initializing_a_two_dimensional(array, 5);
+    create_random_adjacency_matrix(array, 5); 
+    print_array(array, 5);*/
     task_3();
+    //task_2();
+    //task_3();
     return 0;
 }
