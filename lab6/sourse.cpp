@@ -270,22 +270,27 @@ private:
         if (num_size_ver[0] > num_size_ver[1]) return num_size_ver[0];
         else return num_size_ver[1];
     }
+    int min_num_vertices(vector <int> num_size_ver) {
+        if (num_size_ver[0] < num_size_ver[1]) return num_size_ver[0];
+        else return num_size_ver[1];
+    }
     void combining_graphs(vector <int> num_size_ver) {
         int max_Size_Graph = max_num_vertices(num_size_ver);
 
         int** combined_matrix = (int**)malloc(sizeof(int*) * max_Size_Graph);
         for (int i = 0; i < max_Size_Graph; i++) {
             combined_matrix[i] = (int*)malloc(sizeof(int*) * max_Size_Graph);
+            memset(combined_matrix[i], 0, sizeof(int*) * max_Size_Graph);
         }
         
         for (int i = 0; i < num_size_ver[0]; i++) {
             for (int j = 0; j < num_size_ver[0]; j++) {
-                combined_matrix[i][j] = array[i][j];
+                if (array_1[i][j]) combined_matrix[i][j] = 1;
             }
         }
         for (int i = 0; i < num_size_ver[1]; i++) {
             for (int j = 0; j < num_size_ver[1]; j++) {
-                combined_matrix[i][j] = array_1[i][j];
+                if (array_1[i][j]) combined_matrix[i][j] = 1;
             }
         }
 
@@ -296,6 +301,35 @@ private:
             }
             cout << "\n" << endl;
         }
+        
+    }
+    void intersection_graphsd(vector <int> num_size_ver){
+        int min_Size_Graph = min_num_vertices(num_size_ver);
+
+        int** combined_matrix = (int**)malloc(sizeof(int*) * min_Size_Graph);
+        for (int i = 0; i < min_Size_Graph; i++) {
+            combined_matrix[i] = (int*)malloc(sizeof(int*) * min_Size_Graph);
+        }
+        for (int i = 0; i < min_Size_Graph; i++ ) {
+            for (int j = 0; j < min_Size_Graph; j++) {
+                combined_matrix[i][j] = array[i][j] & array_1[i][j];
+            }
+        }
+
+       for (int i = 0; i < min_Size_Graph; i++) {
+            for (int j = 0; j < min_Size_Graph; j++) {
+                cout << combined_matrix[i][j] << "  ";
+            }
+            cout << "\n" << endl;
+        }
+    }
+    void ring_sum (vector <int> num_size_ver) {
+        int min_Size_Graph = min_num_vertices(num_size_ver);
+        
+        for (int ) {
+
+        }
+
         
     }
 };
@@ -315,12 +349,8 @@ void task_3 (){
     T1.ccomplex_function_the_create_TASK3();
 }
 int main(){
-    /*int** array{ NULL };
-    initializing_a_two_dimensional(array, 5);
-    create_random_adjacency_matrix(array, 5); 
-    print_array(array, 5);*/
+    task_1();
+    task_2();
     task_3();
-    //task_2();
-    //task_3();
     return 0;
 }
