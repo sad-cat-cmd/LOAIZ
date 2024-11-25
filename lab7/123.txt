@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+#define MAX_VERTICES 100 // Максимальное количество вершин
+
+// Глобальные переменные
+bool NUM[MAX_VERTICES]; // Массив для отслеживания посещённых вершин
+int graph[MAX_VERTICES][MAX_VERTICES]; // Матрица смежности
+int size_G; // Количество вершин в графе
+
+// Функция для выполнения обхода в глубину
+void DFS(int v) {
+    // 2.1. пометить v как "посещенную"
+    NUM[v] = true;
+    // 2.2. вывести на экран v
+    printf("%d ", v);
+    
+    // 2.3. ДЛЯ i = 0 ДО size_G
+    for (int i = 0; i < size_G; i++) {
+        // 2.4. ЕСЛИ G(v,i) == 1 И NUM[i] == False
+        if (graph[v][i] == 1 && !NUM[i]) {
+            // 2.6. { 
+            // 2.7. DFS(i);
+            DFS(i);
+            // 2.8. }
+        }
+    }
+}
+
+// Основная функция для обхода графа
+void depthFirstSearch() {
+    // 1.1. для всех i положим NUM[i] = False
+    for (int i = 0; i < size_G; i++) {
+        NUM[i] = false;
+    }
+
+    // 1.2. ПОКА существует "новая" вершина v
+    for (int v = 0; v < size_G; v++) {
+        if (!NUM[v]) { // Если вершина не посещена
+            // 1.3. ВЫПОЛНЯТЬ DFS(v)
+            DFS(v);
+        }
+    }
+}
+
+// Функция для добавления ребра в граф
+void addEdge(int u, int v) {
+    graph[u][v] = 1; // Для неориентированного графа можно добавить и обратное ребро
+    graph[v][u] = 1;
+}
+
+// Функция для инициализации графа
+void initGraph(int vertices) {
+    size_G = vertices;
+    for (int i = 0; i < size_G; i++) {
+        for (int j = 0; j < size_G; j++) {
+            graph[i][j] = 0; // Инициализируем матрицу смежности нулями
+        }
+    }
+}
+
+int main() {
+    int vertices = 5; // Пример: 5 вершин
+    initGraph(vertices);
+
+    // Добавляем рёбра (пример)
+    addEdge(0, 1);
+    addEdge(0, 2);
+    addEdge(1, 3);
+    addEdge(1, 4);
+    addEdge(2, 4);
+
+    printf("Обход в глубину (DFS): ");
+    depthFirstSearch(); // Запускаем DFS
+
+    return 0;
+}
