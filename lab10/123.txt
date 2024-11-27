@@ -1,0 +1,88 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <limits.h>
+
+#define MAX_VERTICES 100
+#define INF INT_MAX
+
+int graph[MAX_VERTICES][MAX_VERTICES];
+int size_G;
+
+void initGraph(int vertices) {
+    size_G = vertices;
+    for (int i = 0; i < size_G; i++)
+        for (int j = 0; j < size_G; j++)
+            graph[i][j] = (i == j) ? 0 : INF; // расстояние до себя 0, до остальных бесконечность
+}
+
+void addEdge(int u, int v) {
+    graph[u][v] = 1; // Для неориентированного графа
+    graph[v][u] = 1;
+}
+
+void bfs(int start, int distances[]) {
+    bool visited[MAX_VERTICES] = {false};
+    int queue[MAX_VERTICES], front = 0, rear = 0;
+    
+    visited[start] = true;
+    distances[start] = 0;
+    queue[rear++] = start;
+
+    while (front < rear) {
+        int current = queue[front++];
+        for (int i = 0; i < size_G; i++) {
+            if (graph[current][i] != INF && !visited[i]) {
+                visited[i] = true;
+                distances[i] = distances[current] + 1;
+                queue[rear++] = i;
+            }
+        }
+    }
+}
+
+void calculateRadiusAndDiameter(int *radius, int *diameter) {
+    *radius = INF;
+    *diameter = 0;
+
+    for (int i = 0; i < size_G; i++) {
+        int distances[MAX_VERTICES];
+        for (int j = 0; j < size_G; j++) distances[j] = INF;
+        bfs(i, distances);
+
+        int maxDistance = 0;
+        for (int j = 0; j < size_G; j++) {
+            if (distances[j] != INF) {
+                if (distances[j] > maxDistance) {
+                    maxDistance = distances[j];
+                }
+            }
+        }
+
+        if (maxDistance < *radius) {
+            *radius = maxDistance;
+        }
+        if (maxDistance > *diameter) {
+            *diameter = maxDistance;
+        }
+    }
+}
+
+int main() {
+    int vertices = 5;
+    initGraph(vertices);
+
+    addEdge(0, 1);
+    addEdge(0, 2);
+    addEdge(1, 3);
+    addEdge(1, 4);
+    addEdge(2, 4);
+
+    int radius, diameter;
+    calculateRadiusAndDiameter(&radius, &diameter);
+
+    printf("Радиус графа: %d\n", radius);
+    printf("Диаметр графа: %d\n", diameter);
+
+    return 0;
+}

@@ -2,6 +2,7 @@
 #include <cstring>
 #include <queue>
 #include <vector>
+#include <limits>
 
 using namespace std;
 
@@ -9,7 +10,7 @@ class Graph {
     public:
     void complex_function_the_create_TASK1_1(){
         Set_number_of_vertices();
-        initializing_a_two_dimensional(array);
+        initializing_a_two_dimensional(array, number_of_vertices);
         create_random_adjacency_matrix(array);
         print_array(array);
         return;
@@ -19,31 +20,37 @@ class Graph {
     }
 
     void complex_function_the_create_TASK2_1(){
+        
         Set_number_of_vertices();
-        initializing_a_two_dimensional(array);
+        initializing_a_two_dimensional(array, number_of_vertices);
         create_random_adjacency_matrix(array);
         print_array(array);
         
         Set_number_of_vertices_1();
-        initializing_a_two_dimensional(array_1);
+        initializing_a_two_dimensional(array_1, number_of_vertices_1);
         create_random_ajacency_matrix_1(array_1);
         print_array(array_1);
+        
+        int radius = 0, diameter = 0;
+        calculateRadiusAndDiameter(&radius, &diameter);
 
 
     }
     void complex_function_the_create_TASK2_2(){
     }
+
     private:
     int number_of_vertices {0};
     int number_of_vertices_1 {0};
     int** array = { NULL };
     int** array_1 = { NULL };
+    //const int MAX_VERTICES =100;
 
     void Set_number_of_vertices() {
         cout << "enter the number of vertices: " << endl;
         cin >> number_of_vertices;
     }
-    void initializing_a_two_dimensional(int**& temp_array) {
+    void initializing_a_two_dimensional(int**& temp_array, int number_of_vertices) {
         temp_array = (int**)malloc(sizeof(int*) * number_of_vertices);
         for (int i = 0; i < number_of_vertices; i++) {
             temp_array[i] = (int*)malloc(sizeof(int) * number_of_vertices);
@@ -130,18 +137,58 @@ class Graph {
             for (int j = 0; j < number_of_vertices_1; j++){
                 if (i == j) continue;
                 temp_array[i][j] = rand() %2 - 0;
-                if (temp_array[i][j] == 1) {
-                    
-                }
+                if (temp_array[i][j] == 1) temp_array[i][j] = rand() % 10 + 1;
             }
         }
     }
 
-};
-class Graph_1 {
-    public:
+    void bfs(int start, int distances[]) {
+        const int SIZE = 100;
+        bool visited[SIZE] = { false };
+        int queue[SIZE], front = 0, rear = 0;
 
-    private:
+        visited[start] = true;
+        distances[start] = 0;
+        queue[rear++] = start;
+
+        while (front < rear) {
+            int current = queue[front++];
+            for (int i = 0; i < number_of_vertices; i++) {
+                if (array[current][i] != numeric_limits<double>::infinity() && !visited[i]) {
+                    visited[i] = true;
+                    distances[i] = distances[current] + 1;
+                    queue[rear++] = i;
+                }
+            }
+        }
+    }
+    void calculateRadiusAndDiameter(int* radius, int* diameter) {
+        const int MAX_VERTICES = 100;
+        *radius = numeric_limits<double>::infinity();
+        *diameter = 0;
+
+        for (int i = 0; i < number_of_vertices; i++) {
+            int distances[MAX_VERTICES];
+            for (int j = 0; j < number_of_vertices; j++) distances[j] = numeric_limits<double>::infinity();
+            bfs(i, distances);
+
+            int maxDistance = 0;
+            for (int j = 0; j < number_of_vertices; j++) {
+                if (distances[j] != numeric_limits<double>::infinity()) {
+                    if (distances[j] > maxDistance) {
+                        maxDistance = distances[j];
+                    }
+                }
+            }
+
+            if (maxDistance < *radius) {
+                *radius = maxDistance;
+            }
+            if (maxDistance > *diameter) {
+                *diameter = maxDistance;
+            }
+        }
+    }
 };
 void task_1() {
     Graph G;
@@ -151,7 +198,7 @@ void task_1() {
 void task_2(){
     Graph G;
     G.complex_function_the_create_TASK2_1();
-    G.complex_function_the_create_TASK2_2(); 
+    G.complex_function_the_create_TASK2_2();
 }
 int main() {
     //task_1();
