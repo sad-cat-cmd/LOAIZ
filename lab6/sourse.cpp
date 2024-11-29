@@ -16,8 +16,8 @@ public:
         return;
     }
     void complex_function_the_create_TASK2(){
-        int vertex_1 {NULL};
-        int vertex_2 {NULL};
+        int vertex_1 {0};
+        int vertex_2 {0};
         Set_number_of_vertices();
         initializing_a_two_dimensional(array);
         create_random_adjacency_matrix(array);
@@ -75,6 +75,8 @@ private:
     int ** temp_array_vertices {NULL};
     int** array = { NULL };
     int** array_1 = { NULL };
+
+
     void splitting_vertices(int vertex_1) {
         vector <int> temp_vertices;
         int New_index{ 0 };
@@ -387,8 +389,8 @@ void task_3 (){
     T1.ccomplex_function_the_create_TASK3();
 }
 int main(){
-    //task_1();
-    //task_2();
+    task_1();
+    task_2();
     task_3();
     return 0;
 }
