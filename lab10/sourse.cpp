@@ -4,6 +4,7 @@
 #include <vector>
 #include <limits>
 
+#define INF INT_MAX
 using namespace std;
 
 class Graph {
@@ -12,7 +13,7 @@ class Graph {
         Set_number_of_vertices();
         initializing_a_two_dimensional(array, number_of_vertices);
         create_random_adjacency_matrix(array);
-        print_array(array);
+        print_array(array, number_of_vertices);
         return;
     }
     void complex_function_the_create_TASK1_2(){
@@ -24,16 +25,20 @@ class Graph {
         Set_number_of_vertices();
         initializing_a_two_dimensional(array, number_of_vertices);
         create_random_adjacency_matrix(array);
-        print_array(array);
+        print_array(array, number_of_vertices);
         
         Set_number_of_vertices_1();
         initializing_a_two_dimensional(array_1, number_of_vertices_1);
         create_random_ajacency_matrix_1(array_1);
-        print_array(array_1);
+        print_array(array_1, number_of_vertices_1);
         
-        int radius = 0, diameter = 0;
-        calculateRadiusAndDiameter(&radius, &diameter);
+        find_Radius_And_Diameter_1();
+        floyd_Warshall();
 
+        find_Peripheral_Vertices_Oriented();
+        find_Central_Vertices_Oriented();
+        findPeripheralVerticesUnoriented();
+        findCentralVerticesUnoriented();
 
     }
     void complex_function_the_create_TASK2_2(){
@@ -44,7 +49,6 @@ class Graph {
     int number_of_vertices_1 {0};
     int** array = { NULL };
     int** array_1 = { NULL };
-    //const int MAX_VERTICES =100;
 
     void Set_number_of_vertices() {
         cout << "enter the number of vertices: " << endl;
@@ -72,10 +76,10 @@ class Graph {
         }
         return;
     }
-    void print_array(int**& temp_array) {
+    void print_array(int**& temp_array, int temp_number_of_vertices) {
         cout << "---adjancnecy_matrix---" << endl;
-        for (int i = 0; i < number_of_vertices; i++) {
-            for (int j = 0; j < number_of_vertices; j++) {
+        for (int i = 0; i < temp_number_of_vertices; i++) {
+            for (int j = 0; j < temp_number_of_vertices; j++) {
                 cout << temp_array[i][j] << "  ";
             }
             cout << "\n" << endl;
@@ -142,53 +146,254 @@ class Graph {
         }
     }
 
-    void bfs(int start, int distances[]) {
-        const int SIZE = 100;
-        bool visited[SIZE] = { false };
-        int queue[SIZE], front = 0, rear = 0;
+    int min(int a, int b) { return (a < b) ? a : b; }
+    void find_Radius_And_Diameter_1() {
+        int **dist = (int**)malloc(sizeof(int) * number_of_vertices) ;
+        for (int i = 0; i < number_of_vertices;i++ ) {
+            dist[i] = (int*)malloc(sizeof(int) * number_of_vertices);
+            memset(dist[i], 0, sizeof(int) * number_of_vertices);
+        }
+        int i, j, k;
 
-        visited[start] = true;
-        distances[start] = 0;
-        queue[rear++] = start;
+        // Инициализация матрицы расстояний
+        for (i = 0; i < number_of_vertices; i++) {
+            for (j = 0; j < number_of_vertices; j++) {
+                dist[i][j] = array[i][j];
+                if (i != j && array[i][j] == 0) dist[i][j] = INT_MAX;
+            }
+        }
 
-        while (front < rear) {
-            int current = queue[front++];
-            for (int i = 0; i < number_of_vertices; i++) {
-                if (array[current][i] != numeric_limits<double>::infinity() && !visited[i]) {
-                    visited[i] = true;
-                    distances[i] = distances[current] + 1;
-                    queue[rear++] = i;
+        // Применение алгоритма Флойда-Уоршелла
+        for (k = 0; k < number_of_vertices; k++) {
+            for (i = 0; i < number_of_vertices; i++) {
+                for (j = 0; j < number_of_vertices; j++) {
+                    if (dist[i][k] != INT_MAX && dist[k][j] != INT_MAX && dist[i][k] + dist[k][j] < dist[i][j])
+                        dist[i][j] = dist[i][k] + dist[k][j];
                 }
             }
         }
+
+        // Вычисление эксцентриситетов
+        int* ecc = (int*)malloc(sizeof(int) * number_of_vertices);
+        memset(ecc, 0, sizeof(int) * number_of_vertices);
+        //int ecc[SIZE] = { 0 };
+        for (i = 0; i < number_of_vertices; i++) {
+            for (j = 0; j < number_of_vertices; j++) {
+                if (dist[i][j] != INT_MAX) ecc[i] = (ecc[i] > dist[i][j]) ? ecc[i] : dist[i][j];
+            }
+        }
+
+        // Нахождение радиуса и диаметра
+        int radius = INT_MAX, diameter = INT_MIN;
+        for (i = 0; i < number_of_vertices; i++) {
+            radius = (radius < ecc[i]) ? radius : ecc[i];
+            diameter = (diameter > ecc[i]) ? diameter : ecc[i];
+        }
+
+        // Вывод результата
+        cout << "undirected graph:" << endl;
+        cout << "radius: " << radius << "  diameter: :" << diameter<< endl;
     }
-    void calculateRadiusAndDiameter(int* radius, int* diameter) {
-        const int MAX_VERTICES = 100;
-        *radius = numeric_limits<double>::infinity();
-        *diameter = 0;
+    void floyd_Warshall() {
+        int** dist = (int**)malloc(sizeof(int) * number_of_vertices_1);
+        for (int i = 0; i < number_of_vertices_1; i++) {
+            dist[i] = (int*)malloc(sizeof(int) * number_of_vertices_1);
+            memset(dist[i], 0, sizeof(int) * number_of_vertices_1);
+            for (int j = 0; j < number_of_vertices_1; j++) {
+                if (i == j) {
+                    dist[i][j] = 0; // Расстояние до самой себя равно 0
+                }
+                else if (array_1[i][j] != 0) {
+                    dist[i][j] = array_1[i][j]; // Инициализация расстояний по прямым ребрам
+                }
+                else {
+                    dist[i][j] = INF; // Инициализация расстояний между несвязанными вершинами
+                }
+            }
+        }
+        int i, j, k;
 
-        for (int i = 0; i < number_of_vertices; i++) {
-            int distances[MAX_VERTICES];
-            for (int j = 0; j < number_of_vertices; j++) distances[j] = numeric_limits<double>::infinity();
-            bfs(i, distances);
+        // Инициализация матрицы расстояний
+        /*for (i = 0; i < number_of_vertices_1; i++) {
+            for (j = 0; j < number_of_vertices_1; j++) {
+                dist[i][j] = array_1[i][j];
+            }
+        }*/
 
-            int maxDistance = 0;
-            for (int j = 0; j < number_of_vertices; j++) {
-                if (distances[j] != numeric_limits<double>::infinity()) {
-                    if (distances[j] > maxDistance) {
-                        maxDistance = distances[j];
+        // Алгоритм Флойда-Уоршелла
+        for (k = 0; k < number_of_vertices_1; k++) {
+            for (i = 0; i < number_of_vertices_1; i++) {
+                for (j = 0; j < number_of_vertices_1; j++) {
+                    if (dist[i][k] != INF && dist[k][j] != INF) {
+                        if (dist[i][j] > dist[i][k] + dist[k][j]) {
+                            dist[i][j] = dist[i][k] + dist[k][j];
+                        }
                     }
                 }
             }
+        }
 
-            if (maxDistance < *radius) {
-                *radius = maxDistance;
+        // Нахождение радиуса и диаметра
+        int radius = INF;
+        int diameter = 0;
+        for (i = 0; i < number_of_vertices_1; i++) {
+            int ecc = 0; // Эксцентриситет вершины i
+            for (j = 0; j < number_of_vertices_1; j++) {
+                if (i != j && dist[i][j] != INF && dist[i][j] > ecc) {
+                    ecc = dist[i][j];
+                }
             }
-            if (maxDistance > *diameter) {
-                *diameter = maxDistance;
+            if (ecc < radius) {
+                radius = ecc;
+            }
+            if (ecc > diameter) {
+                diameter = ecc;
+            }
+        }
+        cout << "oriented graph :" << endl;
+        cout << "radius: " << radius << "  diameter: :" << diameter << endl;
+    }
+
+    void bfs(int **& temp_array, int vertex, vector<int>& distances, int temp_number_of_vertices) {
+        //int n = graph.size();
+        vector<bool> visited(temp_number_of_vertices, false);
+        queue<int> q;
+        q.push(vertex);
+        visited[vertex] = true;
+        distances[vertex] = 0;
+
+        while (!q.empty()) {
+            int currentVertex = q.front();
+            q.pop();
+
+            for (int i = 0; i < temp_number_of_vertices; i++) {
+                if (temp_array[currentVertex][i] != 0 && !visited[i]) {
+                    q.push(i);
+                    visited[i] = true;
+                    distances[i] = distances[currentVertex] + 1;
+                }
             }
         }
     }
+    void find_Peripheral_Vertices_Oriented() {
+        //int n = graph.size();
+        vector<int> eccentricities(number_of_vertices_1, 0);
+
+        for (int i = 0; i < number_of_vertices_1; i++) {
+            vector<int> distances(number_of_vertices_1, INF);
+            bfs(array_1, i, distances, number_of_vertices_1);
+
+            for (int j = 0; j < number_of_vertices_1; j++) {
+                if (distances[j] > eccentricities[i]) {
+                    eccentricities[i] = distances[j];
+                }
+            }
+        }
+
+        int maxEccentricity = 0;
+        for (int i = 0; i < number_of_vertices_1; i++) {
+            if (eccentricities[i] > maxEccentricity) {
+                maxEccentricity = eccentricities[i];
+            }
+        }
+
+        cout << "peripheral vertices of a directed graph: ";
+        for (int i = 0; i < number_of_vertices_1; i++) {
+            if (eccentricities[i] == maxEccentricity) {
+                cout << i << " ";
+            }
+        }
+        cout << endl;
+    }
+    void find_Central_Vertices_Oriented() {
+        //int n = graph.size();
+        vector<int> eccentricities(number_of_vertices_1, INF);
+
+        for (int i = 0; i < number_of_vertices_1; i++) {
+            vector<int> distances(number_of_vertices_1, INF);
+            bfs(array_1, i, distances, number_of_vertices_1);
+
+            for (int j = 0; j < number_of_vertices_1; j++) {
+                if (distances[j] < eccentricities[i]) {
+                    eccentricities[i] = distances[j];
+                }
+            }
+        }
+
+        int minEccentricity = INF;
+        for (int i = 0; i < number_of_vertices_1; i++) {
+            if (eccentricities[i] < minEccentricity) {
+                minEccentricity = eccentricities[i];
+            }
+        }
+
+        cout << "central vertices of a directed graph: ";
+        for (int i = 0; i < number_of_vertices_1; i++) {
+            if (eccentricities[i] == minEccentricity) {
+                cout << i << " ";
+            }
+        }
+        cout << endl;
+    }
+    void findPeripheralVerticesUnoriented() {
+        vector<int> eccentricities(number_of_vertices, 0);
+
+        for (int i = 0; i < number_of_vertices; i++) {
+            vector<int> distances(number_of_vertices, INF);
+            bfs(array, i, distances, number_of_vertices);
+
+            for (int j = 0; j < number_of_vertices; j++) {
+                if (distances[j] > eccentricities[i]) {
+                    eccentricities[i] = distances[j];
+                }
+            }
+        }
+
+        int maxEccentricity = 0;
+        for (int i = 0; i < number_of_vertices; i++) {
+            if (eccentricities[i] > maxEccentricity) {
+                maxEccentricity = eccentricities[i];
+            }
+        }
+
+        cout << "Peripheral vertices of an undirected graph: ";
+        for (int i = 0; i < number_of_vertices; i++) {
+            if (eccentricities[i] == maxEccentricity) {
+                cout << i << " ";
+            }
+        }
+        cout << endl;
+    }
+    void findCentralVerticesUnoriented() {
+        vector<int> eccentricities(number_of_vertices, INF);
+
+        for (int i = 0; i < number_of_vertices; i++) {
+            vector<int> distances(number_of_vertices, INF);
+            bfs(array, i, distances, number_of_vertices);
+
+            for (int j = 0; j < number_of_vertices; j++) {
+                if (distances[j] < eccentricities[i]) {
+                    eccentricities[i] = distances[j];
+                }
+            }
+        }
+
+        int minEccentricity = INF;
+        for (int i = 0; i < number_of_vertices; i++) {
+            if (eccentricities[i] < minEccentricity) {
+                minEccentricity = eccentricities[i];
+            }
+        }
+
+        cout << "central vertices of an undirected graph: ";
+        for (int i = 0; i < number_of_vertices; i++) {
+            if (eccentricities[i] == minEccentricity) {
+                cout << i << " ";
+            }
+        }
+        cout << endl;
+    }
+
 };
 void task_1() {
     Graph G;
@@ -201,6 +406,6 @@ void task_2(){
     G.complex_function_the_create_TASK2_2();
 }
 int main() {
-    //task_1();
+    task_1();
     task_2();
 }
