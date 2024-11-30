@@ -1,88 +1,171 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <limits.h>
+void bfs(vector<vector<int>>& graph, int vertex, vector<int>& distances) {
+    int n = graph.size();
+    vector<bool> visited(n, false);
+    queue<int> q;
+    q.push(vertex);
+    visited[vertex] = true;
+    distances[vertex] = 0;
 
-#define MAX_VERTICES 100
-#define INF INT_MAX
+    while (!q.empty()) {
+        int currentVertex = q.front();
+        q.pop();
 
-int graph[MAX_VERTICES][MAX_VERTICES];
-int size_G;
-
-void initGraph(int vertices) {
-    size_G = vertices;
-    for (int i = 0; i < size_G; i++)
-        for (int j = 0; j < size_G; j++)
-            graph[i][j] = (i == j) ? 0 : INF; // расстояние до себя 0, до остальных бесконечность
-}
-
-void addEdge(int u, int v) {
-    graph[u][v] = 1; // Для неориентированного графа
-    graph[v][u] = 1;
-}
-
-void bfs(int start, int distances[]) {
-    bool visited[MAX_VERTICES] = {false};
-    int queue[MAX_VERTICES], front = 0, rear = 0;
-    
-    visited[start] = true;
-    distances[start] = 0;
-    queue[rear++] = start;
-
-    while (front < rear) {
-        int current = queue[front++];
-        for (int i = 0; i < size_G; i++) {
-            if (graph[current][i] != INF && !visited[i]) {
+        for (int i = 0; i < n; i++) {
+            if (graph[currentVertex][i] != 0 && !visited[i]) {
+                q.push(i);
                 visited[i] = true;
-                distances[i] = distances[current] + 1;
-                queue[rear++] = i;
+                distances[i] = distances[currentVertex] + 1;
             }
         }
     }
 }
 
-void calculateRadiusAndDiameter(int *radius, int *diameter) {
-    *radius = INF;
-    *diameter = 0;
+// Функция для нахождения периферийных вершин ориентированного графа
+void findPeripheralVerticesOriented(vector<vector<int>>& graph) {
+    int n = graph.size();
+    vector<int> eccentricities(n, 0);
 
-    for (int i = 0; i < size_G; i++) {
-        int distances[MAX_VERTICES];
-        for (int j = 0; j < size_G; j++) distances[j] = INF;
-        bfs(i, distances);
+    for (int i = 0; i < n; i++) {
+        vector<int> distances(n, INF);
+        bfs(graph, i, distances);
 
-        int maxDistance = 0;
-        for (int j = 0; j < size_G; j++) {
-            if (distances[j] != INF) {
-                if (distances[j] > maxDistance) {
-                    maxDistance = distances[j];
-                }
+        for (int j = 0; j < n; j++) {
+            if (distances[j] > eccentricities[i]) {
+                eccentricities[i] = distances[j];
             }
         }
+    }
 
-        if (maxDistance < *radius) {
-            *radius = maxDistance;
-        }
-        if (maxDistance > *diameter) {
-            *diameter = maxDistance;
+    int maxEccentricity = 0;
+    for (int i = 0; i < n; i++) {
+        if (eccentricities[i] > maxEccentricity) {
+            maxEccentricity = eccentricities[i];
         }
     }
+
+    cout << "Периферийные вершины ориентированного графа: ";
+    for (int i = 0; i < n; i++) {
+        if (eccentricities[i] == maxEccentricity) {
+            cout << i << " ";
+        }
+    }
+    cout << endl;
+}
+
+// Функция для нахождения центральных вершин ориентированного графа
+void findCentralVerticesOriented(vector<vector<int>>& graph) {
+    int n = graph.size();
+    vector<int> eccentricities(n, INF);
+
+    for (int i = 0; i < n; i++) {
+        vector<int> distances(n, INF);
+        bfs(graph, i, distances);
+
+        for (int j = 0; j < n; j++) {
+            if (distances[j] < eccentricities[i]) {
+                eccentricities[i] = distances[j];
+            }
+        }
+    }
+
+    int minEccentricity = INF;
+    for (int i = 0; i < n; i++) {
+        if (eccentricities[i] < minEccentricity) {
+            minEccentricity = eccentricities[i];
+        }
+    }
+
+    cout << "Центральные вершины ориентированного графа: ";
+    for (int i = 0; i < n; i++) {
+        if (eccentricities[i] == minEccentricity) {
+            cout << i << " ";
+        }
+    }
+    cout << endl;
+}
+
+// Функция для нахождения периферийных вершин неориентированного графа
+void findPeripheralVerticesUnoriented(vector<vector<int>>& graph) {
+    int n = graph.size();
+    vector<int> eccentricities(n, 0);
+
+    for (int i = 0; i < n; i++) {
+        vector<int> distances(n, INF);
+        bfs(graph, i, distances);
+
+        for (int j = 0; j < n; j++) {
+            if (distances[j] > eccentricities[i]) {
+                eccentricities[i] = distances[j];
+            }
+        }
+    }
+
+    int maxEccentricity = 0;
+    for (int i = 0; i < n; i++) {
+        if (eccentricities[i] > maxEccentricity) {
+            maxEccentricity = eccentricities[i];
+        }
+    }
+
+    cout << "Периферийные вершины неориентированного графа: ";
+    for (int i = 0; i < n; i++) {
+        if (eccentricities[i] == maxEccentricity) {
+            cout << i << " ";
+        }
+    }
+    cout << endl;
+}
+
+// Функция для нахождения центральных вершин неориентированного графа
+void findCentralVerticesUnoriented(vector<vector<int>>& graph) {
+    int n = graph.size();
+    vector<int> eccentricities(n, INF);
+
+    for (int i = 0; i < n; i++) {
+        vector<int> distances(n, INF);
+        bfs(graph, i, distances);
+
+        for (int j = 0; j < n; j++) {
+            if (distances[j] < eccentricities[i]) {
+                eccentricities[i] = distances[j];
+            }
+        }
+    }
+
+    int minEccentricity = INF;
+    for (int i = 0; i < n; i++) {
+        if (eccentricities[i] < minEccentricity) {
+            minEccentricity = eccentricities[i];
+        }
+    }
+
+    cout << "Центральные вершины неориентированного графа: ";
+    for (int i = 0; i < n; i++) {
+        if (eccentricities[i] == minEccentricity) {
+            cout << i << " ";
+        }
+    }
+    cout << endl;
 }
 
 int main() {
-    int vertices = 5;
-    initGraph(vertices);
+    int n;
+    cout << "Введите количество вершин графа: ";
+    cin >> n;
 
-    addEdge(0, 1);
-    addEdge(0, 2);
-    addEdge(1, 3);
-    addEdge(1, 4);
-    addEdge(2, 4);
+    vector<vector<int>> graph(n, vector<int>(n, 0));
 
-    int radius, diameter;
-    calculateRadiusAndDiameter(&radius, &diameter);
+    cout << "Введите матрицу смежности графа:" << endl;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            cin >> graph[i][j];
+        }
+    }
 
-    printf("Радиус графа: %d\n", radius);
-    printf("Диаметр графа: %d\n", diameter);
+    findPeripheralVerticesOriented(graph);
+    findCentralVerticesOriented(graph);
+    findPeripheralVerticesUnoriented(graph);
+    findCentralVerticesUnoriented(graph);
 
     return 0;
 }
