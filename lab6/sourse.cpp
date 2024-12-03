@@ -4,6 +4,11 @@
 
 using namespace std;
 
+struct node {
+    int temp_I;
+    struct node* next;
+};
+struct node* head = NULL, *last= NULL, *prev = NULL;
 class Graph{
 public:
     void complex_function_the_create_TASK1(){
@@ -11,8 +16,8 @@ public:
         initializing_a_two_dimensional(array);
         create_random_adjacency_matrix(array);
         print_array(array);
-        creating_an_adjacency_list();
-        printf_adjacency_list();
+        //creating_an_adjacency_list();
+        create_an_adjance_list();
         return;
     }
     void complex_function_the_create_TASK2(){
@@ -72,6 +77,7 @@ public:
 private:
     int number_of_vertices {0};
     vector <vector<int>> adjacency_list;
+
     int ** temp_array_vertices {NULL};
     int** array = { NULL };
     int** array_1 = { NULL };
@@ -372,13 +378,59 @@ private:
             cout << "\n" << endl;
         }
     }
+    void review() {
+    cout<<  "--adjancnecy_list--"<< endl;
+	struct node *struc = head;
+	if (head == NULL)
+	{
+        cout<< "list EMPTY";
+	}
+	while (struc)
+	{
+		//printf("Имя - %s, \n", struc->inf);
+        cout << "->" << struc->temp_I;
+		struc = struc->next;
+	}
+	return;
+}
+
+    void spstore(struct node *p){
+	//struct node *p = NULL;
+	if (head == NULL && p != NULL)	// если списка нет, то устанавливаем голову списка
+	{
+		head = p;
+		last = p;
+	}
+	else if (head != NULL && p != NULL) // список уже есть, то вставляем в конец
+	{
+		last->next = p;
+		last = p;
+	}
+	return;
+}
+
+    void create_an_adjance_list() {
+        struct node * struc = NULL ;
+        for (int i = 0; i < number_of_vertices; i++) {
+            struc-> temp_I = i;
+            spstore(struc);
+            for (int j = 0; j < number_of_vertices; j++){
+                if (array[i][j]==1) {
+                    struc-> temp_I = j;
+                    spstore (struc);
+                }
+            }
+            review();
+            head == NULL;
+
+        }
+    }
 };
 void task_1 (){
     Graph M1;
     Graph M2;
     M1.complex_function_the_create_TASK1();
     M2.complex_function_the_create_TASK1();
-
 }
 void task_2 (){
     Graph T1;
