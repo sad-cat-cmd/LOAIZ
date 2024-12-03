@@ -4,11 +4,6 @@
 
 using namespace std;
 
-struct node {
-    int temp_I;
-    struct node* next;
-};
-struct node* head = NULL, *last= NULL, *prev = NULL;
 class Graph{
 public:
     void complex_function_the_create_TASK1(){
@@ -16,7 +11,9 @@ public:
         initializing_a_two_dimensional(array);
         create_random_adjacency_matrix(array);
         print_array(array);
+        // logic 2-x vector
         //creating_an_adjacency_list();
+        // logic struct node 
         create_an_adjance_list();
         return;
     }
@@ -75,6 +72,13 @@ public:
     }
 
 private:
+    // add struct and link* 
+    struct node {
+        int temp_I;
+        struct node* next;
+    };
+    struct node* head = NULL, * last = NULL;
+
     int number_of_vertices {0};
     vector <vector<int>> adjacency_list;
 
@@ -378,8 +382,8 @@ private:
             cout << "\n" << endl;
         }
     }
+    // -- add function for create AND print adjance_list
     void review() {
-    cout<<  "--adjancnecy_list--"<< endl;
 	struct node *struc = head;
 	if (head == NULL)
 	{
@@ -393,7 +397,6 @@ private:
 	}
 	return;
 }
-
     void spstore(struct node *p){
 	//struct node *p = NULL;
 	if (head == NULL && p != NULL)	// если списка нет, то устанавливаем голову списка
@@ -408,21 +411,34 @@ private:
 	}
 	return;
 }
-
     void create_an_adjance_list() {
-        struct node * struc = NULL ;
+        cout << "--adjancnecy_list--" << endl;
         for (int i = 0; i < number_of_vertices; i++) {
-            struc-> temp_I = i;
+            struct node* struc = (struct node*)malloc(sizeof(struct node));
+            if (struc == NULL) {
+                cout << "Memory allocation failed!" << endl;
+                return;
+            }
+            struc->temp_I = i;
+            struc->next = NULL;
             spstore(struc);
-            for (int j = 0; j < number_of_vertices; j++){
-                if (array[i][j]==1) {
-                    struc-> temp_I = j;
-                    spstore (struc);
+
+            for (int j = 0; j < number_of_vertices; j++) {
+                if (array[i][j] == 1) {
+                    struct node* adj_node = (struct node*)malloc(sizeof(struct node));
+                    if (adj_node == NULL) {
+                        cout << "Memory allocation failed!" << endl;
+                        return;
+                    }
+                    adj_node->temp_I = j;
+                    adj_node->next = NULL;
+                    spstore(adj_node);
                 }
             }
             review();
-            head == NULL;
-
+            cout << endl;
+            head = NULL;
+            last = NULL;
         }
     }
 };
