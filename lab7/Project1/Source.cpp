@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 
 using namespace std;
 class Graph {
@@ -11,11 +12,12 @@ public:
         return;
     }
     void ccomplex_function_the_create_TASK1_2() {
+        NUM = (bool*)malloc(sizeof(bool) * number_of_vertices);
         cout << "--deep_crawl--: " << endl;
         depthFirstSearch();
     }
 private:
-    bool NUM[50];
+    bool *NUM;
     int number_of_vertices{ 0 };
     int** array = { NULL };
     void Set_number_of_vertices() {
@@ -55,34 +57,23 @@ private:
         cout << "__________________________________________" << endl;
         return;
     }
-
     void DFS(int v) {
-        // 2.1. пометить v как "посещенную"
         NUM[v] = true;
-        // 2.2. вывести на экран v
-        printf("%d ", v);
+        cout << v << "-->";
+        //printf("%d ", v);
 
-        // 2.3. ДЛЯ i = 0 ДО size_G
         for (int i = 0; i < number_of_vertices; i++) {
-            // 2.4. ЕСЛИ G(v,i) == 1 И NUM[i] == False
             if (array[v][i] == 1 && !NUM[i]) {
-                // 2.6. { 
-                // 2.7. DFS(i);
                 DFS(i);
-                // 2.8. }
             }
         }
     }
     void depthFirstSearch() {
-        // 1.1. для всех i положим NUM[i] = False
         for (int i = 0; i < number_of_vertices; i++) {
             NUM[i] = false;
         }
-
-        // 1.2. ПОКА существует "новая" вершина v
         for (int v = 0; v < number_of_vertices; v++) {
-            if (!NUM[v]) { // Если вершина не посещена
-                // 1.3. ВЫПОЛНЯТЬ DFS(v)
+            if (!NUM[v]) {
                 DFS(v);
             }
         }
