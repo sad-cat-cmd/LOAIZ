@@ -1,6 +1,7 @@
 #include <iostream>
 #include <queue>
 #include <cstring>
+#include <stack>
 using namespace std;
 class Graph {
 public: 
@@ -14,14 +15,20 @@ public:
     void ccomplex_function_the_create_TASK1_2() {
         //vis = (int)malloc(int * sizeof(int));
         cout << "--deep_crawl--: " << endl;
-
-        BFS();
+        vis = (int*)malloc(sizeof(int) * number_of_vertices);
+        for (int i = 0; i < number_of_vertices; i++) {
+            vis[i] = 0; 
+        }
+        BFS(0);
+        // for (int i = 0; i < number_of_vertices; i++) {
+        //     vis[i] = 0;
+        // }
+        // depthFirstSearch();
     }
 private:
-    bool NUM[50];
     int number_of_vertices{ 0 };
     int** array = { NULL };
-    int * vis;
+    int *vis;
     queue <int> Q;
 
 
@@ -62,8 +69,8 @@ private:
         cout << "__________________________________________" << endl;
         return;
     }
-
-    void BFS(int start, int* vis) {
+    void BFS(int start) {
+        cout << "ONE----" << endl;
         Q.push(start);
         while (!Q.empty()){
             start = Q.front();
@@ -78,16 +85,38 @@ private:
         }
         
     }
-    void depthFirstSearch() {
-        for (int i = 0; i < number_of_vertices; i++) {
-            for (int j = 0; j < number_of_vertices; j++){
-            if (array[i][j] == 1 && NUM[i] == 0) {
-                Q.push(i);
-                vis[i] = 1;
-            } 
-            }
-        }
-    }
+//     void depthFirstSearch() {
+//     bool* visited = new bool[number_of_vertices];
+//     for (int i = 0; i < number_of_vertices; i++) {
+//         visited[i] = false;
+//     }
+//     stack<int> s;
+
+//     std::cout << "TWO----" << std::endl;
+
+//     for (int i = 0; i < number_of_vertices; ++i) {
+//         if (!visited[i]) {
+//             s.push(i);
+//             while(!s.empty()) {
+//                 int v = s.top();
+//                 s.pop();
+
+//                 if (!visited[v]) {
+//                     visited[v] = true;
+//                     std::cout << v << " ";
+
+//                     for (int j = number_of_vertices - 1; j >= 0; --j) {
+//                         if(array[v][j] == 1 && !visited[j]) {
+//                             s.push(j);
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+//     std::cout << std::endl;
+//     delete[] visited;
+// }
 };
 void task_1() {
     Graph G;
