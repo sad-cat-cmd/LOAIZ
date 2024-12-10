@@ -58,43 +58,27 @@ class Graph {
     }
 
     void findDistances(int startVertex, int**& G) {
-    // Инициализируем вектор расстояний
     vector<int> DIST(number_of_vertices, -1);
-
-    // Запускаем BFS
     BFSD(startVertex, G, DIST);
-
-    // Выводим расстояния до всех вершин
     cout << "Distances from vertex " << startVertex << ":" << endl;
     for (int i = 0; i < DIST.size(); i++) {
         cout << "DIST[" << i << "] = " << DIST[i] << endl;
     }
 }
     void BFSD(int v, int**& G, vector<int>& DIST) {
-    // Создаем пустую очередь
     queue<int> Q;
-    // Помещаем начальную вершину в очередь
     Q.push(v);
-    // Обновляем расстояние до начальной вершины
     DIST[v] = 0;
 
-    // Пока очередь не пуста
     while (!Q.empty()) {
-        // Устанавливаем текущую вершину
         v = Q.front();
-        // Удаляем первый элемент из очереди
         Q.pop();
 
-        // Выводим текущую вершину
         cout << "Visited: " << v << endl;
 
-        // Проходим по всем вершинам
         for (int i = 0; i < number_of_vertices; i++) {
-            // Если есть ребро и вершина не посещена
             if (G[v][i] == 1 && DIST[i] == -1) {
-                // Помещаем вершину в очередь
                 Q.push(i);
-                // Обновляем расстояние
                 DIST[i] = DIST[v] + 1;
             }
         }
