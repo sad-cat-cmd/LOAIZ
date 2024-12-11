@@ -2,7 +2,9 @@
 #include <cstring>
 #include <queue>
 #include <vector>
+#include <climits>
 #include <limits>
+#include <cstdint>
 
 #define INF INT_MAX
 using namespace std;
@@ -89,43 +91,29 @@ class Graph {
     }
     
     void findDistances(int startVertex, int**& G) {
-    // Инициализируем вектор расстояний
     vector<int> DIST(number_of_vertices, -1);
 
-    // Запускаем BFS
     BFSD(startVertex, G, DIST);
 
-    // Выводим расстояния до всех вершин
     cout << "Distances from vertex " << startVertex << ":" << endl;
     for (int i = 0; i < DIST.size(); i++) {
         cout << "DIST[" << i << "] = " << DIST[i] << endl;
     }
 }
     void BFSD(int v, int**& G, vector<int>& DIST) {
-    // Создаем пустую очередь
     queue<int> Q;
-    // Помещаем начальную вершину в очередь
     Q.push(v);
-    // Обновляем расстояние до начальной вершины
     DIST[v] = 0;
 
-    // Пока очередь не пуста
     while (!Q.empty()) {
-        // Устанавливаем текущую вершину
         v = Q.front();
-        // Удаляем первый элемент из очереди
         Q.pop();
 
-        // Выводим текущую вершину
         cout << "Visited: " << v << endl;
 
-        // Проходим по всем вершинам
         for (int i = 0; i < number_of_vertices; i++) {
-            // Если есть ребро и вершина не посещена
             if (G[v][i] > 0 && DIST[i] == -1) {
-                // Помещаем вершину в очередь
                 Q.push(i);
-                // Обновляем расстояние
                 DIST[i] = DIST[v] + G[v][i];
             }
         }
@@ -148,8 +136,8 @@ class Graph {
 
     int min(int a, int b) { return (a < b) ? a : b; }
     void find_Radius_And_Diameter_1() {
-        int **dist = (int**)malloc(sizeof(int) * number_of_vertices) ;
-        for (int i = 0; i < number_of_vertices;i++ ) {
+        int **dist = (int**)malloc(sizeof(int*) * number_of_vertices);
+        for (int i = 0; i < number_of_vertices; i++) {
             dist[i] = (int*)malloc(sizeof(int) * number_of_vertices);
             memset(dist[i], 0, sizeof(int) * number_of_vertices);
         }
@@ -183,31 +171,29 @@ class Graph {
             }
         }
 
-        // Нахождение радиуса и диаметра
         int radius = INT_MAX, diameter = INT_MIN;
         for (i = 0; i < number_of_vertices; i++) {
             radius = (radius < ecc[i]) ? radius : ecc[i];
             diameter = (diameter > ecc[i]) ? diameter : ecc[i];
         }
 
-        // Вывод результата
         cout << "undirected graph:" << endl;
         cout << "radius: " << radius << "  diameter: :" << diameter<< endl;
     }
     void floyd_Warshall() {
-        int** dist = (int**)malloc(sizeof(int) * number_of_vertices_1);
+        int** dist = (int**)malloc(sizeof(int*) * number_of_vertices_1);
         for (int i = 0; i < number_of_vertices_1; i++) {
             dist[i] = (int*)malloc(sizeof(int) * number_of_vertices_1);
             memset(dist[i], 0, sizeof(int) * number_of_vertices_1);
             for (int j = 0; j < number_of_vertices_1; j++) {
                 if (i == j) {
-                    dist[i][j] = 0; // Расстояние до самой себя равно 0
+                    dist[i][j] = 0;
                 }
                 else if (array_1[i][j] != 0) {
-                    dist[i][j] = array_1[i][j]; // Инициализация расстояний по прямым ребрам
+                    dist[i][j] = array_1[i][j];
                 }
                 else {
-                    dist[i][j] = INF; // Инициализация расстояний между несвязанными вершинами
+                    dist[i][j] = INF;
                 }
             }
         }
@@ -233,11 +219,10 @@ class Graph {
             }
         }
 
-        // Нахождение радиуса и диаметра
         int radius = INF;
         int diameter = 0;
         for (i = 0; i < number_of_vertices_1; i++) {
-            int ecc = 0; // Эксцентриситет вершины i
+            int ecc = 0; 
             for (j = 0; j < number_of_vertices_1; j++) {
                 if (i != j && dist[i][j] != INF && dist[i][j] > ecc) {
                     ecc = dist[i][j];
@@ -406,6 +391,6 @@ void task_2(){
     G.complex_function_the_create_TASK2_2();
 }
 int main() {
-    task_1();
+    //task_1();
     task_2();
 }
