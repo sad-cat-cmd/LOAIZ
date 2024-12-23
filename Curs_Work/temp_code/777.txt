@@ -1,0 +1,294 @@
+#include <QObject>
+#include <QVector>
+#include <QString>
+#include <vector>
+#include <map>
+
+class MazeDataProvider : public QObject
+{
+    Q_OBJECT
+    Q_PROPERTY(QVector<QStringList> myGameScreenImages READ getMyGameScreenImages NOTIFY myGameScreenImagesChanged)
+    Q_PROPERTY(QVector<QStringList> agentScreenImages READ getAgentScreenImages NOTIFY agentScreenImagesChanged)
+
+public:
+    MazeDataProvider(QObject *parent = nullptr) : QObject(parent) {}
+
+    // Пример представления лабиринта (замените на вашу реальную структуру)
+    using Maze = std::vector<std::vector<int>>;
+    Maze myMaze = {
+        {1, 1, 1, 1, 1},
+        {1, 0, 0, 0, 1},
+        {1, 0, 2, 0, 1},
+        {1, 0, 0, 3, 1},
+        {1, 1, 1, 1, 1}
+    };
+    // 0 - путь, 1 - стена, 2 - агент, 3 - цель
+
+    // Пути к изображениям для my_Game_Screen
+    std::map<int, QString> myGameScreenImageMap = {
+        {0, "path.jpg"}, // Замените на реальные пути
+        {1, "wall.jpg"},
+        {2, "agent_game.jpg"},
+        {3, "goal.jpg"}
+    };
+
+    // Пути к изображениям для Agent_Screen
+    std::map<int, QString> agentScreenImageMap = {
+        {0, "path_agent.jpg"}, // Замените на реальные пути
+        {1, "wall_agent.jpg"},
+        {2, "agent.jpg"},
+        {3, "goal_agent.jpg"}
+    };
+
+    QVector<QStringList> getMyGameScreenImages() const {
+        return m_myGameScreenImages;
+    }
+
+    QVector<QStringList> getAgentScreenImages() const {
+        return m_agentScreenImages;
+    }
+
+public slots:
+    void fillScreenImages() {
+        int rows = myMaze.size();
+        if (rows == 0) return;
+        int cols = myMaze[0].size();
+
+        m_myGameScreenImages.clear();
+        m_agentScreenImages.clear();
+
+        for (int i = 0; i < rows; ++i) {
+            QStringList myGameRow;
+            QStringList agentRow;
+            for (int j = 0; j < cols; ++j) {
+                int element = myMaze[i][j];
+                myGameRow.append(myGameScreenImageMap.contains(element) ? myGameScreenImageMap[element] : "unknown.jpg"); // Обработка неизвестных элементов
+                agentRow.append(agentScreenImageMap.contains(element) ? agentScreenImageMap[element] : "unknown.jpg"); // Обработка неизвестных элементов
+            }
+            m_myGameScreenImages.append(myGameRow);
+            m_agentScreenImages.append(agentRow);
+        }
+        emit myGameScreenImagesChanged();
+        emit agentScreenImagesChanged();
+    }
+
+signals:
+    void myGameScreenImagesChanged();
+    void agentScreenImagesChanged();
+
+private:
+    QVector<QStringList> m_myGameScreenImages;
+    QVector<QStringList> m_agentScreenImages;
+};
+main.cpp (или где вы инициализируете QML):
+
+
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
+#include "mazedataprovider.h" // Убедитесь, что путь к файлу правильный
+
+int main(int argc, char *argv[])
+{
+    QGuiApplication app(argc, argv);
+
+    QQmlApplicationEngine engine;
+
+    // Создаем экземпляр вашего класса с логикой
+    MazeDataProvider mazeDataProvider;
+
+    // Заполняем изображения
+    mazeDataProvider.fillScreenImages();
+
+    // Получаем контекст QML
+    QQmlContext *context = engine.rootContext();
+
+    // Регистрируем экземпляр C++ класса в контексте QML
+    context->setContextProperty("mazeData", &mazeDataProvider);
+
+    engine.load(QUrl(QStringLiteral("qrc:/main.qml"))); // Убедитесь, что путь к вашему QML файлу правильный
+    if (engine.rootObjects().isEmpty())
+        return -1;
+
+    return app.exec();
+}
+main.qml (ваш QML файл):
+
+
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+
+Rectangle {
+    id: main_Gaym_Screen
+    width: parent.width
+    height: parent.height / 3 * 4
+
+    Rectangle {
+        id: my_Game_Screen
+        radius: 1
+        width: parent.width / 2
+        height: parent.width / 2
+        anchors {
+            left: parent.left
+            top: parent.top
+        }
+        color: "lightgray" // Измените цвет для лучшей видимости
+
+        GridView {
+            anchors.fill: parent
+            cellWidth: my_Game_Screen.width / mazeData.myGameScreenImages[0].length
+            cellHeight: my_Game_Screen.height / mazeData.myGameScreenImages.length
+            model: mazeData.myGameScreenImages.length
+            delegate: Row {
+                width: my_Game_Screen.width
+                height: my_Game_Screen.height / mazeData.myGameScreenImages.length
+                Repeater {
+                    model: mazeData.myGameScreenImages[index].length
+                    delegate: Image {
+                        source: mazeData.myGameScreenImages[index][modelData]
+                        width: my_Game_Screen.width / mazeData.myGameScreenImages[0].length
+                        height: my_Game_Screen.height / mazeData.myGameScreenImages.length
+                        fillMode: Image.Stretch // Или другие режимы заполнения
+                    }
+                }
+            }
+        }
+
+        Text {
+            anchors {
+                bottom: parent.bottom
+                horizontalCenter: parent.horizontalCenter
+            }
+            text: "My Game Screen"
+            color: "green"
+        }
+    }
+
+    Rectangle {
+        id: game_Agent_Screen
+        width: parent.width / 2
+        height: parent.width / 2
+        anchors {
+            left: my_Game_Screen.right
+            top: parent.top
+        }
+        color: "lightgray" // Измените цвет для лучшей видимости
+
+        GridView {
+            anchors.fill: parent
+            cellWidth: game_Agent_Screen.width / mazeData.agentScreenImages[0].length
+            cellHeight: game_Agent_Screen.height / mazeData.agentScreenImages.length
+            model: mazeData.agentScreenImages.length
+            delegate: Row {
+                width: game_Agent_Screen.width
+                height: game_Agent_Screen.height / mazeData.agentScreenImages.length
+                Repeater {
+                    model: mazeData.agentScreenImages[index].length
+                    delegate: Image {
+                        source: mazeData.agentScreenImages[index][modelData]
+                        width: game_Agent_Screen.width / mazeData.agentScreenImages[0].length
+                        height: game_Agent_Screen.height / mazeData.agentScreenImages.length
+                        fillMode: Image.Stretch // Или другие режимы заполнения
+                    }
+                }
+            }
+        }
+
+        Text {
+            anchors {
+                bottom: parent.bottom
+                horizontalCenter: parent.horizontalCenter
+            }
+            text: "Game Agent Screen"
+            color: "red"
+        }
+    }
+}
+CMakeLists.txt:
+
+
+cmake_minimum_required(VERSION 3.16)
+
+project(YourProjectName)
+
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
+
+find_package(Qt6 REQUIRED COMPONENTS Quick)
+
+qt_standard_project_setup()
+
+# Исполняемый файл
+add_executable(${PROJECT_NAME}
+    main.cpp
+    mazedataprovider.cpp
+    # Другие ваши C++ файлы
+)
+
+# Подключаем заголовочные файлы
+target_include_directories(${PROJECT_NAME} PRIVATE .)
+
+# Линкуем с библиотеками Qt
+target_link_libraries(${PROJECT_NAME} PRIVATE
+    Qt::Quick
+    Qt::Gui
+    Qt::Qml
+)
+
+# Копирование QML файлов (если необходимо, адаптируйте пути)
+set(QML_FILES
+    main.qml
+    # Другие ваши QML файлы
+)
+
+foreach(QML_FILE ${QML_FILES})
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different $<SOURCE_DIR>/${QML_FILE} $<BINARY_DIR>
+        DEPENDS $<SOURCE_DIR>/${QML_FILE}
+    )
+endforeach()
+Пояснения:
+
+MazeDataProvider Class:
+Наследуется от QObject для использования возможностей Qt (сигналы, слоты, свойства).
+myMaze: Представление вашего лабиринта (замените на вашу реальную структуру).
+myGameScreenImageMap и agentScreenImageMap: std::map для хранения соответствия между элементами лабиринта и путями к JPG изображениям для каждого экрана. Обязательно замените заполнители ("path.jpg", "wall.jpg" и т.д.) на фактические пути к вашим файлам JPG. Расположите файлы JPG в каталоге, доступном вашему приложению (например, рядом с исполняемым файлом или в ресурсах Qt).
+m_myGameScreenImages и m_agentScreenImages: Приватные члены для хранения двумерных списков строк с путями к изображениям.
+getMyGameScreenImages() и getAgentScreenImages(): Геттеры для свойств QML.
+fillScreenImages(): Основная логика. Итерирует по лабиринту, определяет путь к изображению на основе элемента и сохраняет его в соответствующие списки.
+Сигналы myGameScreenImagesChanged() и agentScreenImagesChanged(): Сообщают QML об изменении данных, что заставляет QML перерисовать интерфейс.
+main.cpp:
+Создает экземпляр MazeDataProvider.
+Вызывает fillScreenImages() для первоначального заполнения.
+Регистрирует экземпляр MazeDataProvider в QML контексте под именем mazeData. Это делает ваш C++ объект доступным в QML.
+main.qml:
+Использует GridView для отображения сетки изображений.
+model: Привязан к количеству строк в массиве изображений.
+delegate: Создает Row, а внутри него Repeater для итерации по столбцам.
+Image.source: Привязан к соответствующему пути к изображению из mazeData.
+cellWidth и cellHeight: Рассчитываются динамически, чтобы изображения занимали все пространство GridView.
+fillMode: Image.Stretch: Растягивает изображения, чтобы заполнить ячейку. Вы можете изменить на Image.PreserveAspectFit или другие варианты.
+CMakeLists.txt:
+Стандартная конфигурация CMake для проекта Qt Quick.
+Убедитесь, что указаны необходимые компоненты Qt (Quick, Gui, Qml).
+Добавьте ваши C++ файлы в add_executable.
+Настройте копирование QML файлов в директорию сборки.
+Как использовать:
+
+Создайте файлы: Сохраните код C++ в mazedataprovider.h и mazedataprovider.cpp, QML код в main.qml, и сохраните CMakeLists.txt.
+Разместите изображения: Поместите ваши JPG файлы ("path.jpg", "wall.jpg", и т.д.) в каталог, доступный вашему приложению. Проще всего начать с размещения их рядом с исполняемым файлом. Позже вы можете использовать систему ресурсов Qt для более организованного управления ресурсами.
+Настройте пути: Убедитесь, что пути к изображениям в myGameScreenImageMap и agentScreenImageMap в C++ коде соответствуют фактическому расположению ваших файлов.
+Соберите проект: Используйте CMake для сборки проекта:
+
+mkdir build
+cd build
+cmake ..
+make
+Запустите приложение: Запустите исполняемый файл, созданный CMake (обычно в директории build).
+Важные моменты:
+
+Пути к изображениям: Правильное указание путей к JPG файлам критично. Если файлы находятся в подпапке, укажите относительный путь (например, "images/path.jpg").
+Ресурсы Qt: Для более сложных приложений рекомендуется использовать систему ресурсов Qt (.qrc файлы) для встраивания ресурсов (включая изображения) непосредственно в исполняемый файл. Это упрощает распространение приложения.
+Динамическое обновление: Если ваш лабиринт может меняться во время выполнения программы, вам нужно будет вызывать fillScreenImages() повторно и убедиться, что сигналы myGameScreenImagesChanged() и agentScreenImagesChanged() испускаются, чтобы QML обновил отображение.
+Этот подход обеспечивает четкое разделение логики (в C++) и представления (в QML), что делает ваш код более организованным и поддерживаемым.

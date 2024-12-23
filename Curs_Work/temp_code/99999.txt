@@ -1,0 +1,79 @@
+Для того чтобы заполнить my_Game_Screen и game_Agent_Screen определенными JPG изображениями в C++, вам нужно использовать библиотеку, которая может работать с изображениями, такую как Qt. Qt предоставляет классы для работы с изображениями и виджетами, что позволяет легко интегрировать изображения в ваше приложение.
+
+Вот пример кода на C++ с использованием Qt, который заполняет my_Game_Screen и game_Agent_Screen определенными JPG изображениями:
+
+Убедитесь, что у вас установлен Qt и настроен проект для работы с Qt.
+Создайте новый проект Qt Widgets Application.
+В вашем проекте создайте новый класс, который будет отвечать за загрузку и отображение изображений. Например, ImageLoader.
+
+// image_loader.h
+#ifndef IMAGELOADER_H
+#define IMAGELOADER_H
+
+#include <QObject>
+#include <QImage>
+#include <QPixmap>
+#include <QLabel>
+
+class ImageLoader : public QObject
+{
+    Q_OBJECT
+
+public:
+    explicit ImageLoader(QObject *parent = nullptr);
+    void loadImage(const QString &filePath, QLabel *label);
+};
+
+#endif // IMAGELOADER_H
+
+// image_loader.cpp
+#include "image_loader.h"
+
+ImageLoader::ImageLoader(QObject *parent) : QObject(parent)
+{
+}
+
+void ImageLoader::loadImage(const QString &filePath, QLabel *label)
+{
+    QImage image(filePath);
+    if (!image.isNull()) {
+        QPixmap pixmap = QPixmap::fromImage(image);
+        label->setPixmap(pixmap);
+    } else {
+        qWarning() << "Failed to load image from" << filePath;
+    }
+}
+В вашем основном файле (например, main.cpp) создайте экземпляр ImageLoader и загрузите изображения в соответствующие QLabel.
+
+// main.cpp
+#include <QApplication>
+#include <QWidget>
+#include <QVBoxLayout>
+#include <QLabel>
+#include "image_loader.h"
+
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+
+    QWidget window;
+    window.setWindowTitle("Game Screens");
+
+    QVBoxLayout *layout = new QVBoxLayout(&window);
+
+    QLabel *myGameScreenLabel = new QLabel(&window);
+    QLabel *gameAgentScreenLabel = new QLabel(&window);
+
+    layout->addWidget(myGameScreenLabel);
+    layout->addWidget(gameAgentScreenLabel);
+
+    ImageLoader imageLoader;
+    imageLoader.loadImage("path/to/my_game_screen_image.jpg", myGameScreenLabel);
+    imageLoader.loadImage("path/to/game_agent_screen_image.jpg", gameAgentScreenLabel);
+
+    window.show();
+    return a.exec();
+}
+Этот пример демонстрирует, как можно загрузить и отобразить изображения в QLabel с использованием класса ImageLoader. Убедитесь, что пути к изображениям ("path/to/my_game_screen_image.jpg" и "path/to/game_agent_screen_image.jpg") указаны правильно.
+
+Если вы хотите интегрировать этот код с вашим QML-кодом, вам нужно будет использовать QML типы и свойства для связи C++ и QML. Это может включать создание кастомных QML компонентов или использование QQuickImageProvider для отображения изображений в QML.

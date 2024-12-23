@@ -1,0 +1,250 @@
+Для заполнения QML элементов my_Game_Screen и game_Agent_Screen изображениями на основе логики C++, вам потребуется связать C++ логику с QML интерфейсом. Вот общий подход и пример реализации:
+
+1. Определите структуру данных для хранения информации об изображениях:
+
+В вашем C++ коде вам потребуется структура данных, которая будет хранить пути к изображениям для каждой ячейки my_Game_Screen и game_Agent_Screen. Учитывая, что эти экраны, вероятно, представляют собой сетку (лабиринт), двумерные векторы строк (std::vector<std::vector<QString>>) будут хорошим выбором.
+
+2. Создайте C++ класс, предоставляющий данные для QML:
+
+Вам нужен C++ класс, который будет:
+
+Хранить представление лабиринта (например, двумерный вектор целых чисел или символов).
+Содержать двумерные векторы строк для хранения путей к изображениям для my_Game_Screen и game_Agent_Screen.
+Иметь метод для заполнения этих векторов путями к изображениям на основе лабиринта.
+Предоставлять доступ к этим векторам через Q_PROPERTY, чтобы QML мог их использовать.
+
+#include <QObject>
+#include <QVector>
+#include <QString>
+#include <vector>
+
+class MazeDataProvider : public QObject
+{
+    Q_OBJECT
+    Q_PROPERTY(QVector<QStringList> myGameScreenImages READ getMyGameScreenImages NOTIFY myGameScreenImagesChanged)
+    Q_PROPERTY(QVector<QStringList> agentScreenImages READ getAgentScreenImages NOTIFY agentScreenImagesChanged)
+
+public:
+    MazeDataProvider(QObject *parent = nullptr) : QObject(parent) {}
+
+    // Пример представления лабиринта
+    using Maze = std::vector<std::vector<int>>;
+    Maze myMaze = {
+        {1, 1, 1, 1, 1},
+        {1, 0, 0, 0, 1},
+        {1, 0, 2, 0, 1},
+        {1, 0, 0, 3, 1},
+        {1, 1, 1, 1, 1}
+    };
+    // 0 - путь, 1 - стена, 2 - агент, 3 - цель
+
+    // Пути к изображениям
+    std::vector<std::vector<QString>> myGameScreenImageData;
+    std::vector<std::vector<QString>> agentScreenImageData;
+
+    QVector<QStringList> getMyGameScreenImages() const {
+        QVector<QStringList> result;
+        for (const auto& row : myGameScreenImageData) {
+            result.append(QStringList::fromVector(QVector<QString>::fromStdVector(row)));
+        }
+        return result;
+    }
+
+    QVector<QStringList> getAgentScreenImages() const {
+        QVector<QStringList> result;
+        for (const auto& row : agentScreenImageData) {
+            result.append(QStringList::fromVector(QVector<QString>::fromStdVector(row)));
+        }
+        return result;
+    }
+
+public slots:
+    void fillScreenImages() {
+        int rows = myMaze.size();
+        if (rows == 0) return;
+        int cols = myMaze[0].size();
+
+        myGameScreenImageData.resize(rows, std::vector<QString>(cols));
+        agentScreenImageData.resize(rows, std::vector<QString>(cols));
+
+        // Логика сопоставления элементов лабиринта и изображений
+        for (int i = 0; i < rows; ++i) {
+            for (int j = 0; j < cols; ++j) {
+                switch (myMaze[i][j]) {
+                case 0:
+                    myGameScreenImageData[i][j] = "path.jpg"; // Замените на реальный путь
+                    agentScreenImageData[i][j] = "path_agent.jpg";
+                    break;
+                case 1:
+                    myGameScreenImageData[i][j] = "wall.jpg"; // Замените на реальный путь
+                    agentScreenImageData[i][j] = "wall_agent.jpg";
+                    break;
+                case 2:
+                    myGameScreenImageData[i][j] = "agent_game.jpg"; // Замените на реальный путь
+                    agentScreenImageData[i][j] = "agent.jpg";
+                    break;
+                case 3:
+                    myGameScreenImageData[i][j] = "goal.jpg"; // Замените на реальный путь
+                    agentScreenImageData[i][j] = "goal_agent.jpg";
+                    break;
+                default:
+                    myGameScreenImageData[i][j] = "unknown.jpg"; // Замените на реальный путь
+                    agentScreenImageData[i][j] = "unknown.jpg";
+                    break;
+                }
+            }
+        }
+        emit myGameScreenImagesChanged();
+        emit agentScreenImagesChanged();
+    }
+
+signals:
+    void myGameScreenImagesChanged();
+    void agentScreenImagesChanged();
+};
+3. Интегрируйте C++ класс в QML:
+
+Вам нужно зарегистрировать ваш C++ класс в QML контексте, чтобы вы могли создавать его экземпляры и обращаться к его свойствам из QML.
+
+В main.cpp:
+
+
+#include <QGuiApplication>
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
+#include "mazedataprovider.h" // Подключите заголовочный файл вашего класса
+
+int main(int argc, char *argv[])
+{
+    QGuiApplication app(argc, argv);
+
+    QQmlApplicationEngine engine;
+
+    // Создайте экземпляр вашего C++ класса
+    MazeDataProvider mazeDataProvider;
+
+    // Заполните изображения при старте (или когда вам нужно)
+    mazeDataProvider.fillScreenImages();
+
+    // Получите контекст QML
+    QQmlContext* context = engine.rootContext();
+
+    // Зарегистрируйте экземпляр вашего класса в контексте QML
+    context->setContextProperty("mazeData", &mazeDataProvider);
+
+    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+    if (engine.rootObjects().isEmpty())
+        return -1;
+
+    return app.exec();
+}
+4. Используйте данные в QML:
+
+Теперь вы можете использовать свойства myGameScreenImages и agentScreenImages вашего C++ класса в QML для отображения изображений. Рекомендуется использовать GridView или Repeater для динамического создания элементов Image.
+
+
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+
+Rectangle {
+    id: main_Gaym_Screen
+    width: parent.width
+    height: parent.height / 3 * 4
+
+    Rectangle {
+        id: my_Game_Screen
+        radius: 1
+        width: parent.width / 2
+        height: parent.width / 2
+        anchors {
+            left: parent.left
+            top: parent.top
+        }
+        color: "lightgray" // Изменено для лучшей видимости
+
+        GridView {
+            anchors.fill: parent
+            cellWidth: width / mazeData.myGameScreenImages[0].length // Рассчитываем размер ячейки
+            cellHeight: height / mazeData.myGameScreenImages.length
+            model: mazeData.myGameScreenImages.length // Количество строк
+            delegate: Row { // Используем Row для отображения элементов строки
+                width: my_Game_Screen.width
+                height: my_Game_Screen.height / mazeData.myGameScreenImages.length
+                Repeater {
+                    model: mazeData.myGameScreenImages[index].length // Количество столбцов в текущей строке
+                    delegate: Image {
+                        source: mazeData.myGameScreenImages[index][modelData] // Путь к изображению
+                        width: my_Game_Screen.width / mazeData.myGameScreenImages[0].length
+                        height: my_Game_Screen.height / mazeData.myGameScreenImages.length
+                        fillMode: Image.Stretch // Или другие режимы заполнения
+                    }
+                }
+            }
+        }
+
+        Text {
+            anchors {
+                bottom: parent.bottom
+                horizontalCenter: parent.horizontalCenter
+            }
+            text: "My Game Screen"
+            color: "green"
+        }
+    }
+
+    Rectangle {
+        id: game_Agent_Screen
+        width: parent.width / 2
+        height: parent.width / 2
+        anchors {
+            left: my_Game_Screen.right
+            top: parent.top
+        }
+        color: "lightgray" // Изменено для лучшей видимости
+
+        GridView {
+            anchors.fill: parent
+            cellWidth: width / mazeData.agentScreenImages[0].length
+            cellHeight: height / mazeData.agentScreenImages.length
+            model: mazeData.agentScreenImages.length
+            delegate: Row {
+                width: game_Agent_Screen.width
+                height: game_Agent_Screen.height / mazeData.agentScreenImages.length
+                Repeater {
+                    model: mazeData.agentScreenImages[index].length
+                    delegate: Image {
+                        source: mazeData.agentScreenImages[index][modelData]
+                        width: game_Agent_Screen.width / mazeData.agentScreenImages[0].length
+                        height: game_Agent_Screen.height / mazeData.agentScreenImages.length
+                        fillMode: Image.Stretch
+                    }
+                }
+            }
+        }
+
+        Text {
+            anchors {
+                bottom: parent.bottom
+                horizontalCenter: parent.horizontalCenter
+            }
+            text: "Game Agent Screen"
+            color: "red"
+        }
+    }
+}
+Основные моменты:
+
+MazeDataProvider: Ваш C++ класс, который управляет данными.
+Q_PROPERTY: Делает данные доступными для QML. Сигналы (myGameScreenImagesChanged, agentScreenImagesChanged) сообщают QML об изменениях данных.
+fillScreenImages(): Метод в C++, который заполняет векторы путями к изображениям. Вам нужно адаптировать логику сопоставления элементов лабиринта и изображений под ваши нужды.
+Регистрация класса в main.cpp: Позволяет QML видеть и использовать ваш C++ класс.
+GridView в QML: Используется для отображения сетки изображений. model привязан к количеству строк, а delegate создает Row, внутри которого Repeater создает Image для каждого столбца.
+Image.source: Привязывается к соответствующим путям к изображениям из C++ класса.
+Пути к изображениям: Убедитесь, что пути к вашим .jpg файлам корректны относительно расположения исполняемого файла или используйте систему ресурсов Qt (:/).
+Дополнительные шаги и улучшения:
+
+Обработка ошибок: Добавьте проверку на существование файлов изображений.
+Динамическое обновление: Если лабиринт может меняться, вам потребуется механизм для вызова fillScreenImages() и уведомления QML об изменениях.
+Более сложная логика: Логика заполнения может быть более сложной, зависящей от состояния игры, положения агента и т. д.
+Оптимизация: Для больших лабиринтов рассмотрите возможность оптимизации загрузки и отображения изображений.
+Этот подход позволяет вам отделить логику управления данными и заполнения от представления, делая ваш код более организованным и поддерживаемым. Не забудьте заменить заполнители путей к изображениям на реальные пути к вашим файлам.
