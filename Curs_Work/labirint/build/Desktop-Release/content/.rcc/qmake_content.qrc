@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/qt/qml/content">
+    <file alias="qmldir">/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/qml/content/qmldir</file>
+  </qresource>
+</RCC>
+

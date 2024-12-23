@@ -1,0 +1,2 @@
+/usr/bin/x86_64-linux-gnu-ar qc ../../qml/labirint/liblabirintplugin.a CMakeFiles/labirintplugin.dir/labirintplugin_autogen/mocs_compilation.cpp.o CMakeFiles/labirintplugin.dir/labirintplugin_labirintPlugin.cpp.o
+/usr/bin/x86_64-linux-gnu-ranlib ../../qml/labirint/liblabirintplugin.a

@@ -1,0 +1,15 @@
+-rootPath
+/home/clear/projects/CURS_WORK_NEW/labirint
+-cmake-output
+-output-file
+/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/.qt_plugins/Qt6_QmlPlugins_Imports_labirintApp.cmake
+-importPath
+/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/qml/Main
+-importPath
+/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/qml
+-importPath
+/usr/lib/x86_64-linux-gnu/qt6/qml
+-qrcFiles
+/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/.rcc/configuration.qrc
+/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/.rcc/qmake_Main.qrc
+/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/.rcc/labirintApp_raw_qml_0.qrc

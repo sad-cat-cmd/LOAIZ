@@ -1,0 +1,2 @@
+/usr/bin/x86_64-linux-gnu-ar qc liblabirint.a CMakeFiles/labirint.dir/labirint_autogen/mocs_compilation.cpp.o CMakeFiles/labirint.dir/labirint_qmltyperegistrations.cpp.o CMakeFiles/labirint.dir/.rcc/qmlcache/labirint_Constants_qml.cpp.o CMakeFiles/labirint.dir/.rcc/qmlcache/labirint_DirectoryFontLoader_qml.cpp.o CMakeFiles/labirint.dir/.rcc/qmlcache/labirint_EventListModel_qml.cpp.o CMakeFiles/labirint.dir/.rcc/qmlcache/labirint_EventListSimulator_qml.cpp.o
+/usr/bin/x86_64-linux-gnu-ranlib liblabirint.a

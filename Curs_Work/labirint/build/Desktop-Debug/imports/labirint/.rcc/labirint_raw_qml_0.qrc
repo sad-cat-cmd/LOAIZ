@@ -1,0 +1,9 @@
+<RCC>
+  <qresource prefix="/qt/qml/labirint/">
+    <file alias="Constants.qml">/home/clear/projects/CURS_WORK_NEW/labirint/imports/labirint/Constants.qml</file>
+    <file alias="DirectoryFontLoader.qml">/home/clear/projects/CURS_WORK_NEW/labirint/imports/labirint/DirectoryFontLoader.qml</file>
+    <file alias="EventListModel.qml">/home/clear/projects/CURS_WORK_NEW/labirint/imports/labirint/EventListModel.qml</file>
+    <file alias="EventListSimulator.qml">/home/clear/projects/CURS_WORK_NEW/labirint/imports/labirint/EventListSimulator.qml</file>
+  </qresource>
+</RCC>
+

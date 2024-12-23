@@ -1,0 +1,66 @@
+{
+    "classes": [
+        {
+            "className": "Logic_of_the_maze",
+            "object": true,
+            "properties": [
+                {
+                    "constant": false,
+                    "designable": true,
+                    "final": false,
+                    "index": 0,
+                    "name": "myGameScreenImages",
+                    "notify": "myGameScreenImagesChanged",
+                    "read": "getMyGameScreenImages",
+                    "required": false,
+                    "scriptable": true,
+                    "stored": true,
+                    "type": "QList<QStringList>",
+                    "user": false
+                },
+                {
+                    "constant": false,
+                    "designable": true,
+                    "final": false,
+                    "index": 1,
+                    "name": "agentScreenImages",
+                    "notify": "agentScreenImagesChanged",
+                    "read": "getAgentScreenImages",
+                    "required": false,
+                    "scriptable": true,
+                    "stored": true,
+                    "type": "QList<QStringList>",
+                    "user": false
+                }
+            ],
+            "qualifiedClassName": "Logic_of_the_maze",
+            "signals": [
+                {
+                    "access": "public",
+                    "name": "myGameScreenImagesChanged",
+                    "returnType": "void"
+                },
+                {
+                    "access": "public",
+                    "name": "agentScreenImagesChanged",
+                    "returnType": "void"
+                }
+            ],
+            "slots": [
+                {
+                    "access": "public",
+                    "name": "fillScreenImages",
+                    "returnType": "void"
+                }
+            ],
+            "superClasses": [
+                {
+                    "access": "public",
+                    "name": "QObject"
+                }
+            ]
+        }
+    ],
+    "inputFile": "Logic_of_the_maze.h",
+    "outputRevision": 68
+}

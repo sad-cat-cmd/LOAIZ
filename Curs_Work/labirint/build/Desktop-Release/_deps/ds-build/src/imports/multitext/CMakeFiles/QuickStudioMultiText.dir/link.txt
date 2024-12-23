@@ -1,0 +1,2 @@
+/usr/bin/x86_64-linux-gnu-ar qc libQuickStudioMultiText.a CMakeFiles/QuickStudioMultiText.dir/QuickStudioMultiText_autogen/mocs_compilation.cpp.o CMakeFiles/QuickStudioMultiText.dir/quickstudiomultitext_qmltyperegistrations.cpp.o
+/usr/bin/x86_64-linux-gnu-ranlib libQuickStudioMultiText.a

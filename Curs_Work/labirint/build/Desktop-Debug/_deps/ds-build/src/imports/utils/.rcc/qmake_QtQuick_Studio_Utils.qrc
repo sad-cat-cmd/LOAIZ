@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/QtQuick/Studio/Utils">
+    <file alias="qmldir">/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Debug/qml/QtQuick/Studio/Utils/qmldir</file>
+  </qresource>
+</RCC>
+

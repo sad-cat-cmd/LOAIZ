@@ -1,0 +1,14 @@
+# Target labels
+ ds-populate
+# Source files and their labels
+/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/_deps/ds-subbuild/CMakeFiles/ds-populate
+/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/_deps/ds-subbuild/CMakeFiles/ds-populate.rule
+/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/_deps/ds-subbuild/CMakeFiles/ds-populate-complete.rule
+/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/_deps/ds-subbuild/ds-populate-prefix/src/ds-populate-stamp/ds-populate-build.rule
+/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/_deps/ds-subbuild/ds-populate-prefix/src/ds-populate-stamp/ds-populate-configure.rule
+/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/_deps/ds-subbuild/ds-populate-prefix/src/ds-populate-stamp/ds-populate-download.rule
+/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/_deps/ds-subbuild/ds-populate-prefix/src/ds-populate-stamp/ds-populate-install.rule
+/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/_deps/ds-subbuild/ds-populate-prefix/src/ds-populate-stamp/ds-populate-mkdir.rule
+/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/_deps/ds-subbuild/ds-populate-prefix/src/ds-populate-stamp/ds-populate-patch.rule
+/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/_deps/ds-subbuild/ds-populate-prefix/src/ds-populate-stamp/ds-populate-test.rule
+/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/_deps/ds-subbuild/ds-populate-prefix/src/ds-populate-stamp/ds-populate-update.rule

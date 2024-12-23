@@ -1,0 +1,11 @@
+module labirint
+linktarget labirintplugin
+optional plugin labirintplugin
+classname labirintPlugin
+typeinfo labirint.qmltypes
+prefer :/qt/qml/labirint/
+singleton Constants 1.0 Constants.qml
+DirectoryFontLoader 1.0 DirectoryFontLoader.qml
+EventListModel 1.0 EventListModel.qml
+EventListSimulator 1.0 EventListSimulator.qml
+
