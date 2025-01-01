@@ -9,11 +9,14 @@
 	"INPUTS" : 
 	[
 		"/home/clear/projects/CURS_WORK_NEW/labirint/images/void_img.jpg",
-		"/home/clear/projects/CURS_WORK_NEW/labirint/images/start.jpg",
-		"/home/clear/projects/CURS_WORK_NEW/labirint/images/icon_main.png",
 		"/home/clear/projects/CURS_WORK_NEW/labirint/images/well_element.jpg",
 		"/home/clear/projects/CURS_WORK_NEW/labirint/images/my_game_element.jpg",
-		"/home/clear/projects/CURS_WORK_NEW/labirint/images/game_agent_element.jpg"
+		"/home/clear/projects/CURS_WORK_NEW/labirint/images/game_agent_element.jpg",
+		"/home/clear/projects/CURS_WORK_NEW/labirint/images/end_element.jpg",
+		"/home/clear/projects/CURS_WORK_NEW/labirint/qml_others/Me_win.qml",
+		"/home/clear/projects/CURS_WORK_NEW/labirint/qml_others/Information.qml",
+		"/home/clear/projects/CURS_WORK_NEW/labirint/qml_others/Information.qml",
+		"/home/clear/projects/CURS_WORK_NEW/labirint/qml_others/Game_agent_win.qml"
 	],
 	"LOCK_FILE" : "/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Debug/CMakeFiles/labirintApp_autogen.dir/AutoRcc_res_EWIEGA46WW_Lock.lock",
 	"MULTI_CONFIG" : false,

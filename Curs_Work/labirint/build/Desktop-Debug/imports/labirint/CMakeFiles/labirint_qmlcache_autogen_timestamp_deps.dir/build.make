@@ -67,8 +67,8 @@ include imports/labirint/CMakeFiles/labirint_qmlcache_autogen_timestamp_deps.dir
 include imports/labirint/CMakeFiles/labirint_qmlcache_autogen_timestamp_deps.dir/progress.make
 
 imports/labirint/CMakeFiles/labirint_qmlcache_autogen_timestamp_deps: imports/labirint/.rcc/qmlcache/labirint_qmlcache_loader.cpp
-imports/labirint/CMakeFiles/labirint_qmlcache_autogen_timestamp_deps: /usr/lib/qt6/libexec/moc
 imports/labirint/CMakeFiles/labirint_qmlcache_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.4.2
+imports/labirint/CMakeFiles/labirint_qmlcache_autogen_timestamp_deps: /usr/lib/qt6/libexec/moc
 
 imports/labirint/.rcc/qmlcache/labirint_qmlcache_loader.cpp: /usr/lib/qt6/libexec/qmlcachegen
 imports/labirint/.rcc/qmlcache/labirint_qmlcache_loader.cpp: imports/labirint/.rcc/qmlcache/labirint_qml_loader_file_list.rsp

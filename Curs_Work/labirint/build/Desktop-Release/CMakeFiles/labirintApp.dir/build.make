@@ -69,6 +69,10 @@ include CMakeFiles/labirintApp.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/labirintApp.dir/flags.make
 
+.rcc/qrc_configuration.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/images/game_agent_element.jpg
+.rcc/qrc_configuration.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/images/my_game_element.jpg
+.rcc/qrc_configuration.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/images/void_img.jpg
+.rcc/qrc_configuration.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/images/well_element.jpg
 .rcc/qrc_configuration.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/qtquickcontrols2.conf
 .rcc/qrc_configuration.cpp: .rcc/configuration.qrc
 .rcc/qrc_configuration.cpp: /usr/lib/qt6/libexec/rcc
@@ -125,10 +129,25 @@ qml/Main/labirintApp.qmltypes: labirintapp_qmltyperegistrations.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Running rcc for resource labirintApp_raw_qml_0"
 	/usr/lib/qt6/libexec/rcc --output /home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/.rcc/qrc_labirintApp_raw_qml_0.cpp --name labirintApp_raw_qml_0 /home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/.rcc/labirintApp_raw_qml_0.qrc
 
+labirintApp_autogen/EWIEGA46WW/qrc_res.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/res.qrc
+labirintApp_autogen/EWIEGA46WW/qrc_res.cpp: CMakeFiles/labirintApp_autogen.dir/AutoRcc_res_EWIEGA46WW_Info.json
+labirintApp_autogen/EWIEGA46WW/qrc_res.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/images/void_img.jpg
+labirintApp_autogen/EWIEGA46WW/qrc_res.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/images/well_element.jpg
+labirintApp_autogen/EWIEGA46WW/qrc_res.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/images/my_game_element.jpg
+labirintApp_autogen/EWIEGA46WW/qrc_res.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/images/game_agent_element.jpg
+labirintApp_autogen/EWIEGA46WW/qrc_res.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/images/end_element.jpg
+labirintApp_autogen/EWIEGA46WW/qrc_res.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/qml_others/Me_win.qml
+labirintApp_autogen/EWIEGA46WW/qrc_res.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/qml_others/Information.qml
+labirintApp_autogen/EWIEGA46WW/qrc_res.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/qml_others/Information.qml
+labirintApp_autogen/EWIEGA46WW/qrc_res.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/qml_others/Game_agent_win.qml
+labirintApp_autogen/EWIEGA46WW/qrc_res.cpp: /usr/lib/qt6/libexec/rcc
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Automatic RCC for res.qrc"
+	/usr/bin/cmake -E cmake_autorcc /home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/CMakeFiles/labirintApp_autogen.dir/AutoRcc_res_EWIEGA46WW_Info.json Release
+
 CMakeFiles/labirintApp.dir/labirintApp_autogen/mocs_compilation.cpp.o: CMakeFiles/labirintApp.dir/flags.make
 CMakeFiles/labirintApp.dir/labirintApp_autogen/mocs_compilation.cpp.o: labirintApp_autogen/mocs_compilation.cpp
 CMakeFiles/labirintApp.dir/labirintApp_autogen/mocs_compilation.cpp.o: CMakeFiles/labirintApp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/labirintApp.dir/labirintApp_autogen/mocs_compilation.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/labirintApp.dir/labirintApp_autogen/mocs_compilation.cpp.o"
 	/usr/bin/x86_64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/labirintApp.dir/labirintApp_autogen/mocs_compilation.cpp.o -MF CMakeFiles/labirintApp.dir/labirintApp_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/labirintApp.dir/labirintApp_autogen/mocs_compilation.cpp.o -c /home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/labirintApp_autogen/mocs_compilation.cpp
 
 CMakeFiles/labirintApp.dir/labirintApp_autogen/mocs_compilation.cpp.i: cmake_force
@@ -142,7 +161,7 @@ CMakeFiles/labirintApp.dir/labirintApp_autogen/mocs_compilation.cpp.s: cmake_for
 CMakeFiles/labirintApp.dir/src/main.cpp.o: CMakeFiles/labirintApp.dir/flags.make
 CMakeFiles/labirintApp.dir/src/main.cpp.o: /home/clear/projects/CURS_WORK_NEW/labirint/src/main.cpp
 CMakeFiles/labirintApp.dir/src/main.cpp.o: CMakeFiles/labirintApp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/labirintApp.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/labirintApp.dir/src/main.cpp.o"
 	/usr/bin/x86_64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/labirintApp.dir/src/main.cpp.o -MF CMakeFiles/labirintApp.dir/src/main.cpp.o.d -o CMakeFiles/labirintApp.dir/src/main.cpp.o -c /home/clear/projects/CURS_WORK_NEW/labirint/src/main.cpp
 
 CMakeFiles/labirintApp.dir/src/main.cpp.i: cmake_force
@@ -156,7 +175,7 @@ CMakeFiles/labirintApp.dir/src/main.cpp.s: cmake_force
 CMakeFiles/labirintApp.dir/src/Logic_of_the_maze.cpp.o: CMakeFiles/labirintApp.dir/flags.make
 CMakeFiles/labirintApp.dir/src/Logic_of_the_maze.cpp.o: /home/clear/projects/CURS_WORK_NEW/labirint/src/Logic_of_the_maze.cpp
 CMakeFiles/labirintApp.dir/src/Logic_of_the_maze.cpp.o: CMakeFiles/labirintApp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/labirintApp.dir/src/Logic_of_the_maze.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/labirintApp.dir/src/Logic_of_the_maze.cpp.o"
 	/usr/bin/x86_64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/labirintApp.dir/src/Logic_of_the_maze.cpp.o -MF CMakeFiles/labirintApp.dir/src/Logic_of_the_maze.cpp.o.d -o CMakeFiles/labirintApp.dir/src/Logic_of_the_maze.cpp.o -c /home/clear/projects/CURS_WORK_NEW/labirint/src/Logic_of_the_maze.cpp
 
 CMakeFiles/labirintApp.dir/src/Logic_of_the_maze.cpp.i: cmake_force
@@ -170,7 +189,7 @@ CMakeFiles/labirintApp.dir/src/Logic_of_the_maze.cpp.s: cmake_force
 CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_configuration.cpp.o: CMakeFiles/labirintApp.dir/flags.make
 CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_configuration.cpp.o: .rcc/qrc_configuration.cpp
 CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_configuration.cpp.o: CMakeFiles/labirintApp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_configuration.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_configuration.cpp.o"
 	/usr/bin/x86_64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_configuration.cpp.o -MF CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_configuration.cpp.o.d -o CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_configuration.cpp.o -c /home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/.rcc/qrc_configuration.cpp
 
 CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_configuration.cpp.i: cmake_force
@@ -184,7 +203,7 @@ CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_configuration.cpp.s: c
 CMakeFiles/labirintApp.dir/labirintapp_qmltyperegistrations.cpp.o: CMakeFiles/labirintApp.dir/flags.make
 CMakeFiles/labirintApp.dir/labirintapp_qmltyperegistrations.cpp.o: labirintapp_qmltyperegistrations.cpp
 CMakeFiles/labirintApp.dir/labirintapp_qmltyperegistrations.cpp.o: CMakeFiles/labirintApp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/labirintApp.dir/labirintapp_qmltyperegistrations.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/labirintApp.dir/labirintapp_qmltyperegistrations.cpp.o"
 	/usr/bin/x86_64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/labirintApp.dir/labirintapp_qmltyperegistrations.cpp.o -MF CMakeFiles/labirintApp.dir/labirintapp_qmltyperegistrations.cpp.o.d -o CMakeFiles/labirintApp.dir/labirintapp_qmltyperegistrations.cpp.o -c /home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/labirintapp_qmltyperegistrations.cpp
 
 CMakeFiles/labirintApp.dir/labirintapp_qmltyperegistrations.cpp.i: cmake_force
@@ -198,7 +217,7 @@ CMakeFiles/labirintApp.dir/labirintapp_qmltyperegistrations.cpp.s: cmake_force
 CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_qmake_Main.cpp.o: CMakeFiles/labirintApp.dir/flags.make
 CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_qmake_Main.cpp.o: .rcc/qrc_qmake_Main.cpp
 CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_qmake_Main.cpp.o: CMakeFiles/labirintApp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_qmake_Main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_qmake_Main.cpp.o"
 	/usr/bin/x86_64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_qmake_Main.cpp.o -MF CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_qmake_Main.cpp.o.d -o CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_qmake_Main.cpp.o -c /home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/.rcc/qrc_qmake_Main.cpp
 
 CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_qmake_Main.cpp.i: cmake_force
@@ -212,7 +231,7 @@ CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_qmake_Main.cpp.s: cmak
 CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qmlcache/labirintApp_qmlcache_loader.cpp.o: CMakeFiles/labirintApp.dir/flags.make
 CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qmlcache/labirintApp_qmlcache_loader.cpp.o: .rcc/qmlcache/labirintApp_qmlcache_loader.cpp
 CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qmlcache/labirintApp_qmlcache_loader.cpp.o: CMakeFiles/labirintApp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qmlcache/labirintApp_qmlcache_loader.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qmlcache/labirintApp_qmlcache_loader.cpp.o"
 	/usr/bin/x86_64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qmlcache/labirintApp_qmlcache_loader.cpp.o -MF CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qmlcache/labirintApp_qmlcache_loader.cpp.o.d -o CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qmlcache/labirintApp_qmlcache_loader.cpp.o -c /home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/.rcc/qmlcache/labirintApp_qmlcache_loader.cpp
 
 CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qmlcache/labirintApp_qmlcache_loader.cpp.i: cmake_force
@@ -226,7 +245,7 @@ CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qmlcache/labirintApp_qmlca
 CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qmlcache/labirintApp_main_qml.cpp.o: CMakeFiles/labirintApp.dir/flags.make
 CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qmlcache/labirintApp_main_qml.cpp.o: .rcc/qmlcache/labirintApp_main_qml.cpp
 CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qmlcache/labirintApp_main_qml.cpp.o: CMakeFiles/labirintApp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qmlcache/labirintApp_main_qml.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qmlcache/labirintApp_main_qml.cpp.o"
 	/usr/bin/x86_64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qmlcache/labirintApp_main_qml.cpp.o -MF CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qmlcache/labirintApp_main_qml.cpp.o.d -o CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qmlcache/labirintApp_main_qml.cpp.o -c /home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/.rcc/qmlcache/labirintApp_main_qml.cpp
 
 CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qmlcache/labirintApp_main_qml.cpp.i: cmake_force
@@ -240,7 +259,7 @@ CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qmlcache/labirintApp_main_
 CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_labirintApp_raw_qml_0.cpp.o: CMakeFiles/labirintApp.dir/flags.make
 CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_labirintApp_raw_qml_0.cpp.o: .rcc/qrc_labirintApp_raw_qml_0.cpp
 CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_labirintApp_raw_qml_0.cpp.o: CMakeFiles/labirintApp.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_labirintApp_raw_qml_0.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_labirintApp_raw_qml_0.cpp.o"
 	/usr/bin/x86_64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_labirintApp_raw_qml_0.cpp.o -MF CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_labirintApp_raw_qml_0.cpp.o.d -o CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_labirintApp_raw_qml_0.cpp.o -c /home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/.rcc/qrc_labirintApp_raw_qml_0.cpp
 
 CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_labirintApp_raw_qml_0.cpp.i: cmake_force
@@ -250,6 +269,20 @@ CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_labirintApp_raw_qml_0.
 CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_labirintApp_raw_qml_0.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_labirintApp_raw_qml_0.cpp.s"
 	/usr/bin/x86_64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/.rcc/qrc_labirintApp_raw_qml_0.cpp -o CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_labirintApp_raw_qml_0.cpp.s
+
+CMakeFiles/labirintApp.dir/labirintApp_autogen/EWIEGA46WW/qrc_res.cpp.o: CMakeFiles/labirintApp.dir/flags.make
+CMakeFiles/labirintApp.dir/labirintApp_autogen/EWIEGA46WW/qrc_res.cpp.o: labirintApp_autogen/EWIEGA46WW/qrc_res.cpp
+CMakeFiles/labirintApp.dir/labirintApp_autogen/EWIEGA46WW/qrc_res.cpp.o: CMakeFiles/labirintApp.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/labirintApp.dir/labirintApp_autogen/EWIEGA46WW/qrc_res.cpp.o"
+	/usr/bin/x86_64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/labirintApp.dir/labirintApp_autogen/EWIEGA46WW/qrc_res.cpp.o -MF CMakeFiles/labirintApp.dir/labirintApp_autogen/EWIEGA46WW/qrc_res.cpp.o.d -o CMakeFiles/labirintApp.dir/labirintApp_autogen/EWIEGA46WW/qrc_res.cpp.o -c /home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/labirintApp_autogen/EWIEGA46WW/qrc_res.cpp
+
+CMakeFiles/labirintApp.dir/labirintApp_autogen/EWIEGA46WW/qrc_res.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/labirintApp.dir/labirintApp_autogen/EWIEGA46WW/qrc_res.cpp.i"
+	/usr/bin/x86_64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/labirintApp_autogen/EWIEGA46WW/qrc_res.cpp > CMakeFiles/labirintApp.dir/labirintApp_autogen/EWIEGA46WW/qrc_res.cpp.i
+
+CMakeFiles/labirintApp.dir/labirintApp_autogen/EWIEGA46WW/qrc_res.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/labirintApp.dir/labirintApp_autogen/EWIEGA46WW/qrc_res.cpp.s"
+	/usr/bin/x86_64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/labirintApp_autogen/EWIEGA46WW/qrc_res.cpp -o CMakeFiles/labirintApp.dir/labirintApp_autogen/EWIEGA46WW/qrc_res.cpp.s
 
 # Object files for target labirintApp
 labirintApp_OBJECTS = \
@@ -261,7 +294,8 @@ labirintApp_OBJECTS = \
 "CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_qmake_Main.cpp.o" \
 "CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qmlcache/labirintApp_qmlcache_loader.cpp.o" \
 "CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qmlcache/labirintApp_main_qml.cpp.o" \
-"CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_labirintApp_raw_qml_0.cpp.o"
+"CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_labirintApp_raw_qml_0.cpp.o" \
+"CMakeFiles/labirintApp.dir/labirintApp_autogen/EWIEGA46WW/qrc_res.cpp.o"
 
 # External object files for target labirintApp
 labirintApp_EXTERNAL_OBJECTS =
@@ -275,6 +309,7 @@ labirintApp: CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_qmake_Mai
 labirintApp: CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qmlcache/labirintApp_qmlcache_loader.cpp.o
 labirintApp: CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qmlcache/labirintApp_main_qml.cpp.o
 labirintApp: CMakeFiles/labirintApp.dir/build/Desktop-Release/.rcc/qrc_labirintApp_raw_qml_0.cpp.o
+labirintApp: CMakeFiles/labirintApp.dir/labirintApp_autogen/EWIEGA46WW/qrc_res.cpp.o
 labirintApp: CMakeFiles/labirintApp.dir/build.make
 labirintApp: _deps/ds-build/src/imports/components/CMakeFiles/QuickStudioComponentsplugin_init.dir/QuickStudioComponentsplugin_init.cpp.o
 labirintApp: _deps/ds-build/src/imports/effects_qt6/CMakeFiles/QuickStudioEffectsplugin_init.dir/QuickStudioEffectsplugin_init.cpp.o
@@ -344,7 +379,7 @@ labirintApp: /usr/lib/x86_64-linux-gnu/libQt6Qml.so.6.4.2
 labirintApp: /usr/lib/x86_64-linux-gnu/libQt6Network.so.6.4.2
 labirintApp: /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.4.2
 labirintApp: CMakeFiles/labirintApp.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Linking CXX executable labirintApp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking CXX executable labirintApp"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/labirintApp.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -359,6 +394,7 @@ CMakeFiles/labirintApp.dir/depend: .rcc/qmlcache/labirintApp_main_qml.cpp
 CMakeFiles/labirintApp.dir/depend: .rcc/qrc_configuration.cpp
 CMakeFiles/labirintApp.dir/depend: .rcc/qrc_labirintApp_raw_qml_0.cpp
 CMakeFiles/labirintApp.dir/depend: .rcc/qrc_qmake_Main.cpp
+CMakeFiles/labirintApp.dir/depend: labirintApp_autogen/EWIEGA46WW/qrc_res.cpp
 CMakeFiles/labirintApp.dir/depend: labirintapp_qmltyperegistrations.cpp
 CMakeFiles/labirintApp.dir/depend: meta_types/qt6labirintapp_release_metatypes.json
 CMakeFiles/labirintApp.dir/depend: meta_types/qt6labirintapp_release_metatypes.json.gen

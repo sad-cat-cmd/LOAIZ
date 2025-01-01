@@ -70,9 +70,7 @@ include CMakeFiles/labirintApp.dir/progress.make
 include CMakeFiles/labirintApp.dir/flags.make
 
 .rcc/qrc_configuration.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/images/game_agent_element.jpg
-.rcc/qrc_configuration.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/images/icon_main.png
 .rcc/qrc_configuration.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/images/my_game_element.jpg
-.rcc/qrc_configuration.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/images/start.jpg
 .rcc/qrc_configuration.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/images/void_img.jpg
 .rcc/qrc_configuration.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/images/well_element.jpg
 .rcc/qrc_configuration.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/qtquickcontrols2.conf
@@ -134,11 +132,14 @@ qml/Main/labirintApp.qmltypes: labirintapp_qmltyperegistrations.cpp
 labirintApp_autogen/EWIEGA46WW/qrc_res.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/res.qrc
 labirintApp_autogen/EWIEGA46WW/qrc_res.cpp: CMakeFiles/labirintApp_autogen.dir/AutoRcc_res_EWIEGA46WW_Info.json
 labirintApp_autogen/EWIEGA46WW/qrc_res.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/images/void_img.jpg
-labirintApp_autogen/EWIEGA46WW/qrc_res.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/images/start.jpg
-labirintApp_autogen/EWIEGA46WW/qrc_res.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/images/icon_main.png
 labirintApp_autogen/EWIEGA46WW/qrc_res.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/images/well_element.jpg
 labirintApp_autogen/EWIEGA46WW/qrc_res.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/images/my_game_element.jpg
 labirintApp_autogen/EWIEGA46WW/qrc_res.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/images/game_agent_element.jpg
+labirintApp_autogen/EWIEGA46WW/qrc_res.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/images/end_element.jpg
+labirintApp_autogen/EWIEGA46WW/qrc_res.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/qml_others/Me_win.qml
+labirintApp_autogen/EWIEGA46WW/qrc_res.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/qml_others/Information.qml
+labirintApp_autogen/EWIEGA46WW/qrc_res.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/qml_others/Information.qml
+labirintApp_autogen/EWIEGA46WW/qrc_res.cpp: /home/clear/projects/CURS_WORK_NEW/labirint/qml_others/Game_agent_win.qml
 labirintApp_autogen/EWIEGA46WW/qrc_res.cpp: /usr/lib/qt6/libexec/rcc
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Automatic RCC for res.qrc"
 	/usr/bin/cmake -E cmake_autorcc /home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Debug/CMakeFiles/labirintApp_autogen.dir/AutoRcc_res_EWIEGA46WW_Info.json Debug

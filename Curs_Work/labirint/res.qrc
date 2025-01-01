@@ -1,10 +1,13 @@
 <RCC>
-    <qresource prefix="/qt/qml/Main/">
+    <qresource prefix="/qt/qml/Main">
         <file>images/game_agent_element.jpg</file>
-        <file>images/icon_main.png</file>
         <file>images/my_game_element.jpg</file>
-        <file>images/start.jpg</file>
         <file>images/void_img.jpg</file>
         <file>images/well_element.jpg</file>
+        <file>images/end_element.jpg</file>
+        <file>qml_others/Information.qml</file>
+        <file>qml_others/Game_agent_win.qml</file>
+        <file>qml_others/Me_win.qml</file>
+        <file>qml_others/Information.qml</file>
     </qresource>
 </RCC>

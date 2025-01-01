@@ -1,5 +1,9 @@
 <RCC>
   <qresource prefix="/">
+    <file alias="images/game_agent_element.jpg">/home/clear/projects/CURS_WORK_NEW/labirint/images/game_agent_element.jpg</file>
+    <file alias="images/my_game_element.jpg">/home/clear/projects/CURS_WORK_NEW/labirint/images/my_game_element.jpg</file>
+    <file alias="images/void_img.jpg">/home/clear/projects/CURS_WORK_NEW/labirint/images/void_img.jpg</file>
+    <file alias="images/well_element.jpg">/home/clear/projects/CURS_WORK_NEW/labirint/images/well_element.jpg</file>
     <file alias="qtquickcontrols2.conf">/home/clear/projects/CURS_WORK_NEW/labirint/qtquickcontrols2.conf</file>
   </qresource>
 </RCC>

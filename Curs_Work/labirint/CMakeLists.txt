@@ -25,9 +25,7 @@ qt_add_resources(labirintApp "configuration"
     PREFIX "/"
     FILES
         images/game_agent_element.jpg
-        images/icon_main.png
         images/my_game_element.jpg
-        images/start.jpg
         images/void_img.jpg
         images/well_element.jpg
         qtquickcontrols2.conf
@@ -45,6 +43,8 @@ set(QML_IMPORT_PATH ${QT_QML_OUTPUT_DIRECTORY}
     CACHE STRING "Import paths for Qt Creator's code model"
     FORCE
 )
+#
+set(QML2_IMPORT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/qml" CACHE STRING "Qt Creator QML Import Path")
 
 if (BUILD_QDS_COMPONENTS)
     include(${CMAKE_CURRENT_SOURCE_DIR}/qmlcomponents)

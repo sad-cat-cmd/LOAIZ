@@ -66,8 +66,8 @@ include imports/labirint/CMakeFiles/labirint_autogen_timestamp_deps.dir/compiler
 # Include the progress variables for this target.
 include imports/labirint/CMakeFiles/labirint_autogen_timestamp_deps.dir/progress.make
 
-imports/labirint/CMakeFiles/labirint_autogen_timestamp_deps: /usr/lib/qt6/libexec/moc
 imports/labirint/CMakeFiles/labirint_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt6Qml.so.6.4.2
+imports/labirint/CMakeFiles/labirint_autogen_timestamp_deps: /usr/lib/qt6/libexec/moc
 
 labirint_autogen_timestamp_deps: imports/labirint/CMakeFiles/labirint_autogen_timestamp_deps
 labirint_autogen_timestamp_deps: imports/labirint/CMakeFiles/labirint_autogen_timestamp_deps.dir/build.make

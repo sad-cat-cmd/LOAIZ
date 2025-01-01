@@ -67,8 +67,8 @@ include imports/labirint/CMakeFiles/labirintplugin_init_autogen_timestamp_deps.d
 include imports/labirint/CMakeFiles/labirintplugin_init_autogen_timestamp_deps.dir/progress.make
 
 imports/labirint/CMakeFiles/labirintplugin_init_autogen_timestamp_deps: imports/labirint/labirintplugin_init.cpp
-imports/labirint/CMakeFiles/labirintplugin_init_autogen_timestamp_deps: /usr/lib/qt6/libexec/moc
 imports/labirint/CMakeFiles/labirintplugin_init_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.4.2
+imports/labirint/CMakeFiles/labirintplugin_init_autogen_timestamp_deps: /usr/lib/qt6/libexec/moc
 
 labirintplugin_init_autogen_timestamp_deps: imports/labirint/CMakeFiles/labirintplugin_init_autogen_timestamp_deps
 labirintplugin_init_autogen_timestamp_deps: imports/labirint/CMakeFiles/labirintplugin_init_autogen_timestamp_deps.dir/build.make

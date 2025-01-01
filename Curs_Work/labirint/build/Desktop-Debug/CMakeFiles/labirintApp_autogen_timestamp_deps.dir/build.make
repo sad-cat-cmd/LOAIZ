@@ -67,10 +67,9 @@ include CMakeFiles/labirintApp_autogen_timestamp_deps.dir/compiler_depend.make
 include CMakeFiles/labirintApp_autogen_timestamp_deps.dir/progress.make
 
 CMakeFiles/labirintApp_autogen_timestamp_deps: .rcc/qmlcache/labirintApp_qmlcache_loader.cpp
-CMakeFiles/labirintApp_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.4.2
 CMakeFiles/labirintApp_autogen_timestamp_deps: /usr/lib/qt6/libexec/moc
 CMakeFiles/labirintApp_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt6Quick.so.6.4.2
-CMakeFiles/labirintApp_autogen_timestamp_deps: qml/QtQuick/Studio/Application/libQuickStudioApplicationplugin.a
+CMakeFiles/labirintApp_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.4.2
 CMakeFiles/labirintApp_autogen_timestamp_deps: qml/QtQuick/Studio/Components/libQuickStudioComponentsplugin.a
 CMakeFiles/labirintApp_autogen_timestamp_deps: qml/QtQuick/Studio/Effects/libQuickStudioEffectsplugin.a
 CMakeFiles/labirintApp_autogen_timestamp_deps: qml/FlowView/libFlowViewplugin.a
@@ -78,6 +77,7 @@ CMakeFiles/labirintApp_autogen_timestamp_deps: qml/QtQuick/Studio/LogicHelper/li
 CMakeFiles/labirintApp_autogen_timestamp_deps: qml/QtQuick/Studio/MultiText/libQuickStudioMultiTextplugin.a
 CMakeFiles/labirintApp_autogen_timestamp_deps: qml/QtQuick/Studio/EventSimulator/libQuickStudioEventSimulatorplugin.a
 CMakeFiles/labirintApp_autogen_timestamp_deps: qml/QtQuick/Studio/EventSystem/libQuickStudioEventSystemplugin.a
+CMakeFiles/labirintApp_autogen_timestamp_deps: qml/QtQuick/Studio/Application/libQuickStudioApplicationplugin.a
 CMakeFiles/labirintApp_autogen_timestamp_deps: qml/QtQuick/Studio/Utils/libQuickStudioUtilsplugin.a
 CMakeFiles/labirintApp_autogen_timestamp_deps: qml/content/libcontentplugin.a
 CMakeFiles/labirintApp_autogen_timestamp_deps: qml/labirint/liblabirintplugin.a

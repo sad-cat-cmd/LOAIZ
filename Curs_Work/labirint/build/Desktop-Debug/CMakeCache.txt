@@ -382,6 +382,9 @@ PKG_CONFIG_ARGN:STRING=
 //pkg-config executable
 PKG_CONFIG_EXECUTABLE:FILEPATH=PKG_CONFIG_EXECUTABLE-NOTFOUND
 
+//Qt Creator QML Import Path
+QML2_IMPORT_PATH:STRING=/home/clear/projects/CURS_WORK_NEW/labirint/qml
+
 //Import paths for Qt Creator's code model
 QML_IMPORT_PATH:STRING=/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Debug/qml
 

@@ -16,11 +16,8 @@
 #include <QQmlContext>
 int main(int argc, char *argv[])
 {
-
     set_qt_environment();
-
-    //Qt::WA_SetWindowIcon(QIcon(":/home/clear/Загрузки/icon_main.png"));
-
+    //setWindowIcon(QIcon("C:/path_to_ico/favicon.png"));
 
     QGuiApplication app(argc, argv);
 
@@ -37,18 +34,17 @@ int main(int argc, char *argv[])
         Qt::QueuedConnection);
 
 
-    ///
-    Logic_of_the_maze logic_of_the_maze_1;
 
-    // Заполните изображения при старте (или когда вам нужно)
-    logic_of_the_maze_1.fillScreenImages();
 
-    // Получите контекст QML
+    static Logic_of_the_maze logic_of_the_maze_1;
+
+    // // Получение контекста
     QQmlContext* context = engine.rootContext();
 
-    // Зарегистрируйте экземпляр вашего класса в контексте QML
+    // // Регистрация экземпляра класса в контексте QML
     context->setContextProperty("mazeData", &logic_of_the_maze_1);
-    ///
+
+
     engine.addImportPath(QCoreApplication::applicationDirPath() + "/qml");
     engine.addImportPath(":/");
 

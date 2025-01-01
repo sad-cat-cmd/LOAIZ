@@ -1,0 +1,31 @@
+{
+	"BUILD_DIR" : "/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/labirintApp_autogen",
+	"CMAKE_BINARY_DIR" : "/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/clear/projects/CURS_WORK_NEW/labirint",
+	"CMAKE_SOURCE_DIR" : "/home/clear/projects/CURS_WORK_NEW/labirint",
+	"GENERATOR" : "Unix Makefiles",
+	"INCLUDE_DIR" : "/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/labirintApp_autogen/include",
+	"INPUTS" : 
+	[
+		"/home/clear/projects/CURS_WORK_NEW/labirint/images/void_img.jpg",
+		"/home/clear/projects/CURS_WORK_NEW/labirint/images/well_element.jpg",
+		"/home/clear/projects/CURS_WORK_NEW/labirint/images/my_game_element.jpg",
+		"/home/clear/projects/CURS_WORK_NEW/labirint/images/game_agent_element.jpg",
+		"/home/clear/projects/CURS_WORK_NEW/labirint/images/end_element.jpg",
+		"/home/clear/projects/CURS_WORK_NEW/labirint/qml_others/Me_win.qml",
+		"/home/clear/projects/CURS_WORK_NEW/labirint/qml_others/Information.qml",
+		"/home/clear/projects/CURS_WORK_NEW/labirint/qml_others/Information.qml",
+		"/home/clear/projects/CURS_WORK_NEW/labirint/qml_others/Game_agent_win.qml"
+	],
+	"LOCK_FILE" : "/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/CMakeFiles/labirintApp_autogen.dir/AutoRcc_res_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "res" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_res.cpp",
+	"RCC_EXECUTABLE" : "/usr/lib/qt6/libexec/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/home/clear/projects/CURS_WORK_NEW/labirint/build/Desktop-Release/CMakeFiles/labirintApp_autogen.dir/AutoRcc_res_EWIEGA46WW_Used.txt",
+	"SOURCE" : "/home/clear/projects/CURS_WORK_NEW/labirint/res.qrc",
+	"VERBOSITY" : 0
+}
