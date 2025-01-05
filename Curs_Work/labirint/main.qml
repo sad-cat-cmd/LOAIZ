@@ -75,7 +75,7 @@ Window {
 
         function movePlayer(dx, dy) {
                 mazeData.movePlayer(dx, dy);
-            }
+        }
 
 
         Rectangle {

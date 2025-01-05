@@ -842,6 +842,7 @@ CMakeFiles/labirintApp.dir/labirintApp_autogen/mocs_compilation.cpp.o: labirintA
   /usr/include/c++/13/bits/cpp_type_traits.h \
   /usr/include/c++/13/bits/cxxabi_forced.h \
   /usr/include/c++/13/bits/cxxabi_init_exception.h \
+  /usr/include/c++/13/bits/deque.tcc \
   /usr/include/c++/13/bits/enable_special_members.h \
   /usr/include/c++/13/bits/erase_if.h \
   /usr/include/c++/13/bits/exception.h \
@@ -882,6 +883,7 @@ CMakeFiles/labirintApp.dir/labirintApp_autogen/mocs_compilation.cpp.o: labirintA
   /usr/include/c++/13/bits/stl_algobase.h \
   /usr/include/c++/13/bits/stl_bvector.h \
   /usr/include/c++/13/bits/stl_construct.h \
+  /usr/include/c++/13/bits/stl_deque.h \
   /usr/include/c++/13/bits/stl_function.h \
   /usr/include/c++/13/bits/stl_heap.h \
   /usr/include/c++/13/bits/stl_iterator.h \
@@ -892,6 +894,7 @@ CMakeFiles/labirintApp.dir/labirintApp_autogen/mocs_compilation.cpp.o: labirintA
   /usr/include/c++/13/bits/stl_multimap.h \
   /usr/include/c++/13/bits/stl_numeric.h \
   /usr/include/c++/13/bits/stl_pair.h \
+  /usr/include/c++/13/bits/stl_queue.h \
   /usr/include/c++/13/bits/stl_raw_storage_iter.h \
   /usr/include/c++/13/bits/stl_relops.h \
   /usr/include/c++/13/bits/stl_tempbuf.h \
@@ -925,6 +928,7 @@ CMakeFiles/labirintApp.dir/labirintApp_autogen/mocs_compilation.cpp.o: labirintA
   /usr/include/c++/13/cwchar \
   /usr/include/c++/13/debug/assertions.h \
   /usr/include/c++/13/debug/debug.h \
+  /usr/include/c++/13/deque \
   /usr/include/c++/13/exception \
   /usr/include/c++/13/ext/aligned_buffer.h \
   /usr/include/c++/13/ext/alloc_traits.h \
@@ -949,6 +953,7 @@ CMakeFiles/labirintApp.dir/labirintApp_autogen/mocs_compilation.cpp.o: labirintA
   /usr/include/c++/13/pstl/glue_memory_defs.h \
   /usr/include/c++/13/pstl/glue_numeric_defs.h \
   /usr/include/c++/13/pstl/pstl_config.h \
+  /usr/include/c++/13/queue \
   /usr/include/c++/13/ratio \
   /usr/include/c++/13/stdexcept \
   /usr/include/c++/13/stdlib.h \
@@ -1561,6 +1566,7 @@ CMakeFiles/labirintApp.dir/src/Logic_of_the_maze.cpp.o: /home/clear/projects/CUR
   /usr/include/c++/13/bits/cpp_type_traits.h \
   /usr/include/c++/13/bits/cxxabi_forced.h \
   /usr/include/c++/13/bits/cxxabi_init_exception.h \
+  /usr/include/c++/13/bits/deque.tcc \
   /usr/include/c++/13/bits/enable_special_members.h \
   /usr/include/c++/13/bits/erase_if.h \
   /usr/include/c++/13/bits/exception.h \
@@ -1601,6 +1607,7 @@ CMakeFiles/labirintApp.dir/src/Logic_of_the_maze.cpp.o: /home/clear/projects/CUR
   /usr/include/c++/13/bits/stl_algobase.h \
   /usr/include/c++/13/bits/stl_bvector.h \
   /usr/include/c++/13/bits/stl_construct.h \
+  /usr/include/c++/13/bits/stl_deque.h \
   /usr/include/c++/13/bits/stl_function.h \
   /usr/include/c++/13/bits/stl_heap.h \
   /usr/include/c++/13/bits/stl_iterator.h \
@@ -1611,6 +1618,7 @@ CMakeFiles/labirintApp.dir/src/Logic_of_the_maze.cpp.o: /home/clear/projects/CUR
   /usr/include/c++/13/bits/stl_multimap.h \
   /usr/include/c++/13/bits/stl_numeric.h \
   /usr/include/c++/13/bits/stl_pair.h \
+  /usr/include/c++/13/bits/stl_queue.h \
   /usr/include/c++/13/bits/stl_raw_storage_iter.h \
   /usr/include/c++/13/bits/stl_relops.h \
   /usr/include/c++/13/bits/stl_tempbuf.h \
@@ -1644,6 +1652,7 @@ CMakeFiles/labirintApp.dir/src/Logic_of_the_maze.cpp.o: /home/clear/projects/CUR
   /usr/include/c++/13/cwchar \
   /usr/include/c++/13/debug/assertions.h \
   /usr/include/c++/13/debug/debug.h \
+  /usr/include/c++/13/deque \
   /usr/include/c++/13/exception \
   /usr/include/c++/13/ext/aligned_buffer.h \
   /usr/include/c++/13/ext/alloc_traits.h \
@@ -1668,6 +1677,7 @@ CMakeFiles/labirintApp.dir/src/Logic_of_the_maze.cpp.o: /home/clear/projects/CUR
   /usr/include/c++/13/pstl/glue_memory_defs.h \
   /usr/include/c++/13/pstl/glue_numeric_defs.h \
   /usr/include/c++/13/pstl/pstl_config.h \
+  /usr/include/c++/13/queue \
   /usr/include/c++/13/ratio \
   /usr/include/c++/13/stdexcept \
   /usr/include/c++/13/stdlib.h \
@@ -1906,6 +1916,7 @@ CMakeFiles/labirintApp.dir/src/main.cpp.o: /home/clear/projects/CURS_WORK_NEW/la
   /usr/include/c++/13/bits/cpp_type_traits.h \
   /usr/include/c++/13/bits/cxxabi_forced.h \
   /usr/include/c++/13/bits/cxxabi_init_exception.h \
+  /usr/include/c++/13/bits/deque.tcc \
   /usr/include/c++/13/bits/enable_special_members.h \
   /usr/include/c++/13/bits/erase_if.h \
   /usr/include/c++/13/bits/exception.h \
@@ -1946,6 +1957,7 @@ CMakeFiles/labirintApp.dir/src/main.cpp.o: /home/clear/projects/CURS_WORK_NEW/la
   /usr/include/c++/13/bits/stl_algobase.h \
   /usr/include/c++/13/bits/stl_bvector.h \
   /usr/include/c++/13/bits/stl_construct.h \
+  /usr/include/c++/13/bits/stl_deque.h \
   /usr/include/c++/13/bits/stl_function.h \
   /usr/include/c++/13/bits/stl_heap.h \
   /usr/include/c++/13/bits/stl_iterator.h \
@@ -1956,6 +1968,7 @@ CMakeFiles/labirintApp.dir/src/main.cpp.o: /home/clear/projects/CURS_WORK_NEW/la
   /usr/include/c++/13/bits/stl_multimap.h \
   /usr/include/c++/13/bits/stl_numeric.h \
   /usr/include/c++/13/bits/stl_pair.h \
+  /usr/include/c++/13/bits/stl_queue.h \
   /usr/include/c++/13/bits/stl_raw_storage_iter.h \
   /usr/include/c++/13/bits/stl_relops.h \
   /usr/include/c++/13/bits/stl_tempbuf.h \
@@ -1989,6 +2002,7 @@ CMakeFiles/labirintApp.dir/src/main.cpp.o: /home/clear/projects/CURS_WORK_NEW/la
   /usr/include/c++/13/cwchar \
   /usr/include/c++/13/debug/assertions.h \
   /usr/include/c++/13/debug/debug.h \
+  /usr/include/c++/13/deque \
   /usr/include/c++/13/exception \
   /usr/include/c++/13/ext/aligned_buffer.h \
   /usr/include/c++/13/ext/alloc_traits.h \
@@ -2013,6 +2027,7 @@ CMakeFiles/labirintApp.dir/src/main.cpp.o: /home/clear/projects/CURS_WORK_NEW/la
   /usr/include/c++/13/pstl/glue_memory_defs.h \
   /usr/include/c++/13/pstl/glue_numeric_defs.h \
   /usr/include/c++/13/pstl/pstl_config.h \
+  /usr/include/c++/13/queue \
   /usr/include/c++/13/ratio \
   /usr/include/c++/13/stdexcept \
   /usr/include/c++/13/stdlib.h \
@@ -2342,8 +2357,6 @@ CMakeFiles/labirintApp.dir/src/main.cpp.o: /home/clear/projects/CURS_WORK_NEW/la
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qmargins.h:
 
-/usr/include/x86_64-linux-gnu/qt6/QtCore/qline.h:
-
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qnativeinterface.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qjsonvalue.h:
@@ -2360,8 +2373,6 @@ CMakeFiles/labirintApp.dir/src/main.cpp.o: /home/clear/projects/CURS_WORK_NEW/la
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/QSize:
 
-labirintapp_qmltyperegistrations.cpp:
-
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qtimer.h:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/qbasictimer.h:
@@ -2369,6 +2380,20 @@ labirintapp_qmltyperegistrations.cpp:
 /usr/include/x86_64-linux-gnu/qt6/QtCore/QObject:
 
 /usr/include/x86_64-linux-gnu/qt6/QtCore/QList:
+
+labirintapp_qmltyperegistrations.cpp:
+
+/usr/include/c++/13/queue:
+
+/usr/include/c++/13/deque:
+
+/usr/include/x86_64-linux-gnu/qt6/QtCore/qline.h:
+
+/usr/include/c++/13/bits/stl_queue.h:
+
+/usr/include/c++/13/bits/stl_deque.h:
+
+/usr/include/c++/13/bits/deque.tcc:
 
 labirintApp_autogen/UVLADIE3JM/moc_Logic_of_the_maze.cpp:
 

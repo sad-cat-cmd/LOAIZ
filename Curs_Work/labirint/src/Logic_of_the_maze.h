@@ -9,6 +9,7 @@
 #include <ctime>
 #include <vector>
 #include <cstdlib>
+#include <queue>
 
 using namespace std;
 
@@ -55,12 +56,14 @@ public:
         return result;
     }
 
+    struct Point {
+        int x = -1, y = -1;
+    };
+    vector<Point> path;
 private:
     bool agentStarted = false;
     QTimer* agentTimer;
-
-    std::vector<std::vector<bool>> visitedCells;
-    std::vector<std::pair<int, int>> previousMoves; // Хранение последних ходов
+    int currentPathIndex = 0;  // Добавляем поле для отслеживания текущей позиции в пути
 public slots:
 
     // алгоритм "Growing Tree"
@@ -224,153 +227,125 @@ public slots:
     }
 
 
+    vector <Point> findPath(const vector<vector<int>>& maze) {
+        int rows = maze.size();
+        int cols = maze[0].size();
+
+        Point start, end;
+        for (int i = 0; i < rows; ++i) {
+            for (int j = 0; j < cols; ++j) {
+                if (maze[i][j] == 2) {
+                    start = {i, j};
+                } else if (maze[i][j] == 3) {
+                    end = {i, j};
+                }
+            }
+        }
+
+        queue<pair<Point, vector<Point>>> q;
+        q.push({start, {start}});
+
+        vector<vector<bool>> visited(rows, vector<bool>(cols, false));
+        visited[start.x][start.y] = true;
+
+        while (!q.empty()) {
+            Point current = q.front().first;
+            vector<Point> path = q.front().second;
+            q.pop();
+
+            if (current.x == end.x && current.y == end.y) {
+                return path;
+            }
+
+            int dx[] = {0, 1, 0, -1}; // Правое, нижнее, левое, верхнее
+            int dy[] = {1, 0, -1, 0};
+
+            for (int i = 0; i < 4; ++i) {
+                int nextX = current.x + dx[i];
+                int nextY = current.y + dy[i];
+
+                if (nextX >= 0 && nextX < rows && nextY >= 0 && nextY < cols &&
+                    maze[nextX][nextY] != 1 && !visited[nextX][nextY]) {
+                    visited[nextX][nextY] = true;
+                    vector<Point> nextPath = path;
+                    nextPath.push_back({nextX, nextY});
+                    q.push({{nextX, nextY}, nextPath});
+                }
+            }
+        }
+
+        return {}; // Путь не найден
+    }
 
     void moveAgent() {
         if (!agentStarted) return;
 
-        auto [x, y] = findPlayerPosition(Game_agent_Maze);
-        if (x == -1 || y == -1) return;
+        auto [currentX, currentY] = findPlayerPosition(Game_agent_Maze);
+        if (currentX == -1 || currentY == -1) return;
 
-        // Инициализация массива посещенных клеток при первом вызове
-        if (visitedCells.empty()) {
-            visitedCells.resize(height, std::vector<bool>(width, false));
+        // Если путь пуст или нужно его пересчитать
+        if (path.empty()) {
+            path = findPath(Game_agent_Maze);
+            if (path.empty()) return;
+            currentPathIndex = 1;  // Пропускаем текущую позицию
         }
 
-        // Отмечаем текущую клетку как посещенную
-        visitedCells[y][x] = true;
-
-        // Структура для хранения возможных ходов
-        struct Move {
-            int dx, dy;
-            double weight;
-            bool operator<(const Move& other) const {
-                return weight < other.weight;
-            }
-        };
-        std::vector<Move> possibleMoves;
-
-        // Функция проверки возможности хода
-        auto isValidMove = [&](int newX, int newY) -> bool {
-            return newX >= 0 && newX < width &&
-                   newY >= 0 && newY < height &&
-                   Game_agent_Maze[newY][newX] != 1;
-        };
-
-        // Проверяем все возможные направления
-        const std::vector<std::pair<int, int>> directions = {{1,0}, {-1,0}, {0,1}, {0,-1}};
-
-        for (const auto& [dx, dy] : directions) {
-            int newX = x + dx;
-            int newY = y + dy;
-
-            if (isValidMove(newX, newY)) {
-                double weight = 1.0;
-
-                // Базовые веса для разных типов клеток
-                if (!visitedCells[newY][newX]) {
-                    weight += 2.0;
-                }
-                if (Game_agent_Maze[newY][newX] == 3) { // Цель
-                    weight += 10.0;
-                }
-
-                // Проверка на возврат
-                if (!previousMoves.empty()) {
-                    auto& lastMove = previousMoves.back();
-                    if (dx == -lastMove.first && dy == -lastMove.second) {
-                        // Если все клетки вокруг посещены или являются стенами,
-                        // увеличиваем вес возврата
-                        bool needBacktrack = true;
-                        for (const auto& [checkDx, checkDy] : directions) {
-                            int checkX = x + checkDx;
-                            int checkY = y + checkDy;
-                            if (isValidMove(checkX, checkY) && !visitedCells[checkY][checkX]) {
-                                needBacktrack = false;
-                                break;
-                            }
-                        }
-                        weight = needBacktrack ? 5.0 : 0.5;
-                    }
-                }
-
-                possibleMoves.push_back({dx, dy, weight});
-            }
+        // Проверяем, не достигли ли конца пути
+        if (currentPathIndex >= path.size()) {
+            agentStarted = false;
+            agentTimer->stop();
+            emit agentWon();
+            return;
         }
 
-        if (!possibleMoves.empty()) {
-            // Сортируем ходы по весу
-            std::sort(possibleMoves.begin(), possibleMoves.end());
+        // Получаем следующую позицию из пути
+        Point nextPos = path[currentPathIndex];
 
-            // Выбираем ход с наибольшим весом с некоторой вероятностью случайного выбора
-            double randomValue = static_cast<double>(rand()) / RAND_MAX;
-            Move selectedMove;
+        // Проверяем, является ли следующая позиция допустимой
+        if (Game_agent_Maze[nextPos.x][nextPos.y] != 1) {
+            // Проверяем, достигнет ли агент цели
+            bool reachedGoal = (Game_agent_Maze[nextPos.x][nextPos.y] == 3);
 
-            if (randomValue < 0.7) { // 70% времени выбираем лучший ход
-                selectedMove = possibleMoves.back();
-            } else { // 30% времени выбираем случайный ход
-                selectedMove = possibleMoves[rand() % possibleMoves.size()];
-            }
+            // Перемещаем агента
+            Game_agent_Maze[currentY][currentX] = 0;  // Очищаем текущую позицию
+            Game_agent_Maze[nextPos.x][nextPos.y] = 2;  // Устанавливаем агента на новую позицию
 
-            // Сохраняем текущий ход
-            previousMoves.push_back({selectedMove.dx, selectedMove.dy});
-            if (previousMoves.size() > 10) { // Увеличили историю ходов
-                previousMoves.erase(previousMoves.begin());
-            }
+            fillScreenImages();  // Обновляем отображение
 
-            // Выполняем ход
-            int newX = x + selectedMove.dx;
-            int newY = y + selectedMove.dy;
-
-            // Проверяем достижение цели перед ходом
-            bool reachedGoal = (Game_agent_Maze[newY][newX] == 3);
-
-            // Выполняем перемещение
-            Game_agent_Maze[y][x] = 0;
-            Game_agent_Maze[newY][newX] = 2;
+            currentPathIndex++;  // Переходим к следующей точке пути
 
             if (reachedGoal) {
                 agentStarted = false;
                 agentTimer->stop();
-                visitedCells.clear();
-                previousMoves.clear();
                 emit agentWon();
             }
-
-            fillScreenImages();
         } else {
-            // Если нет возможных ходов, очищаем историю посещений
-            visitedCells.clear();
-            visitedCells.resize(height, std::vector<bool>(width, false));
-            previousMoves.clear();
+            // Если путь заблокирован, пересчитываем его
+            path.clear();
         }
     }
+
     void startAgent() {
         if (!agentStarted) {
             agentStarted = true;
-            // Запуск таймера
+            currentPathIndex = 0;
+            path = findPath(Game_agent_Maze);
             if (!agentTimer->isActive()) {
-                agentTimer->start(100); // Движение каждые 500 мс
+                agentTimer->start(300);  // Устанавливаем интервал движения
             }
         }
     }
 
     void cleanup() {
-        // Останавливаем таймер
         if (agentTimer) {
             agentTimer->stop();
-            // delete agentTimer;
-            // agentTimer = nullptr;
         }
-
-        // Очищаем все векторы
         myMaze.clear();
         Game_agent_Maze.clear();
         myGameScreenImageData.clear();
         agentScreenImageData.clear();
-        visitedCells.clear();
-        previousMoves.clear();
-
-        // Сбрасываем флаги
+        path.clear();
+        currentPathIndex = 0;
         agentStarted = false;
     }
 

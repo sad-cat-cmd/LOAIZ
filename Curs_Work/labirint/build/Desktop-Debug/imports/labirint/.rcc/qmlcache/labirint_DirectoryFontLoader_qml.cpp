@@ -374,9 +374,9 @@ Q_UNUSED(aotContext)
 Q_UNUSED(argumentsPtr)
 QString r11_1;
 QObject *r7_1;
-QObject *r2_1;
 QString r2_2;
 QUrl r2_3;
+QObject *r2_1;
 QUrl r10_1;
 // generate_LoadQmlContextPropertyLookup
 while (!aotContext->loadSingletonLookup(0, &r2_1)) {

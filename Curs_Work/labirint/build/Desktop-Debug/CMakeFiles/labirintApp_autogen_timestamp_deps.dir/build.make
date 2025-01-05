@@ -68,8 +68,8 @@ include CMakeFiles/labirintApp_autogen_timestamp_deps.dir/progress.make
 
 CMakeFiles/labirintApp_autogen_timestamp_deps: .rcc/qmlcache/labirintApp_qmlcache_loader.cpp
 CMakeFiles/labirintApp_autogen_timestamp_deps: /usr/lib/qt6/libexec/moc
-CMakeFiles/labirintApp_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt6Quick.so.6.4.2
 CMakeFiles/labirintApp_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.4.2
+CMakeFiles/labirintApp_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libQt6Quick.so.6.4.2
 CMakeFiles/labirintApp_autogen_timestamp_deps: qml/QtQuick/Studio/Components/libQuickStudioComponentsplugin.a
 CMakeFiles/labirintApp_autogen_timestamp_deps: qml/QtQuick/Studio/Effects/libQuickStudioEffectsplugin.a
 CMakeFiles/labirintApp_autogen_timestamp_deps: qml/FlowView/libFlowViewplugin.a

@@ -96,6 +96,17 @@
                     },
                     {
                         "access": "public",
+                        "arguments": [
+                            {
+                                "name": "maze",
+                                "type": "vector<vector<int>>"
+                            }
+                        ],
+                        "name": "findPath",
+                        "returnType": "vector<Point>"
+                    },
+                    {
+                        "access": "public",
                         "name": "moveAgent",
                         "returnType": "void"
                     },

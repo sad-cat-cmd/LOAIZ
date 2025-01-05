@@ -392,5 +392,8 @@ CMakeFiles/labirintApp.dir/src/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qstring.h \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/QVector \
  /usr/include/x86_64-linux-gnu/qt6/QtCore/qvector.h \
+ /usr/include/c++/13/queue /usr/include/c++/13/deque \
+ /usr/include/c++/13/bits/stl_deque.h /usr/include/c++/13/bits/deque.tcc \
+ /usr/include/c++/13/bits/stl_queue.h \
  /usr/include/x86_64-linux-gnu/qt6/QtQml/QQmlContext \
  /usr/include/x86_64-linux-gnu/qt6/QtQml/qqmlcontext.h
